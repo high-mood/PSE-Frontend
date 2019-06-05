@@ -60,7 +60,9 @@ public class TestActivity extends AppCompatActivity
         ArrayList<DataObject> list = new ArrayList<DataObject>();
 
         for (int i = 0; i < 1000; i++) {
-            list.add(new DataObject());
+            DataObject d = new DataObject();
+            d.x = i;
+            list.add(d);
         }
 
         List<Entry> entries = new ArrayList<Entry>();
@@ -69,10 +71,11 @@ public class TestActivity extends AppCompatActivity
             entries.add(new Entry(data.x, data.y));
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        LineDataSet dataSet = new LineDataSet(entries, "Happy");
 //        dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
         dataSet.setColor(Color.rgb(0, 255, 0));
-        dataSet.setCircleColor(Color.rgb(0, 0, 10));
+        dataSet.setCircleColor(Color.argb(0, 0, 255, 0));
+        dataSet.setCircleHoleColor(Color.argb(0, 0, 255, 0));
 
 //        LineData lineData = new LineData(dataSet);
 //        chart.setData(lineData);
@@ -81,9 +84,10 @@ public class TestActivity extends AppCompatActivity
 
         DataObject.reset();
 
-
         for (int i = 0; i < 1000; i++) {
-            list.add(new DataObject());
+            DataObject d = new DataObject();
+            d.x = i;
+            list.add(d);
         }
 
 
@@ -93,10 +97,11 @@ public class TestActivity extends AppCompatActivity
             entries2.add(new Entry(data.x, data.y));
         }
 
-        LineDataSet dataSet2 = new LineDataSet(entries2, "Second label");
+        LineDataSet dataSet2 = new LineDataSet(entries2, "Sad");
 //        dataSet2.setAxisDependency(YAxis.AxisDependency.LEFT);
         dataSet2.setColor(Color.rgb(255, 0, 0));
-        dataSet2.setCircleColor(Color.rgb(0, 90, 0));
+        dataSet2.setCircleColor(Color.argb(0,255, 0, 0));
+        dataSet2.setCircleHoleColor(Color.argb(0, 255, 0, 0));
 
 
 //        LineData lineData2 = new LineData(dataSet2);
@@ -110,6 +115,13 @@ public class TestActivity extends AppCompatActivity
 
         chart.setData(lineData);
         chart.setVisibleXRangeMaximum(100.0f);
+
+        chart.getXAxis().setDrawGridLines(false);
+        chart.getAxisLeft().setDrawGridLines(false);
+        chart.getAxisLeft().setDrawLabels(false);
+
+        chart.getAxisRight().setDrawGridLines(false);
+        chart.getAxisRight().setDrawLabels(false);
 
         chart.invalidate();
     }
