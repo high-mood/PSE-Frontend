@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <title>Front-End(stats)</title>
+</head>
+
+<body>
+
+  <!--nav bar-->
+  <div class="headerContainer">
+    <ul>
+      <li><a href="test0">login</a></li>
+      <li><a class="active" href="test1">Pie chart</a></li>
+    </ul>
+  </div>
+
+  <!--body-->
+  <div class="bodyContainer">
+    <div id="pie-chart"></div>
+    <script>
+      var data = [{genre:"genre0",size:4},{genre:"genre1",size:6},
+                  {genre:"genre2",size:1},{genre:"genre3",size:14},
+                  {genre:"genre4",size:9},{genre:"genre5",size:3}];
+    </script>
+    <script src="pieChart.js"></script>
+  </div>
+
+  <!--footer-->
+  <div class="footerContainer">
+
+  </div>
+
+</body>
+</html>

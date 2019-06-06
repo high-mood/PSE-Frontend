@@ -80,6 +80,10 @@ div.bodyContainer div.actionText a {
   color: white;
 }
 
+.arc path {
+  stroke: #fff;
+}
+
 
 
 div.footerContainer {

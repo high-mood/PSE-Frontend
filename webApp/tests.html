@@ -2,97 +2,96 @@
 <html lang="en">
 
 <head>
-  <style>
-    .arc text {
-      font: 10px sans-serif;
-      text-anchor: middle;
-    }
-
-    .arc path {
-      stroke: #fff;
-    }
-
-    .title {
-      fill: teal;
-      font-weight: bold;
-    }
-  </style>
   <meta charset="UTF-8">
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
   <title>Front-End(stats)</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 
 <body>
-  <div id="pie-chart"></div>
 
+
+<!--nav bar-->
+<div class="headerContainer">
+  <ul>
+    <li><a class="active" href="test0">test0</a></li>
+    <li><a href="test1">test1</a></li>
+    <li><a href="test2">test2</a></li>
+    <li><a href="test3">test3</a></li>
+  </ul>
+</div>
+
+<!--body-->
+<div class="bodyContainer">
+  <!--<script>var chartData = [30, 86, 168, 281, 303, 365,200];</script>-->
+  <!--<div class="barChartH"></div>-->
+  <!--<script src="barChartH.js"></script>-->
+
+  <!--<div id="bar-chart"></div>-->
+  <!--<script src="barChartV.js"></script>-->
+
+  <div id ="chartID"></div>
   <script>
-    var data = [2,5,9,1];
-    
-    var width = 500,
-        height = 400,
-        radius = Math.min(width, height) / 2;
+    var data = [{"food":"Hotdogs","quantity":24},{"food":"Tacos","quantity":15},
+                {"food":"Pizza","quantity":3},{"food":"Double Quarter Pounders with Cheese","quantity":2},
+                {"food":"Omelets","quantity":30},{"food":"Falafel and Hummus","quantity":21},
+                {"food":"Soylent","quantity":13}]
 
-    var svg = d3.select("#pie-chart").append("svg")
-      .attr('width', width)
-      .attr('height', height + 20);
+    var margin = {top:10, right:10, bottom:90, left:10};
+
+    var width = 960 - margin.left - margin.right;
+
+    var height = 500 - margin.top - margin.bottom;
+
+
+    var xScale = d3.scaleOrdinal().domain(data.food);
+
+    var yScale = d3.scaleLinear()
+                   .range([height, 0]);
+
+
+    var xAxis = d3.axisBottom()
+		          .scale(xScale);
+
+    var yAxis = d3.axisLeft()
+		.scale(yScale);
+
+    var svgContainer = d3.select("#chartID").append("svg")
+		.attr("width", width+margin.left + margin.right)
+		.attr("height",height+margin.top + margin.bottom)
+		.append("g").attr("class", "container")
+		.attr("transform", "translate("+ margin.left +","+ margin.top +")");
+
+    xScale.domain(data.map(function(d) { return d.food; }));
+    yScale.domain([0, d3.max(data, function(d) { return d.quantity; })]);
+
+
+    //xAxis.
+    var xAxis_g = svgContainer.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + (height) + ")")
+		.call(xAxis)
+		.selectAll("text");
+
+
+	svgContainer.selectAll(".bar")
+  		.data(data)
+  		.enter()
+  		.append("rect")
+  		.attr("class", "bar")
+  		.attr("x", function(d) { return xScale(d.food); })
+  		.attr("width", xScale(width))
+  		.attr("y", function(d) { return yScale(d.quantity); })
+  		.attr("height", function(d) { return height - yScale(d.quantity); });
   </script>
 
+</div>
 
-  <!--<script>
-    var width = 500,
-        height = 400,
-        radius = Math.min(width, height) / 2;
+<!--footer-->
+<div class="footerContainer">
+  footer
+</div>
 
-    var svg = d3.select("#pie-chart").append("svg")
-      .attr('width', width)
-      .attr('height', height + 20);
-
-    var g = svg.append("g")
-      .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 20) + ")");
-
-    var color = d3.scaleOrdinal(['#4daf4a','#377eb8','#ff7f00','#984ea3','#e41a1c']);
-
-    var pie = d3.pie().value(function(d) {
-      return d.percent;
-    });
-
-    var path = d3.arc()
-      .outerRadius(radius - 10)
-      .innerRadius(0);
-
-    var label = d3.arc()
-      .outerRadius(radius)
-      .innerRadius(radius - 80);
-
-    d3.csv("exampleData.csv", function(error, data) {
-      if (error) {
-        throw error;
-      }
-      var arc = g.selectAll(".arc")
-        .data(pie(data))
-        .enter().append("g")
-        .attr("class", "arc");
-
-      arc.append("path")
-        .attr("d", path)
-        .attr("fill", function(d) { return color(d.data.browser); });
-
-      // console.log(arc)
-
-      // Add label
-      arc.append("text")
-        .attr("transform", function(d) {
-          return "translate(" + label.centroid(d) + ")";
-        })
-        .text(function(d) { return d.data.browser; });
-    });
-
-    // Add a title at the top (specified in .text())
-    svg.append("g")
-      .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
-      .append("text")
-      .text("Browser use statistics - Jan 2017")
-      .attr("class", "title")
-  </script>-->
 </body>
 </html>
