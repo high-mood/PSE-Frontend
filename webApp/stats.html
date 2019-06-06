@@ -29,8 +29,63 @@
   <!--<div class="barChartH"></div>-->
   <!--<script src="barChartH.js"></script>-->
 
-  <div id="bar-chart">
-  <script src="barChartV.js"></script>
+  <!--<div id="bar-chart"></div>-->
+  <!--<script src="barChartV.js"></script>-->
+
+  <div id ="chartID"></div>
+  <script>
+    var data = [{"food":"Hotdogs","quantity":24},{"food":"Tacos","quantity":15},
+                {"food":"Pizza","quantity":3},{"food":"Double Quarter Pounders with Cheese","quantity":2},
+                {"food":"Omelets","quantity":30},{"food":"Falafel and Hummus","quantity":21},
+                {"food":"Soylent","quantity":13}]
+
+    var margin = {top:10, right:10, bottom:90, left:10};
+
+    var width = 960 - margin.left - margin.right;
+
+    var height = 500 - margin.top - margin.bottom;
+
+
+    var xScale = d3.scaleOrdinal().domain(data.food);
+
+    var yScale = d3.scaleLinear()
+                   .range([height, 0]);
+
+
+    var xAxis = d3.axisBottom()
+		          .scale(xScale);
+
+    var yAxis = d3.axisLeft()
+		.scale(yScale);
+
+    var svgContainer = d3.select("#chartID").append("svg")
+		.attr("width", width+margin.left + margin.right)
+		.attr("height",height+margin.top + margin.bottom)
+		.append("g").attr("class", "container")
+		.attr("transform", "translate("+ margin.left +","+ margin.top +")");
+
+    xScale.domain(data.map(function(d) { return d.food; }));
+    yScale.domain([0, d3.max(data, function(d) { return d.quantity; })]);
+
+
+    //xAxis.
+    var xAxis_g = svgContainer.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + (height) + ")")
+		.call(xAxis)
+		.selectAll("text");
+
+
+	svgContainer.selectAll(".bar")
+  		.data(data)
+  		.enter()
+  		.append("rect")
+  		.attr("class", "bar")
+  		.attr("x", function(d) { return xScale(d.food); })
+  		.attr("width", xScale(width))
+  		.attr("y", function(d) { return yScale(d.quantity); })
+  		.attr("height", function(d) { return height - yScale(d.quantity); });
+  </script>
 
 </div>
 
