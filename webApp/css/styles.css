@@ -80,6 +80,12 @@ div.bodyContainer div.actionText a {
   color: white;
 }
 
+div.pieChart {
+  background-color: white;
+  width: 500px;
+  border-radius: 20px;
+}
+
 .arc path {
   stroke: #fff;
 }

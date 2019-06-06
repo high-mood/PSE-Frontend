@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a1f8882-d9fc-41ac-874b-6980f67d6627" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webApp/pieChart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webApp/pieChart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webApp/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/exampleData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/exampleData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webApp/stats.html" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/tests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webApp/pieChart.html" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/pieChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webApp/pieChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/webApp/pieChart.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,17 +41,17 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="952" />
+          <entry key="css" value="1023" />
           <entry key="csv" value="15" />
-          <entry key="html" value="2027" />
-          <entry key="js" value="1346" />
+          <entry key="html" value="2313" />
+          <entry key="js" value="1440" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="952" />
-          <entry key="HTML" value="1999" />
-          <entry key="JavaScript" value="1346" />
+          <entry key="CSS" value="1023" />
+          <entry key="HTML" value="2285" />
+          <entry key="JavaScript" value="1440" />
           <entry key="PLAIN_TEXT" value="15" />
           <entry key="Scratch" value="28" />
         </counts>
@@ -91,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webApp/pieChart.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+              <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -103,17 +99,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webApp/pieChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+            <state relative-caret-position="255">
+              <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webApp/css/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="83" column="2" selection-start-line="83" selection-start-column="2" selection-end-line="83" selection-end-column="2" />
+            <state relative-caret-position="825">
+              <caret line="85" column="22" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -139,6 +135,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>brows</find>
+      <find>id</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,13 +156,13 @@
         <option value="$PROJECT_DIR$/webApp/barChartV.js" />
         <option value="$PROJECT_DIR$/webApp/browseruse.csv" />
         <option value="$PROJECT_DIR$/webApp/exampleData.csv" />
-        <option value="$PROJECT_DIR$/webApp/css/styles.css" />
         <option value="$PROJECT_DIR$/webApp/tests.html" />
         <option value="$PROJECT_DIR$/webApp/stats.html" />
-        <option value="$PROJECT_DIR$/webApp/pieChart.js" />
         <option value="$PROJECT_DIR$/webApp/pie.html" />
         <option value="$PROJECT_DIR$/webApp/login.html" />
+        <option value="$PROJECT_DIR$/webApp/pieChart.js" />
         <option value="$PROJECT_DIR$/webApp/pieChart.html" />
+        <option value="$PROJECT_DIR$/webApp/css/styles.css" />
       </list>
     </option>
   </component>
@@ -220,7 +217,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559824053564" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559825432966" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Other File Types" />
@@ -309,24 +306,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webApp/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="83" column="2" selection-start-line="83" selection-start-column="2" selection-end-line="83" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webApp/barChartV.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webApp/pieChart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -347,7 +330,21 @@
     <entry file="file://$PROJECT_DIR$/webApp/pieChart.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webApp/pieChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webApp/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="85" column="22" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
         </state>
       </provider>
     </entry>

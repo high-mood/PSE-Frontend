@@ -1,12 +1,11 @@
 // from https://www.tutorialsteacher.com/d3js/create-pie-chart-using-d3js
 
+function makePieChart(data,divID,width,height,title) {
 // set variables
-var width = 500,
-    height = 400,
-    radius = Math.min(width, height) / 2;
+var radius = Math.min(width, height) / 2;
 
 // make svg in <div id="pie-chart">
-var svg = d3.select("#pie-chart").append("svg")
+var svg = d3.select("#" + divID).append("svg")
             .attr('width', width)
             .attr('height', height + 20);
 
@@ -36,19 +35,21 @@ var arc = g.selectAll("arc")
 // Add path
 arc.append("path")
     .attr("d", path)
-    .attr("fill", function(d) { return color(d.data.genre); });
+    .attr("fill", function(d) { return color(d.data.label); });
 
 // Add label
 arc.append("text")
   .attr("transform", function(d) {
     return "translate(" + label.centroid(d) + ")";
   })
-  .text(function(d) { return d.data.genre; });
+  .text(function(d) { return d.data.label; });
 
-// Add a title at the top (specified in .text())
+// Add a title at the top
 svg.append("g")
   .attr("text-anchor", "middle")
   .attr("transform", "translate(" + (width / 2) + "," + 20 + ")")
   .append("text")
-  .text("Pie chart")
+  .text(title)
   .attr("class", "title")
+
+}

@@ -8,6 +8,9 @@
   <title>Front-End(stats)</title>
 </head>
 
+<!--to make pie charts-->
+<script src="pieChart.js"></script>
+
 <body>
 
   <!--nav bar-->
@@ -20,13 +23,13 @@
 
   <!--body-->
   <div class="bodyContainer">
-    <div id="pie-chart"></div>
+    <div class="pieChart" id="genres-pie-chart"></div>
     <script>
-      var data = [{genre:"genre0",size:4},{genre:"genre1",size:6},
-                  {genre:"genre2",size:1},{genre:"genre3",size:14},
-                  {genre:"genre4",size:9},{genre:"genre5",size:3}];
+      var data = [{label:"genre0",size:4},{label:"genre1",size:6},
+                  {label:"genre2",size:1},{label:"genre3",size:14},
+                  {label:"genre4",size:9},{label:"genre5",size:3}];
+      makePieChart(data,"genres-pie-chart",500,400,"Pie chart of genres");
     </script>
-    <script src="pieChart.js"></script>
   </div>
 
   <!--footer-->
