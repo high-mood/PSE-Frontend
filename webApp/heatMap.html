@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="heatMap.js"></script>
+  <title>homepage</title>
+</head>
+
+<body>
+
+  <!--nav bar-->
+  <div class="headerContainer">
+    <ul>
+      <li><a href="index.html" class="active">home</a></li>
+      <li><a href="index.html">text</a></li>
+    </ul>
+  </div>
+
+  <!--body-->
+  <div class="bodyContainer">
+    <div style="background-color: white; width: 500px; border-radius: 20px;" id="energy-heatmap"></div>
+    <script>
+      data = [{name:"name0",data0:0,data1:0},{name:"name0",data0:0,data1:0},{name:"name0",data0:20,data1:0},{name:"name0",data0:60,data1:0},{name:"name0",data0:10,data1:10},{name:"name0",data0:70,data1:30}];
+      xSampels = 10;
+      ySampels = 10;
+      makeHeatmap("energy-heatmap",500,500,"A heatmap of the energy and danceability of your songs.",0,100,xSampels,"energy",0,100,ySampels,"danceability", data);
+    </script>
+  </div>
+
+  <!--footer-->
+  <div class="footerContainer">
+
+</div>
+
+</body>
+</html>
