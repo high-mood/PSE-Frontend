@@ -42,17 +42,30 @@ p {
     margin-bottom: 20px;
 }
 
-.bg-primary {
+.primary {
     background-color: $theme-primary;
 }
 
-.bg-dark {
+.dark {
     background-color: $theme-dark;
     color: white;
 }
 
+.black {
+    background-color: black;
+    color: white;
+}
+
+.light-gray {
+    background-color: $theme-light-gray;
+}
+
 .text-faded {
     color: rgba(white, .7);
+}
+
+.light-green {
+    color: $theme-white;
 }
 
 section {
@@ -68,24 +81,24 @@ aside {
 }
 
 // Navigation
-
+.navbar-header .navbar-brandname {
+    color: white;
+    @include sans-serif-font;
+    font-weight: 700;
+    text-transform: capitalize;
+    &:hover{
+        color: $theme-primary;
+    }
+    &:focus {
+        color: $theme-white;
+    }
+}
 .navbar-default {
     background-color: black;
     border-color: $theme-dark-gray;
     @include sans-serif-font;
     @include transition-all;
-    .navbar-header .navbar-brand {
-        color: white;
-        @include sans-serif-font;
-        font-weight: 700;
-        text-transform: capitalize;
-        &:hover{
-            color: $theme-primary;
-        }
-        &:focus {
-            color: $theme-white;
-        }
-    }
+    
     .nav {
         > li {
             > a,

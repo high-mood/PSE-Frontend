@@ -1,30 +1,34 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+<nav id="mainNav" class="navbar navbar-default fixed-top navbar-expand-md">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!-- // TODO fix logo -->
-            <!-- <li><a class="brand-image"><img class="brand-image" src="../img/logo_v2.png" height="42" width="42"/></a></li> -->
-            <a class="navbar-brand page-scroll" href="#page-top">Moodify</a>
+            <!-- //
+            TODO fix logo -->
+            <!-- <li><a class="brand-image"><img class="brand-image" src="../img/logo_v2.png" height="42" width="42"/></a></li> --> 
+            <a class="navbar-brandname page-scroll" href="#page-top">Moodify</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
+
+        <!-- Dashboard quick button - to be removed. -->
+        <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item"> <a class="nav navbar-nav nav-link" href="dashboard">Dashboard shortcut - shhhhhhhhhh its a hack :)</a>
+            </li>
+        </ul>
+        <!-- Div for the toggle button -->
+        <div class="ml-auto">
+                <button type="button" class="navbar-toggler collapsed align-right" data-toggle="collapse"
+                data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span>&#x2630;
+                </button>
+        </div>
+        <!-- Div for the content to be dropped when the button is toggled -->
+        <div class="collapse navbar-collapse mr-auto" id="navbar-collapse1">
+            <ul class="nav navbar-nav">
+                <li class="nav-item"> <a class="page-scroll nav-link" href="#about">About</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
+                <li class="nav-item"> <a class="page-scroll nav-link" href="#contact">Contact</a>
                 </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 </nav>
