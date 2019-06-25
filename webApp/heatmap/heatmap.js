@@ -46,10 +46,6 @@ function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, y
   var xSampleWidth = 8 * width / 10 / xSamples;
   var ySampleWidth = 8 * height / 10  / ySamples;
 
-  // todo remove testing
-  userData = [{name:"bohemian rhapsody",excitedness:4,happiness:6},{name:"Oya-lele",excitedness:4,happiness:6},{name:"ode to joy",excitedness:2,happiness:0},{name:"pokerface",excitedness:6,happiness:0},{name:"symphony 7",excitedness:1,happiness:1},{name:"imagine",excitedness:7,happiness:3},{name:"Born to run",excitedness:7,happiness:3}];
-
-
   // 2. Convert data to a usable dataSet with the format [{x:?,y:?,size(),names:[?,...]},...].
   var dataSet = createHeatmapData(userData, xMin, xMax, yMin, yMax, xSamples, ySamples, xDomainSize, yDomainSize);
 
