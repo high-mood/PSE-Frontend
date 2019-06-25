@@ -52,7 +52,6 @@ function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, y
   // 3. Set colorScale for the data.
   var maxSize = d3.max(dataSet.map(function(data) { return data.size; })) + 1;
   var minSize = d3.min(dataSet.map(function(data) { return data.size; }));
-  console.log(minSize);
   var colorScale = d3.scaleLinear().domain([minSize, maxSize]).range([lowDataColor, highDataColor]);  
 
   // 4. Set scales for x and y direction
