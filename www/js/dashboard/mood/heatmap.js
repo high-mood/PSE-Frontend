@@ -20,7 +20,7 @@ function createHeatmapData(userData, xMin, xMax, yMin, yMax, xSamples, ySamples,
       // }).map(function(songData) { return songData.name; });
       // dataPoint.size = conformingDataNames.length;
       for( var i = 0; i < songData.length; i++) {
-        dataPoint.size += 1 - ((songData[i].data0 - xMeanReach) ** 2 + (songData[i].data1 - yMeanReach) ** 2) / 150
+        dataPoint.size += (1 - ((((songData[i].data0 - xMeanReach) ** 2 + (songData[i].data1 - yMeanReach) ** 2)) **0.5) / 28) **2
       }
     
 
@@ -35,9 +35,8 @@ function createHeatmapData(userData, xMin, xMax, yMin, yMax, xSamples, ySamples,
 function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, ySamples, yLabel, userData) {
 
   // 0. Set colors for the colorScale
-  var noDataColor = '#C3D4D6';
-  var lowDataColor = 'steelblue';
-  var highDataColor = '#ffab00';
+  var lowDataColor = 'black';
+  var highDataColor = 'red';
 
   // 1. Calculate variables for the size of the elements.
   var width = 500;
@@ -52,9 +51,9 @@ function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, y
 
   // 3. Set colorScale for the data.
   var maxSize = d3.max(dataSet.map(function(data) { return data.size; }));
-  var colorScale = d3.scaleLinear()
-                     .domain([0, maxSize])
-                     .range([lowDataColor,highDataColor]);
+  var minSize = d3.min(dataSet.map(function(data) { return data.size; }));
+  console.log(minSize);
+  var colorScale = d3.scaleLinear().domain([0, maxSize]).range([lowDataColor, highDataColor]);  
 
   // 4. Set scales for x and y direction
   var xScale = d3.scaleLinear()
@@ -74,12 +73,8 @@ function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, y
   // 5.1. Add in squares for all dataPoints in dataSet.
   svg.selectAll('rect').data(dataSet)
     .enter().append('rect')
-    .attr('fill', function (data) {
-      if (data.size == 0) {
-        return noDataColor;
-      } else {
-        return colorScale(data.size);
-      }
+    .attr('fill', function (data) { 
+      return colorScale(data.size);
     })
     .attr('stroke', 'black')
     .attr('stroke-width', 0)

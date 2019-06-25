@@ -33,7 +33,7 @@ function toggleMoodCharts(chartname) {
         $('#heatmapRow').hide();
     }
     else if (chartname === 'heatmap') {
-        if ($('heatmap').children().length == 0) {
+        if ($('#heatmap').children().length == 0) {
             // Heatmap
             createHeatmap("heatmap","A heatmap of the excitedness and happiness of your songs."
             ,-10,10,50,"excitedness",-10,10,50,"happiness"
