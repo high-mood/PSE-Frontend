@@ -1,0 +1,27 @@
+.dashboard-dropdown ul {
+    width: 100%;
+}
+
+.dashboard-dropdown li {
+    text-align: center;   
+}
+
+.dashboard-dropdown a:hover {
+    cursor: pointer;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+#mood {
+    background-color: #19492a;
+    color: white;
+}
+
+div[class^="col"] {
+    padding-top: 15px;
+    /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 255, .2); */
+}
