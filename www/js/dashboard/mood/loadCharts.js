@@ -8,22 +8,25 @@ var userdata;
 var created = 'False';
 
 // request.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummydata.json', true)
-request.open('GET', 'http://127.0.0.1:5000/api/tracks/history/' + userid + '/0', true)
+request.open('GET', 'http://pse-ssh.diallom.com:5000/api/tracks/history/' + userid + '/0', true, {
+    headers: {
+        'Access-Control-Allow-Origin': 'pse-ssh.diallom.com'
+    }
+})
 request.onload = function() {
-  var alldata = JSON.parse(this.response)
-  userdata = alldata.resource
+    var alldata = JSON.parse(this.response)
+    userdata = alldata.resource
 
-  if (request.status >= 200 && request.status < 400) {
-    // RadarChart
-    createRadarChart(userdata);
-    giveText(userdata, "radarText");
+    if (request.status >= 200 && request.status < 400) {
+        // RadarChart
+        createRadarChart(userdata);
+        giveText(userdata, "radarText");
 
-    document.getElementsByClassName("radar")[0].onmousemove = hoverRadar;
-    document.getElementsByClassName("radar")[0].onmouseout = resetRadarText;
-  }
-  else {
-    document.getElementById("userwelcome").innerHTML = "Error retrieving data!"
-  }
+        document.getElementsByClassName("radar")[0].onmousemove = hoverRadar;
+        document.getElementsByClassName("radar")[0].onmouseout = resetRadarText;
+    } else {
+        document.getElementById("userwelcome").innerHTML = "Error retrieving data!"
+    }
 }
 request.send()
 
@@ -31,13 +34,10 @@ function toggleMoodCharts(chartname) {
     if (chartname === 'radarChart') {
         $('#radarChartRow').show();
         $('#heatmapRow').hide();
-    }
-    else if (chartname === 'heatmap') {
+    } else if (chartname === 'heatmap') {
         if ($('heatmap').children().length == 0) {
             // Heatmap
-            createHeatmap("heatmap","A heatmap of the excitedness and happiness of your songs."
-            ,-10,10,50,"excitedness",-10,10,50,"happiness"
-            ,userdata);
+            createHeatmap("heatmap", "A heatmap of the excitedness and happiness of your songs.", -10, 10, 50, "excitedness", -10, 10, 50, "happiness", userdata);
             giveText(userdata, "heatmapText");
         }
         $('#radarChartRow').hide();
