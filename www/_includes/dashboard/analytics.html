@@ -7,6 +7,40 @@
                 <p>Analytics info</p>
             </div>
         </div>
-        
+        <div class="row text-center">
+            <div class="btn-group text-center dashboard-dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Choose your chart <span class="caret"></span>
+                </button>
+                    <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
+                        <li><a onclick="toggleMoodCharts('radarChart')">Radar Chart</a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="toggleMoodCharts('heatmap')">Heatmap</a></li>   
+                    </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 text-center">
+                <div class="row">
+                    <div class="btn-group text-center dashboard-dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                Choose your chart <span class="caret"></span>
+                            </button>
+                                <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
+                                    <li><a onclick="toggleMoodCharts('radarChart')">Happiness</a></li>
+                                    <li><a onclick="toggleMoodCharts('radarChart')">Excitedness</a></li>
+                                    <li class="divider"></li>
+                                    <li><a onclick="toggleMoodCharts('heatmap')">Andere metrics</a></li>   
+                                </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    hi
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-left">
+                hi
+            </div>
+        </div>
     </div>
 </section>

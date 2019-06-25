@@ -1,4 +1,4 @@
-.dashboard-dropdown ul button {
+.dashboard-dropdown ul button a {
     width: 30%;
 }
 
@@ -14,7 +14,7 @@
 .vcenter {
     display: flex;
     align-items: center;
-    margin-top: 30%;
+    margin-top: 20%;
 }
 
 .hcenter {
