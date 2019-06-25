@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="heatmap.css">
+  <script src="js/heatmap.js"></script>
+  <title>homepage</title>
+
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+  <!--nav bar-->
+  <div class="headerContainer">
+    <ul>
+      <li><a href="index.html" class="active">home</a></li>
+      <li><a href="index.html">text</a></li>
+    </ul>
+  </div>
+
+  <!--body-->
+  <div class="bodyContainer">
+
+    <section id="heatmap" style="width:40%; height:auto"></section>
+
+    <script>
+      createHeatmap("heatmap","A heatmap of the excitedness and happiness of your songs."
+      ,-10,10,10,"excitedness",-10,10,10,"happiness"
+      ,[]);
+    </script>
+  </div>
+
+  <!--footer-->
+  <div class="footerContainer">
+    footer
+  </div>
+
+</body>
+
+</html>
+
