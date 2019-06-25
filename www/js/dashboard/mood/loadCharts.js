@@ -1,6 +1,7 @@
 // var userid = document.getElementById("username").textContent;
 // console.log(userid);
 $('#heatmapRow').hide();
+// TODO remove hardcode
 var userid = 'snipy12';
 
 var request = new XMLHttpRequest();
