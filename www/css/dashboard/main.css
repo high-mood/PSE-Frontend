@@ -1,5 +1,5 @@
-.dashboard-dropdown ul {
-    width: 100%;
+.dashboard-dropdown ul button {
+    width: 30%;
 }
 
 .dashboard-dropdown li {
@@ -11,13 +11,19 @@
 }
 
 .vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+    display: flex;
+    align-items: center;
 }
 
+.dropdown-menu-center {
+    left: 50% !important;
+    right: auto !important;
+    text-align: center !important;
+    transform: translate(-50%, 0) !important;
+  }
+
 #mood {
-    background-color: #19492a;
+    background-color: black;
     color: white;
 }
 

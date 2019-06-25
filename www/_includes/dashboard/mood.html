@@ -2,18 +2,18 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Mood</h2>
+                <h1 class="section-heading">Mood</h1>
+                <hr class="dark">
                 <p>Mood info</p>
-                <hr class="light">
             </div>
         </div>
 
         <div class="row text-center">
             <div class="btn-group btn-block text-center dashboard-dropdown">
-                <button type="button" class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     Choose your chart <span class="caret"></span>
                 </button>
-                    <ul class="dropdown-menu text-center" role="menu">
+                    <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
                         <li><a onclick="toggleMoodCharts('radarChart')">Radar Chart</a></li>
                         <li class="divider"></li>
                         <li><a onclick="toggleMoodCharts('heatmap')">Heatmap</a></li>   
@@ -27,7 +27,7 @@
                     
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center vcenter">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center middle">
                 <div class="radarText rounded border border-primary explanation" id="radarText">
                 
                 </div>
