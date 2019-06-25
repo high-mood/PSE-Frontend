@@ -8,7 +8,7 @@ You seem to be a very cheerful and upbeat person.",
 "\
 High Excitedness, Low Happiness <br> (upbeat, pumped, empowering, angry)<br><br>\
 The music you listen to is generally less happy but has high energy.<br><br>\
-This means that the beat might be faster, a higher bpm (beats per minute),\
+This means that the beat might be faster, a higher bpm (beats per minute),<br>\
 or the songs have a more empowering feeling to them.<br><br>\
 The feeling described when people listen to these songs are in the line of empowering, angry, upbeat, pumped.<br><br>\
 You seem like someone that loves to feel empowered by music, or perhaps a little frustrated",
@@ -21,7 +21,8 @@ You seem like a very relaxed and mellow person.",
 "\
 Low Excitedness, Low Happiness<br>(sad, angry songs)<br><br>\
 The music you listen to is generally slow and has less energy.<br><br>\
-This means that the beat is pretty slow, low bpm (beats per minute), and that the music is perceived as sad.<br><br>\
+This means that the beat is pretty slow, low bpm (beats per minute),<br>\
+and that the music is perceived as sad.<br><br>\
 You seem sad or a bit down on your luck."];
 
 const heatMapText = "In this heatmap the happines and excitement values<br>\

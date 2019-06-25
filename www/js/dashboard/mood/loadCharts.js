@@ -2,14 +2,14 @@
 // console.log(userid);
 $('#heatmapRow').hide();
 // TODO remove hardcode
-var userid = 'snipy12';
+var userid = 'mounir9912';
 
 var request = new XMLHttpRequest();
 var userdata;
 var created = 'False';
 
 // request.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummydata.json', true)
-request.open('GET', 'http://pse-ssh.diallom.com:5000/api/tracks/history/' + userid + '/0', true, {
+request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0', true, {
     headers: {
         'Access-Control-Allow-Origin': 'pse-ssh.diallom.com'
     }

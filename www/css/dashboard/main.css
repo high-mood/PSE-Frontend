@@ -3,6 +3,7 @@
 }
 
 .dashboard-dropdown li {
+    width: 40%;
     text-align: center;   
 }
 
@@ -13,6 +14,11 @@
 .vcenter {
     display: flex;
     align-items: center;
+    margin-top: 30%;
+}
+
+.hcenter {
+    margin: 0 auto;
 }
 
 .dropdown-menu-center {
@@ -23,6 +29,11 @@
   }
 
 #mood {
+    background-color: black;
+    color: white;
+}
+
+#analytics {
     background-color: black;
     color: white;
 }
