@@ -8,17 +8,19 @@
                 </div>
             </div>
             <div class="row text-center">
-                    <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Dropdown link
-                            </a>
-                          
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                          </div>
+                    <div class="btn-group text-center dashboard-dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" id="lineChartSelector" data-toggle="dropdown">
+                            Days Line chart 
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                        </div>
                 <!-- <div class="btn-group text-center dashboard-dropdown">
                     <button type="button" class="btn btn-primary dropdown-toggle" id="lineChartSelector" data-toggle="dropdown">
                         Days Line chart <span class="caret"></span>
@@ -31,44 +33,60 @@
                 </div> -->
             </div>
            
+            <!--  
+            colours
+                #c1b51b
+                #1dc156
+                #1cc18f
+                #1ba2c1
+                #1b5dc1
+                #1b1dc1
+                #761bc1
+                #b31bc1
+                #c11b65
+
+                #c11b1b
+                #c1521b
+            -->
+
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="lineCharts">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="instrumentalness" style="background-color: #9C27B0;">Instrumentalness</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="instrumentalness" style="background-color: #1dc156;">Instrumentalness</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="happiness" style="background-color: #90A4AE;">Happiness</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="happiness" style="background-color: #1cc18f;">Happiness</button>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="excitedness" style="background-color: #795548;">Excitedness</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="excitedness" style="background-color: #1ba2c1;">Excitedness</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="acousticness" style="background-color: #F44336;">Acousticness</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="acousticness" style="background-color: #1b5dc1;">Acousticness</button>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="danceability" style="background-color: #E91E63;">Danceability</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="danceability" style="background-color: #761bc1;">Danceability</button>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="speechiness" style="background-color: #4CAF50;">Speechiness</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="speechiness" style="background-color: #b31bc1;">Speechiness</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="liveness" style="background-color: #3F51B5;">Liveness</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="liveness" style="background-color: #c11b65;">Liveness</button>
                         </div>
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="valence" style="background-color: #FF5722;">Valence</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="valence" style="background-color: #c11b1b;">Valence</button>
                         </div>
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="energy" style="background-color: #673AB7;">Energy</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="energy" style="background-color: #c1521b;">Energy</button>
                         </div>
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="tempo" style="background-color: #FF9800;">Tempo</button>
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="tempo" style="background-color: #c1b51b;">Tempo</button>
                         </div>
                     </div>
                 </div>
