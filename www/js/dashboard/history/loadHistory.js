@@ -6,20 +6,15 @@ var userid = 'snipy12';
 
 var request = new XMLHttpRequest();
 
-request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0', true, {
-    headers: {
-        'Access-Control-Allow-Origin': 'pse-ssh.diallom.com'
-    }
-})
+request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0', true)
 request.onload = function() {
     var alldata = JSON.parse(this.response);
     userdata = alldata.resource;
     window.userdata = userdata;
+    console.log(request.status, "request status!")
     if (request.status >= 200 && request.status < 400) {
         // Song history
         createHistory(userdata);
-    } else {
-        document.getElementById("userwelcome").innerHTML = "Error retrieving data!";
     }
 }
 request.send();
