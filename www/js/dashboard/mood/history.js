@@ -15,8 +15,12 @@ var tracklist = document.querySelector("#tracklist");
 update_history();
 
 
-$("#happiness_slider").slider({
-    formatter: function(value) {
-        return value;
-    }
-});
+document.getElementById("happiness_slider").oninput = function () {
+    var text = document.getElementById("happiness_slider_text");
+    text.textContent = "Happiness: " + this.value + "%";
+};
+
+document.getElementById("excitedness_slider").oninput = function () {
+    var text = document.getElementById("excitedness_slider_text");
+    text.textContent = "Excitedness: " + this.value + "%";
+};
