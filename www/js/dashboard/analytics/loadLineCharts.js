@@ -4,9 +4,9 @@ var linechartRequest= new XMLHttpRequest()
 
 var metrics = "acousticness, danceability, duration_ms, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, valence";
 song_count = 50;
-linechartRequest.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummysonghistory.json', true)
+// linechartRequest.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummysonghistory.json', true)
 // linechartRequest.open('GET', 'http://localhost:5000/api/tracks/metrics/' + userid + '/' + metrics + '/' + song_count, true)
-// linechartRequest.open('GET', 'http://localhost:5000/api/tracks/metrics/' + userid + '/' + song_count, true)
+linechartRequest.open('GET', 'http://localhost:5000/api/tracks/metrics/' + userid + '/' + song_count, true)
 linechartRequest.onload = function() {
   var alldata = JSON.parse(this.response)
   var userdata = alldata.resource
@@ -14,7 +14,7 @@ linechartRequest.onload = function() {
 
   if (linechartRequest.status >= 200 && linechartRequest.status < 400) {
     // lineGraph
-    // createLineGraphSongs(userdata,"lineSongs");
+    createLineGraphSongs(userdata,"lineSongs");
     // giveText(userdata,"lineGraphText");
   }
   else {
