@@ -1,7 +1,7 @@
 // Code basis by Gord Lea: https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
 // Legend code from https://www.d3-graph-gallery.com/graph/custom_legend.html
 
-var xScale, yScale, yScaleTempo, yScaleMoods;
+var xScale, yScale, yScaleTempo, yScaleMoods, dataset;
 
 function createLineGraphDays(data, id) {
 
@@ -92,7 +92,7 @@ function createLineGraphDays(data, id) {
         .range([height, 0]); // output
 
     // make svg and g html element
-    var svgId = "lineSvg"
+    var svgId = "daysSvg"
     var svg = d3.select("#" + id).append("svg")
             .attr("width", "100%")
             .attr("height", "100%")
@@ -264,6 +264,17 @@ function toggleLine(buttonId) {
     }
     else {
         hideLine(buttonId)
+    }
+}
+
+function toggleAll() {
+    console.log(dataset)
+    for (var key in dataset) {
+        console.log(key)
+        if (d3.select("#" + key + "line").style("visibility") == "hidden") {
+            console.log("hier")
+            toggleLine("#" + key)
+        }
     }
 }
 
