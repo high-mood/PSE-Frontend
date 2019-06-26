@@ -1,11 +1,15 @@
 // Code basis by Gord Lea: https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
 // Legend code from https://www.d3-graph-gallery.com/graph/custom_legend.html
 
-var xScale, yScale, yScaleTempo, yScaleMoods, dataset;
+var xScale, yScale, yScaleTempo, yScaleMoods;
+
+var lineNames = ["excitedness", "happiness", "acousticness", "danceability", 
+                 "energy", "instrumentalness", "liveness", "speechiness", 
+                 "tempo", "valence"];
 
 function createLineGraphDays(data, id) {
 
-    
+
 
     // REMOVE
     // 
@@ -254,6 +258,8 @@ function drawLineDays(svgId, dataset, name) {
                 .style("top", (event.clientY - 30) + "px")
                 .style("left", event.clientX + "px")
                 .style("background-color", color)
+                .style("width", "160px")
+                .style("height", "30px")
 
         d3.select("#tooltiptextDays")
             .html(name + ": " + value)
@@ -263,6 +269,8 @@ function drawLineDays(svgId, dataset, name) {
             .transition()
                 .duration(200)
                 .style("opacity", 0)
+                .style("width", "0")
+                .style("height", "0")
         })
 }
 
@@ -287,12 +295,26 @@ function toggleLine(buttonId) {
 }
 
 function toggleAll() {
-    console.log(dataset)
-    for (var key in dataset) {
-        console.log(key)
-        if (d3.select("#" + key + "line").style("visibility") == "hidden") {
-            console.log("hier")
-            toggleLine("#" + key)
+    console.log(lineNames)
+
+    // check if all buttons toggled
+    var allToggled = true;
+    for (var i in lineNames) {
+        if (d3.select("#" + lineNames[i] + "line").style("visibility") == "hidden") {
+            allToggled = false;
+            break;
+        }
+    }
+    if (allToggled) {
+        for (var i in lineNames) {
+            toggleLine(lineNames[i])
+        }
+    }
+    else {
+        for (var i in lineNames) {
+            if (d3.select("#" + lineNames[i] + "line").style("visibility") == "hidden") {
+                toggleLine(lineNames[i])
+            }
         }
     }
 }
