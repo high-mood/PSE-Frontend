@@ -1,7 +1,7 @@
 // Code basis by Gord Lea: https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
 // Legend code from https://www.d3-graph-gallery.com/graph/custom_legend.html
 
-var xScale, yScale, yScaleTempo, yScaleMoods;
+var xScale, yScale, yScaleTempo, yScaleMoods, dataset;
 
 function createLineGraphDays(data, id) {
 
@@ -92,7 +92,7 @@ function createLineGraphDays(data, id) {
         .range([height, 0]); // output
 
     // make svg and g html element
-    var svgId = "lineSvg"
+    var svgId = "daysSvg"
     var svg = d3.select("#" + id).append("svg")
             .attr("width", "100%")
             .attr("height", "100%")
@@ -137,11 +137,11 @@ function createLineGraphDays(data, id) {
     
     // make tooltip
     var tooltip = document.createElement("div")
-    tooltip.setAttribute("id", "tooltip")
+    tooltip.setAttribute("id", "tooltipDays")
     document.getElementById("lineDays").appendChild(tooltip)
     
     // set proper style for tooltip
-    d3.select("#tooltip")
+    d3.select("#tooltipDays")
         .style("width", "160px")
         .style("height", "30px")
         .style("position", "fixed")
@@ -151,18 +151,19 @@ function createLineGraphDays(data, id) {
         .style("opacity", 0)
         .style("border-radius", "10px")
     
-    d3.select("#tooltip").append("text").attr("id", "tooltiptext")
+    d3.select("#tooltipDays").append("text").attr("id", "tooltiptextDays")
         .style("color", "#000000")
     
-    // draw all lines
+    // draw all lines, show wanted ones
     for (var key in dataset) {
         drawLineDays(svgId, dataset[key], key);
         showLine(key);
-    }
 
-    // show only startLines at page load
-    // var startLines = ["danceability", "energy", "liveness"]
-    // startStates(startLines)
+        // only show happiness and excitedness on page load
+        if (key != "happiness" && key != "excitedness") {
+            $("#" + key).trigger("click")
+        }
+    }
 }
 
 
@@ -227,7 +228,7 @@ function drawLineDays(svgId, dataset, name) {
     .style("fill", color)
     .on("mouseover", function(y, x) { 
         var value = Math.round(dataset[x]['y'] * 100) / 100;
-        d3.select("#tooltip")
+        d3.select("#tooltipDays")
             .transition()
                 .duration(200)
                 .style("opacity", 1)
@@ -235,11 +236,11 @@ function drawLineDays(svgId, dataset, name) {
                 .style("left", event.clientX + "px")
                 .style("background-color", color)
 
-        d3.select("#tooltiptext")
+        d3.select("#tooltiptextDays")
             .html(name + ": " + value)
         })
     .on("mouseout", function() {
-        d3.select("#tooltip")
+        d3.select("#tooltipDays")
             .transition()
                 .duration(200)
                 .style("opacity", 0)
@@ -266,9 +267,20 @@ function toggleLine(buttonId) {
     }
 }
 
+function toggleAll() {
+    console.log(dataset)
+    for (var key in dataset) {
+        console.log(key)
+        if (d3.select("#" + key + "line").style("visibility") == "hidden") {
+            console.log("hier")
+            toggleLine("#" + key)
+        }
+    }
+}
 
 
-// hides a given line
+
+// hides a given line, shows and hides relevant axes
 function hideLine(name) {
 
     d3.selectAll("#" + name + "line")
@@ -282,8 +294,28 @@ function hideLine(name) {
         d3.selectAll(".tempo.axis")
             .style("visibility", "hidden")
 
-        d3.selectAll(".moods.axis")
-            .style("visibility", "visible")
+
+        if (d3.select("#excitednessline").style("visibility") == "visible" ||
+            d3.select("#happinessline").style("visibility") == "visible") {
+            d3.selectAll(".moods.axis").style("visibility", "visible");
+        }
+    }
+
+    else if (name == "happiness") {
+        if (d3.select("#excitednessline").style("visibility") == "hidden") {
+            d3.selectAll(".moods.axis").style("visibility", "hidden")
+            if (d3.select("#tempoline").style("visibility") == "visible") {
+                d3.selectAll(".tempo.axis").style("visibility", "visible")
+            }           
+        }
+    }
+    else if (name == "excitedness") {
+        if (d3.select("#happinessline").style("visibility") == "hidden") {
+            d3.selectAll(".moods.axis").style("visibility", "hidden")
+            if (d3.select("#tempoline").style("visibility") == "visible") {
+                d3.selectAll(".tempo.axis").style("visibility", "visible")
+            }           
+        }
     }
 }
 
@@ -302,8 +334,10 @@ function showLine(name) {
         d3.selectAll(".moods.axis")
             .style("visibility", "hidden")
     }
-    // if (name == "happiness" || name == "excitedness") {
-    //     d3.select(".moods.axis")
-    //         .style("visibility", "visible")
-    // }
+    if (name == "happiness" || name == "excitedness") {
+        d3.select(".moods.axis")
+            .style("visibility", "visible")
+        d3.select(".tempo.axis")
+            .style("visibility", "hidden")
+    }
 }
