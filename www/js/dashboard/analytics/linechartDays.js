@@ -137,11 +137,11 @@ function createLineGraphDays(data, id) {
     
     // make tooltip
     var tooltip = document.createElement("div")
-    tooltip.setAttribute("id", "tooltip")
+    tooltip.setAttribute("id", "tooltipDays")
     document.getElementById("lineDays").appendChild(tooltip)
     
     // set proper style for tooltip
-    d3.select("#tooltip")
+    d3.select("#tooltipDays")
         .style("width", "160px")
         .style("height", "30px")
         .style("position", "fixed")
@@ -151,7 +151,7 @@ function createLineGraphDays(data, id) {
         .style("opacity", 0)
         .style("border-radius", "10px")
     
-    d3.select("#tooltip").append("text").attr("id", "tooltiptext")
+    d3.select("#tooltipDays").append("text").attr("id", "tooltiptextDays")
         .style("color", "#000000")
     
     // draw all lines, show wanted ones
@@ -228,7 +228,7 @@ function drawLineDays(svgId, dataset, name) {
     .style("fill", color)
     .on("mouseover", function(y, x) { 
         var value = Math.round(dataset[x]['y'] * 100) / 100;
-        d3.select("#tooltip")
+        d3.select("#tooltipDays")
             .transition()
                 .duration(200)
                 .style("opacity", 1)
@@ -236,11 +236,11 @@ function drawLineDays(svgId, dataset, name) {
                 .style("left", event.clientX + "px")
                 .style("background-color", color)
 
-        d3.select("#tooltiptext")
+        d3.select("#tooltiptextDays")
             .html(name + ": " + value)
         })
     .on("mouseout", function() {
-        d3.select("#tooltip")
+        d3.select("#tooltipDays")
             .transition()
                 .duration(200)
                 .style("opacity", 0)
