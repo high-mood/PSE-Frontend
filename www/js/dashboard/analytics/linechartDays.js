@@ -1,23 +1,27 @@
 // Code basis by Gord Lea: https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
 // Legend code from https://www.d3-graph-gallery.com/graph/custom_legend.html
 
-var xScale, yScale, yScaleTempo, yScaleMoods, dataset;
+var xScale, yScale, yScaleTempo, yScaleMoods;
+
+var lineNames = ["excitedness", "happiness", "acousticness", "danceability", 
+                 "energy", "instrumentalness", "liveness", "speechiness", 
+                 "tempo", "valence"];
 
 function createLineGraphDays(data, id) {
 
-    
+
 
     // REMOVE
     // 
     // 
     // 
-    data.dates[1]["date"] = "2019-06-24"
-    data.dates[2]["date"] = "2019-06-23"
-    data.dates[3]["date"] = "2019-06-22"
+    // data.dates[1]["date"] = "2019-06-24"
+    // data.dates[2]["date"] = "2019-06-23"
+    // data.dates[3]["date"] = "2019-06-22"
     
     // console.log(data);
 
-
+    console.log(dates)
     // dataset, unused metrics are commented out
     var dataset = {
         "excitedness": [],
@@ -49,20 +53,37 @@ function createLineGraphDays(data, id) {
     var width = 600 - margin.left - margin.right;
     var height = 300 - margin.top - margin.bottom;
 
-
+    // for (i = 0; i < 8; i++) {
+    //     data.dates[i]["date"] = "2019-06-" + data.dates[i]["date"]
+    // }
     var minDate = data.dates[data.dates.length - 1].date
     var maxDate = data.dates[0].date
+    // debugger;
 
     var parseTime = d3.timeParse("%Y-%m-%d")
+    // var parseTime = d3.timeParse("%d")
+    
     // var parsedMinDate = parseTime("2019-06-21")
     var parsedMinDate = parseTime(minDate)
     var parsedMaxDate = parseTime(maxDate)
 
     // console.log(parsedMinDate)
 
+    var dates = [];
+    for (val in data.dates) {
+        // dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
+        dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
+        console.log("2019-06-" + data.dates[val]["date"]);
+    }
+    console.log(dates)
+    dates = dates.reverse()
     // scales
-    xScaleTime = d3.scaleTime()
-        .domain([parsedMinDate, parsedMaxDate])
+    console.log(d3.extent(dates))
+    // xScaleTime = d3.scaleTime()
+    //     .domain(d3.extent(dates))
+    //     .range([0, width])
+    xScaleTime = d3.scalePoint()
+        .domain(dates)
         .range([0, width])
     yScale = d3.scaleLinear()
         .domain([0, 1])
@@ -74,7 +95,7 @@ function createLineGraphDays(data, id) {
         .range([0, width])
     
     
-        // array to calculate max and min tempo for scale
+    // array to calculate max and min tempo for scale
     tempoArray = []
     for (var i in dataset["tempo"]) {
         tempoArray.push(dataset["tempo"][i].y)
@@ -101,13 +122,15 @@ function createLineGraphDays(data, id) {
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .attr("id", svgId);
 
+
     // create axes
     xAxis = svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height / 2 + ")")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(xScaleTime)
-        .ticks(data.dates.length - 1))
+            .tickValues(dates)
+            .tickFormat(d3.timeFormat("%Y-%m-%d")))
     svg.append("g")
         .attr("class", "y axis")
         .call(d3.axisLeft(yScale));
@@ -235,6 +258,8 @@ function drawLineDays(svgId, dataset, name) {
                 .style("top", (event.clientY - 30) + "px")
                 .style("left", event.clientX + "px")
                 .style("background-color", color)
+                .style("width", "160px")
+                .style("height", "30px")
 
         d3.select("#tooltiptextDays")
             .html(name + ": " + value)
@@ -244,6 +269,8 @@ function drawLineDays(svgId, dataset, name) {
             .transition()
                 .duration(200)
                 .style("opacity", 0)
+                .style("width", "0")
+                .style("height", "0")
         })
 }
 
@@ -268,12 +295,26 @@ function toggleLine(buttonId) {
 }
 
 function toggleAll() {
-    console.log(dataset)
-    for (var key in dataset) {
-        console.log(key)
-        if (d3.select("#" + key + "line").style("visibility") == "hidden") {
-            console.log("hier")
-            toggleLine("#" + key)
+    console.log(lineNames)
+
+    // check if all buttons toggled
+    var allToggled = true;
+    for (var i in lineNames) {
+        if (d3.select("#" + lineNames[i] + "line").style("visibility") == "hidden") {
+            allToggled = false;
+            break;
+        }
+    }
+    if (allToggled) {
+        for (var i in lineNames) {
+            toggleLine(lineNames[i])
+        }
+    }
+    else {
+        for (var i in lineNames) {
+            if (d3.select("#" + lineNames[i] + "line").style("visibility") == "hidden") {
+                toggleLine(lineNames[i])
+            }
         }
     }
 }

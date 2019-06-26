@@ -8,25 +8,20 @@ var request = new XMLHttpRequest();
 var created = 'False';
 
 // request.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummydata.json', true)
-request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0', true, {
-    headers: {
-        'Access-Control-Allow-Origin': 'pse-ssh.diallom.com'
-    }
-})
+request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0', true)
 request.onload = function() {
     var alldata = JSON.parse(this.response)
     userdata = alldata.resource
-    console.log(alldata);
+    console.log(userdata)
     window.userdata = userdata
-    if (request.status >= 200 && request.status < 400) {
+    console.log(request.status, 'hiiiiiiiiiiiii')
+    if ((request.status >= 200 && request.status < 400) || request.status == 0) {
         // RadarChart
         createRadarChart(userdata);
         giveText(userdata, "radarText");
 
         document.getElementsByClassName("radar")[0].onmousemove = hoverRadar;
         document.getElementsByClassName("radar")[0].onmouseout = resetRadarText;
-    } else {
-        document.getElementById("userwelcome").innerHTML = "Error retrieving data!"
     }
 }
 request.send()

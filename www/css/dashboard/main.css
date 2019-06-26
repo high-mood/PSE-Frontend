@@ -1,7 +1,7 @@
 /* 
 $theme-primary: #1dc156
 $theme-dark: #0b2112
-$theme-white: #a9d6b9
+$theme-white: #eefeee
 $theme-light-gray: #7b9684
 $theme-dark-gray: #19492a 
 */
@@ -16,6 +16,12 @@ $theme-dark-gray: #19492a
 
 .rounded-edges {
     border-radius: 15%
+}
+
+.songs-background {
+    width: 90%; 
+    margin-top: 5%; 
+    background-color: rgb(30, 32, 30);
 }
 
 .vertical-align {
@@ -46,26 +52,6 @@ $theme-dark-gray: #19492a
     text-align: center !important;
     transform: translate(-50%, 0) !important;
   }
-
-.background-black {
-    background-color: black;
-    color: white;
-}
-
-.background-gray {
-    background-color: gray;
-    color: white;
-}
-
-.background-white {
-    background-color: white;
-    color: #0b2112;
-}
-
-.background-primary {
-    background-color: #1dc156;
-    color: white;
-}
 
 div[class^="col-"] {
     padding-top: 15px;

@@ -5,9 +5,7 @@ $('#favRo').hide();
 var userid = 'snipy12';
 
 var request = new XMLHttpRequest();
-var created = 'False';
 
-// request.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummydata.json', true)
 request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0', true, {
     headers: {
         'Access-Control-Allow-Origin': 'pse-ssh.diallom.com'
@@ -39,7 +37,7 @@ function toggleHistory(chartname) {
         topdata = getTopData();
         if ($('favRow').children().length == 0) {
             // Favourites.
-            createTop(topdata); // TODO: get data
+            createTop(topdata);
         }
         $('#historyRow').hide();
         $('#favRow').show();
@@ -47,6 +45,22 @@ function toggleHistory(chartname) {
 }
 
 function getTopData() {
-    
+    var topRequest = new XMLHttpRequest();
+
+    topRequest.open('GET', 'http://localhost:5000/api/tracks/topsongs/' + userid + '/5', true, {
+        headers: {
+            'Access-Control-Allow-Origin': 'pse-ssh.diallom.com'
+        }
+    })
+    topRequest.onload = function() {
+        var allTopData = JSON.parse(this.response);
+        userTopData = allTopData.resource;
+        if (topRequest.status >= 200 && topRequest.status < 400) {
+            return userTopData;
+        } else {
+            document.getElementById("userwelcome").innerHTML = "Error retrieving data!";
+        }
+    }
+    topRequest.send();
 }
 

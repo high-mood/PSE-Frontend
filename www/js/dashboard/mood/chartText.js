@@ -27,16 +27,12 @@ You seem sad or a bit down on your luck."];
 
 const heatMapText = "In this heatmap the happines and excitement values<br>\
 are displayed on the x and y axis.<br>\
-The number of songs in each square determines the color. <br><br>\
-The color changes from light blue (no songs) to green (average) to yellow (highest count).";
+The intensity of the color is determined by the density of songs.<br><br>\
+The more songs are in that area the brighter red that spot will be.";
 
+/** Gives a div corresponding to a given id description of the user's mood.*/
 function giveText(data, id) {
-//     var texts;
-//    if (id == "heatmapText") {
     var texts = graphTexts;
-//    } else {
-//         texts = graphTexts;
-//    }
 
     mean_excitedness = data.mean_excitedness;
     mean_happiness = data.mean_happiness;
@@ -48,10 +44,14 @@ function giveText(data, id) {
    }
 }
 
+/* After mouse out the text in the radarText div is reset. */
 function resetRadarText() {
     document.getElementById("radarText").innerHTML = getText(mean_excitedness, mean_happiness, graphTexts);    
 }
 
+/** Hovering over a graphs quadrants changes the text.
+ * DISCLAIMER: Only works for graphs that have a centered (0, 0).
+ */
 function hoverRadar(e) {
     var xy_pos = getXYpos(this);
     x = e.pageX;
@@ -68,6 +68,7 @@ function hoverRadar(e) {
     document.getElementById('radarText').innerHTML = getText(y, x, graphTexts);
 }
 
+/** Gets the position of the mouse within a specific div.*/
 function getXYpos(elem) {
     var x = 0;
     var y = 0;
@@ -94,6 +95,7 @@ function getXYpos(elem) {
     return {'xp':x, 'yp':y};
   }
 
+/** Gets the corresponding text corresponding to which quadrant you hover over. */
 function getText(m_excitedness, m_happiness, texts) {
     if (m_excitedness >= 0) {
         if (m_happiness >= 0) {
