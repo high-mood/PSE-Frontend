@@ -8,10 +8,25 @@
             </div>
         </div>
 
+        <!-- 
+            <div class="row text-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" id="lineChartSelector" data-toggle="dropdown">
+                        Days Line chart 
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dashboard-dropdown dropdown-menu-center" role="menu">
+                        <li><a onclick="toggleLineCharts('lineDays')">Days Line chart</a></li>
+                        <li><a onclick="toggleLineCharts('lineSongs')">Songs Line chart</a></li>
+                    </ul>
+                </div>
+            </div> 
+        -->
+
         <div class="row">
             <div class="btn-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <button type="button" class="btn btn-block btn-dark dropdown-toggle btn-padding" data-toggle="dropdown">Mood <span class="caret"></span></button>
-                <ul class="dropdown-menu btn-block" role="menu">
+                <ul class="dropdown-menu dashboard-dropdown dropdown-menu-center" role="menu">
                   <li><a onclick="toggleMetric('excited')">Excited</a></li>
                   <li class="divider"></li>
                   <li><a onclick="toggleMetric('mellow')">Mellow</a></li>
@@ -26,7 +41,7 @@
 
             <div class="btn-group col-xs-12 col-sm-6 col-md-6 col-lg-6" role="group">
                 <button type="button" class="btn btn-block btn-dark dropdown-toggle btn-padding" data-toggle="dropdown">Theme <span class="caret"></span></button>
-                <ul class="dropdown-menu btn-block" role="menu">
+                <ul class="dropdown-menu btn-block text-center" role="menu">
                   <li><a onclick="toggleMetric('dance')">Party</a></li>
                   <li class="divider"></li> 
                   <li><a onclick="toggleMetric('karaoke')">Karaoke</a></li>

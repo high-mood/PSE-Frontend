@@ -21,7 +21,7 @@
         </div>
        
         <!--  
-        colours
+        button colours
             #c1b51b
             #1dc156
             #1cc18f
@@ -36,6 +36,60 @@
             #c1521b
         -->
 
+        
+        <div class="row vertical-align">
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 text-center">
+                <div class="row">
+                    <div id="analytics-slider">
+                            <div id="slider-range"></div>
+                    </div>
+                    <!-- Slider source: https://codepen.io/glitchworker/pen/XVdKqj -->
+                        <!-- <div slider id="slider-distance">
+                                <div>
+                                  <div inverse-left style="width:70%;"></div>
+                                  <div inverse-right style="width:70%;"></div>
+                                  <div range style="left:30%;right:40%;"></div>
+                                  <span thumb style="left:30%;"></span>
+                                  <span thumb style="left:60%;"></span>
+                                  <div sign style="left:30%;">
+                                    <span id="value">30</span>
+                                  </div>
+                                  <div sign style="left:60%;">
+                                    <span id="value">60</span>
+                                  </div>
+                                </div>
+                                <input type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
+                                this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                                var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                                var children = this.parentNode.childNodes[1].childNodes;
+                                children[1].style.width=value+'%';
+                                children[5].style.left=value+'%';
+                                children[7].style.left=value+'%';children[11].style.left=value+'%';
+                                children[11].childNodes[1].innerHTML=this.value;" />
+                              
+                                <input type="range" tabindex="0" value="60" max="100" min="0" step="1" oninput="
+                                this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                                var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                                var children = this.parentNode.childNodes[1].childNodes;
+                                children[3].style.width=(100-value)+'%';
+                                children[5].style.right=(100-value)+'%';
+                                children[9].style.left=value+'%';children[13].style.left=value+'%';
+                                children[13].childNodes[1].innerHTML=this.value;" />
+                              </div> -->
+                </div>
+                <div class="row">
+                    <div id="lineDays">
+                        
+                    </div>
+                    <div id="lineSongs">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center" id="explanation">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="lineCharts">
                 <div class="row">
@@ -76,21 +130,6 @@
                         <button class="btn btn-block" onclick="toggleLine(this.id)" id="tempo" style="background-color: #c1b51b;">Tempo</button>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 text-center">
-                <div class="row">
-                    <div id="lineDays">
-                        
-                    </div>
-                    <div id="lineSongs">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center" id="explanation">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
             </div>
         </div>
     </div>

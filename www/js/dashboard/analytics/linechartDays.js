@@ -71,11 +71,9 @@ function createLineGraphDays(data, id) {
 
     var dates = [];
     for (val in data.dates) {
-        // dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
-        dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
-        console.log("2019-06-" + data.dates[val]["date"]);
+        dates.push(parseTime(data.dates[val]["date"]));
     }
-    console.log(dates)
+    console.log(dates, "dates!!!")
     dates = dates.reverse()
     // scales
     console.log(d3.extent(dates))
@@ -117,7 +115,7 @@ function createLineGraphDays(data, id) {
     var svg = d3.select("#" + id).append("svg")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("viewBox", "-20 -20 600 400")
+            .attr("viewBox", "-20 -20 600 320")
         .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .attr("id", svgId);

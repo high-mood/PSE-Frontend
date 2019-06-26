@@ -18,6 +18,10 @@ hr.light {
     border-color: black;
 }
 
+*::-webkit-scrollbar {
+    display: none;
+}
+
 a {
     @include transition-all;
     color: $theme-primary;
@@ -135,7 +139,7 @@ aside {
     }
     @media (min-width: 768px) {
         background-color: black;
-        border-color: black;
+        border-color: $theme-dark-gray;
         .navbar-header .navbar-brand {
             // navigation buttons standard
             color: white;
