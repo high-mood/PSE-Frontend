@@ -1,15 +1,3 @@
-function update_history() {
-    var lastDiv = document.querySelector("#song_history > div:last-child");
-    var lastDivOffset = lastDiv.offsetTop + lastDiv.clientHeight;
-    var pageOffset = window.pageYOffset + window.innerHeight;
-    var i;
-    for (i = 0; i < 10; i++) {
-        var newDiv = document.createElement("div");
-        newDiv.innerHTML = "Add new song";
-        document.getElementById("song_history").appendChild(newDiv);
-    }
-}
-
 // TODO  set to actual song feedbacl
 function resetFeedback(event) {
     var value = 50;
@@ -44,7 +32,6 @@ function sendFeedback(event) {
 
 var song_history = document.querySelector("#song_history");
 var tracklist = document.querySelector("#tracklist");
-update_history();
 
 document.getElementById("happiness_slider").oninput = function() {
     var text = document.getElementById("happiness_slider_text");
@@ -57,7 +44,7 @@ document.getElementById("excitedness_slider").oninput = function() {
 };
 
 
-var resetButton = document.getElementById("reset_feedack");
+var resetButton = document.getElementById("reset_feedback");
 resetButton.addEventListener("click", resetFeedback);
 
 var sendFeedbackBackButton = document.getElementById("send_feedback");
