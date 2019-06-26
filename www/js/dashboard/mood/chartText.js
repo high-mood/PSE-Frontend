@@ -27,8 +27,8 @@ You seem sad or a bit down on your luck."];
 
 const heatMapText = "In this heatmap the happines and excitement values<br>\
 are displayed on the x and y axis.<br>\
-The number of songs in each square determines the color. <br><br>\
-The color changes from light blue (no songs) to green (average) to yellow (highest count).";
+The intensity of the color is determined by the density of songs.<br><br>\
+The more songs are in that area the brighter red that spot will be.";
 
 function giveText(data, id) {
 //     var texts;
