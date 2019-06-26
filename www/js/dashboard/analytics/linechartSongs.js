@@ -1,7 +1,7 @@
 // Code basis by Gord Lea: https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
 // Legend code from https://www.d3-graph-gallery.com/graph/custom_legend.html
 
-var xScale, yScale, yScaleTempo, yScaleMoods;
+var xScale, yScale, yScaleTempo, yScaleMoods, data;
 
 function createLineGraphSongs(data, id) {
 
@@ -123,7 +123,7 @@ function createLineGraphSongs(data, id) {
     // set proper style for tooltip
     d3.select("#tooltipSongs")
         .style("width", "160px")
-        .style("height", "30px")
+        .style("height", "40px")
         .style("position", "fixed")
         .style("background-color", "steelblue")
         .style("top", "0px")
@@ -136,7 +136,7 @@ function createLineGraphSongs(data, id) {
     
     // draw all lines
     for (var key in dataset) {
-        drawLineSongs(svgId, dataset[key], key);
+        drawLineSongs(svgId, dataset[key], key, data);
     }
 
     // show only startLines at page load
@@ -145,7 +145,7 @@ function createLineGraphSongs(data, id) {
 }
 
 
-function drawLineSongs(svgId, dataset, name) {
+function drawLineSongs(svgId, dataset, name, data) {
 
     // make correct d3 line generator
     var line;
@@ -184,7 +184,7 @@ function drawLineSongs(svgId, dataset, name) {
 
 
     // circles with mouse over functionality
-    svg.selectAll("." + name + "songgdot")
+    svg.selectAll("." + name + "songdot")
     .data(dataset)
     .enter().append("circle")
     .attr("class", name + "songdot")
@@ -203,6 +203,7 @@ function drawLineSongs(svgId, dataset, name) {
     .attr("r", 4)
     .style("fill", color)
     .on("mouseover", function(y, x) { 
+        console.log(data)
         var value = Math.round(dataset[x]['y'] * 100) / 100;
         d3.select("#tooltipSongs")
             .transition()
@@ -211,16 +212,36 @@ function drawLineSongs(svgId, dataset, name) {
                 .style("top", (event.clientY - 30) + "px")
                 .style("left", event.clientX + "px")
                 .style("background-color", color)
+                .style("width", "160px")
+                .style("height", "40px")
 
         d3.select("#tooltiptextSongs")
-            .html(name + ": " + value)
+            .html(name + ": " + value + "<br>" + 
+                  trimSongName(data["metric_over_time"][x]["name"]))
         })
     .on("mouseout", function() {
         d3.select("#tooltipSongs")
             .transition()
                 .duration(200)
                 .style("opacity", 0)
-        })
+                .style("width", "0")
+                .style("height", "0")
+                .on("end", function() {
+                    $("#tooltiptextSongs").html("")
+                    console.log($("#tooltiptextSongs").html(), "hier")
+                })
+    })
+}
+
+function trimSongName(name) {
+    if (name.length > 15) {
+        console.log(name)
+        console.log(name.slice(0, 15))
+        return name.slice(0, 12).concat("...")
+    }
+    else {
+        return name
+    }
 }
 
 // // hides a given line
