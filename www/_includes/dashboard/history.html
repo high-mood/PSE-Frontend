@@ -1,25 +1,55 @@
-<section id="history">
+<section class="bg-primary" id="about">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">History</h2>
-                <p>Song History</p>
+                <p>Analyze your Spotify history and get new recommendations based on your favorite songs!</p>
                 <hr class="light">
             </div>
         </div>
-    
 
         <div class="row text-center">
-            <div class="btn-group btn-block text-center dashboard-dropdown">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+	    <div class="btn-group btn-block text-center dashboard-dropdown">
                 <button type="button" class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">
                     Choose your history <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu text-center" role="menu">
+                <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
                     <li><a onclick="toggleHistory()">History</a></li>
                     <li class="divider"></li>
                     <li><a onclick="toggleHistory()">Favourites</a></li>
                 </ul>
+            </div>
+		<div id="tracklist">
+		    <div id="song_history" style="overflow-y: scroll; height:400px;">
+			<div>Recently played tracks</div>
+		    </div>
+		</div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+                explanation here
+            </div>
+	    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row text-center">
+		User feedback
+		{% include dashboard/userfeedback.html %}
+	    </div>
         </div>
     </div>
-    </div>
+    <script>
+     var song_history = document.querySelector("#song_history");
+     var tracklist = document.querySelector("#tracklist");
+     var update_history = function () {
+	 var lastDiv = document.querySelector("#song_history > div:last-child");
+	 var lastDivOffset = lastDiv.offsetTop + lastDiv.clientHeight;
+	 var pageOffset = window.pageYOffset + window.innerHeight;
+	 var i;
+	 for (i=0; i<10; i++){
+             var newDiv = document.createElement("div");
+             newDiv.innerHTML = "Add new song";
+             document.getElementById("song_history").appendChild(newDiv);
+	 }
+     };
+     update_history();
+	 
+    </script>
 </section>
