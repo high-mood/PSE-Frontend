@@ -9,14 +9,6 @@ $theme-dark-gray: #19492a
     outline: 0;
 }
 
-.song-template {
-    width: 75%;
-    overflow: scroll;
-}
-
-.rounded-edges {
-    border-radius: 15%
-}
 
 .vertical-align {
     display: flex;
