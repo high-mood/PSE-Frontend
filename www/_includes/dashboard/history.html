@@ -1,5 +1,6 @@
 <section class="background-primary" id="history">
     <div class="container-fluid">
+        <!-- The header. -->
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h1 class="section-heading">History</h1>
@@ -8,7 +9,7 @@
             </div>
         </div>
     
-
+        <!-- The dropdown menu. --> 
         <div class="row text-center">
             <div class="btn-group dashboard-dropdown">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -19,6 +20,22 @@
                     <li class="divider"></li>
                     <li><a onclick="toggleHistory()">Favourites</a></li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- Body for history display -->
+        <div id="historyRow" class="row vertical-align">
+            <div class="col -xs-12 col-sm-12 col-md-12 col-lg-6">
+                <div class="history rec window" id="historyRecWindow"></div>
+
+            </div>
+        </div>
+
+        <!-- Body for favourite display -->
+        <div id="favRow" class="row vertical-align">
+            <div class="col -xs-12 col-sm-12 col-md-12 col-lg-6">
+                <div class="favRecWindow" id="favRecWindow"></div>
+
             </div>
         </div>
     </div>
