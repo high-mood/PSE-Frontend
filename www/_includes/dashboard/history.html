@@ -1,20 +1,17 @@
-<section class="bg-primary" id="history">
+<section class="bg-primary" id="about">
     <div class="container-fluid">
-        <!-- The header. -->
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">History</h2>
-                <p>Analyze your Spotify history and get new recommendations based on your favorite songs!</p>
-                <hr class="light">
-                <p>Song History</p>
-            </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">History</h2>
+                    <p>Analyze your Spotify history and get new recommendations based on your favorite songs!</p>
+                    <hr class="light">
+                </div>
         </div>
         <div class="row text-center">
-
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
-                <div class="btn-group btn-block text-center dashboard-dropdown">
-                    <button type="button" class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Choose your history <span class="caret"></span>
+    	           <div class="btn-group btn-block text-center dashboard-dropdown">
+                   <button type="button" class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Choose your history <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
                         <li><a onclick="toggleHistory()">History</a></li>
@@ -22,19 +19,17 @@
                         <li><a onclick="toggleHistory()">Favourites</a></li>
                     </ul>
                 </div>
-
-                <div id="tracklist">
-                    <div id="song_history">
-                        <div>Recently played tracks</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
-                explanation here
+          		<div id="tracklist">
+          		    <div id="song_history" style="overflow-y: scroll; height:400px;">
+          		    </div>
+          		</div>
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row text-center">
+              <div id="songinfotool">
                 User feedback
                 <div class="row">
+                    <div id="songname"></div>
+                    <p id="songdisplayname"></p>
                     <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 hcenter text-center">
                         <input id="happiness_slider" class="feedback-slider" orient="vertical" type="range" min="0" max="100" step="1" value="50">
                     </div>
@@ -52,16 +47,13 @@
                         </div>
                     </div>
                 </div>
+              </div>
+      	    </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+                explanation here
             </div>
         </div>
 
-        <!-- Body for history display -->
-        <div id="historyRow" class="row vertical-align">
-            <div class="col -xs-12 col-sm-12 col-md-12 col-lg-6">
-                <div class="history rec window" id="historyRecWindow"></div>
-
-            </div>
-        </div>
 
         <!-- Body for favourite display -->
         <div id="favRow" class="row vertical-align">
@@ -87,4 +79,132 @@
             </div>
         </div>
     </div>
+    <style>
+      .songdiv {
+        /* border: 2px solid black; */
+        height: 80px;
+        width: 380px;
+        /* padding: 20px; */
+      }
+
+      .songdiv-right {
+        /* border: 2px solid black; */
+        height: 120px;
+        /* float: right; */
+        /* padding: 20px; */
+      }
+
+      .SongRecButton{
+        height: 80px;
+        width: 80px;
+        float: left;
+        background-color: black;
+        color: white;
+      }
+
+      .songinfotool{
+        height: 400px;
+      }
+    </style>
+
+    <script>
+
+      var songiddict = {};
+
+      var request = new XMLHttpRequest()
+      // request.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummysonghistory.json', true)
+      request.open('GET', 'https://cors-anywhere.herokuapp.com/http://pse-ssh.diallom.com:5000/api/tracks/history/' + "snipy12" + '/0', true)
+      request.onload = function() {
+
+        if (request.status >= 200 && request.status < 400) {
+          var alldata = JSON.parse(this.response)
+          var userdata = alldata.resource
+          globaluserdata = userdata;
+          console.log(globaluserdata);
+          var songWidgetContainer = document.getElementById('song_history');
+          var form = document.createElement('form')
+
+          songWidgetContainer.appendChild(form);
+
+          var length = userdata.songs.length;
+
+          if (length > 20) { length = 20; }
+
+          for (var i = 0; i < length; i++) {
+
+            var song = userdata.songs[i];
+            var songdiv = document.createElement('div')
+            songdiv.classList.add('songdiv');
+            var songid = userdata.songs[i].songid;
+            songdiv.id = songid;
+
+            songiddict[songid] = song;
+
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "Select";
+            btn.setAttribute("type","button");
+            btn.onclick = function(songid) {createSongInfoTool(songid); };
+            btn.classList.add('SongRecButton');
+            songdiv.appendChild(btn);
+
+            var ifrm = document.createElement("iframe");
+            ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + userdata.songs[i].songid);
+            ifrm.setAttribute("align","left");
+            ifrm.style.width = "300px";
+            ifrm.style.height = "80px";
+
+            songdiv.appendChild(ifrm);
+            form.appendChild(songdiv)
+          }
+
+          // createSongInfoTool(userdata.songs[0]);
+        }
+      }
+      request.send()
+
+      function createSongInfoTool(clickevent) {
+
+        var songid = clickevent.path[0].parentElement.id;
+
+        console.log("Creating tool");
+        console.log(songid);
+        console.log(songiddict);
+
+        var song = songiddict[songid];
+        console.log(song);
+
+        // var songname = document.getElementById('songname');
+        // var par = document.createElement("p");
+        //
+        // var text = document.createTextNode(song.name);
+        // par.style.margin = "0px";
+        // par.appendChild(text);
+        // songname.appendChild(par);
+
+        var songname = document.getElementById('songdisplayname')
+        songname.innerHTML = song.name;
+
+        var happiness_slider = document.getElementById("happiness_slider")
+        var happiness_slider_text = document.getElementById("happiness_slider_text")
+        var happiness_percentage = (song.happiness + 10) * 5
+        happiness_slider.value = happiness_percentage;
+        happiness_slider_text.innerHTML = Math.trunc(happiness_percentage) + "%";
+
+
+        var excitedness_slider = document.getElementById("excitedness_slider")
+        var excitedness_slider_text = document.getElementById("excitedness_slider_text")
+        var excitedness_percentage = (song.excitedness + 10) * 5
+        excitedness_slider.value = excitedness_percentage;
+        excitedness_slider_text.innerHTML = Math.trunc(excitedness_percentage) + "%";
+
+
+        console.log(song.songid);
+        console.log(song.name);
+        console.log(song.excitedness);
+        console.log(song.happiness);
+
+        // songInfoContainer.appendChild(div);
+      }
+
+    </script>
 </section>

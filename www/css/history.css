@@ -1,6 +1,15 @@
 #song_history {
-    overflow-y: auto;
-    height: 400px;
+   overflow-y: auto;
+   height: 400px;
+}
+
+.feedback-slider {
+   -webkit-appearance: slider-vertical; /* Chrome */
+   user-select: none; /* supported by Chrome and Opera  */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 .feedback-slider {
