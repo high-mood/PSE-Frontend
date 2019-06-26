@@ -5,7 +5,7 @@ var xScale, yScale, yScaleTempo, yScaleMoods;
 
 function createLineGraphSongs(data, id) {
 
-   console.log(data);
+//    console.log(data);
 
     // dataset, unused metrics are commented out
     var dataset = {
@@ -65,7 +65,7 @@ function createLineGraphSongs(data, id) {
         .range([height, 0]); // output
 
     // make svg and g html element
-    var svgId = "lineSvg"
+    var svgId = "songsSvg"
     var svg = d3.select("#" + id).append("svg")
             .attr("width", "100%")
             .attr("height", "100%")
@@ -117,11 +117,11 @@ function createLineGraphSongs(data, id) {
     
     // make tooltip
     var tooltip = document.createElement("div")
-    tooltip.setAttribute("id", "tooltip")
-    document.getElementById("body").appendChild(tooltip)
+    tooltip.setAttribute("id", "tooltipSongs")
+    document.getElementById("lineSongs").appendChild(tooltip)
     
     // set proper style for tooltip
-    d3.select("#tooltip")
+    d3.select("#tooltipSongs")
         .style("width", "160px")
         .style("height", "30px")
         .style("position", "fixed")
@@ -131,7 +131,7 @@ function createLineGraphSongs(data, id) {
         .style("opacity", 0)
         .style("border-radius", "10px")
     
-    d3.select("#tooltip").append("text").attr("id", "tooltiptext")
+    d3.select("#tooltipSongs").append("text").attr("id", "tooltiptextSongs")
         .style("color", "#000000")
     
     // draw all lines
@@ -140,8 +140,8 @@ function createLineGraphSongs(data, id) {
     }
 
     // show only startLines at page load
-    var startLines = ["danceability", "energy", "liveness"]
-    startStates(startLines)
+    // var startLines = ["danceability", "energy", "liveness"]
+    // startStates(startLines)
 }
 
 
@@ -204,7 +204,7 @@ function drawLineSongs(svgId, dataset, name) {
     .style("fill", color)
     .on("mouseover", function(y, x) { 
         var value = Math.round(dataset[x]['y'] * 100) / 100;
-        d3.select("#tooltip")
+        d3.select("#tooltipSongs")
             .transition()
                 .duration(200)
                 .style("opacity", 1)
@@ -212,11 +212,11 @@ function drawLineSongs(svgId, dataset, name) {
                 .style("left", event.clientX + "px")
                 .style("background-color", color)
 
-        d3.select("#tooltiptext")
+        d3.select("#tooltiptextSongs")
             .html(name + ": " + value)
         })
     .on("mouseout", function() {
-        d3.select("#tooltip")
+        d3.select("#tooltipSongs")
             .transition()
                 .duration(200)
                 .style("opacity", 0)
