@@ -67,15 +67,19 @@ function createLineGraphDays(data, id) {
 
     var dates = [];
     for (val in data.dates) {
-        dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
+        // dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
+        dates.push("2019-06-" + data.dates[val]["date"]);
         console.log("2019-06-" + data.dates[val]["date"]);
     }
     console.log(dates)
-
+    dates = dates.reverse()
     // scales
     console.log(d3.extent(dates))
-    xScaleTime = d3.scaleTime()
-        .domain(d3.extent(dates))
+    // xScaleTime = d3.scaleTime()
+    //     .domain(d3.extent(dates))
+    //     .range([0, width])
+    xScaleTime = d3.scaleOrdinal()
+        .domain(dates)
         .range([0, width])
     yScale = d3.scaleLinear()
         .domain([0, 1])
@@ -87,7 +91,7 @@ function createLineGraphDays(data, id) {
         .range([0, width])
     
     
-        // array to calculate max and min tempo for scale
+    // array to calculate max and min tempo for scale
     tempoArray = []
     for (var i in dataset["tempo"]) {
         tempoArray.push(dataset["tempo"][i].y)
