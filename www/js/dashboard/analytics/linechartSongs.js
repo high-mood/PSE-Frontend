@@ -65,7 +65,7 @@ function createLineGraphSongs(data, id) {
         .range([height, 0]); // output
 
     // make svg and g html element
-    var svgId = "lineSvg"
+    var svgId = "songsSvg"
     var svg = d3.select("#" + id).append("svg")
             .attr("width", "100%")
             .attr("height", "100%")
