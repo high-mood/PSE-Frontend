@@ -1,32 +1,51 @@
-<section class="bg-primary" id="about">
+<section class="background-black" id="mood">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Mood</h2>
-                <p>Mood info</p>
-                <hr class="light">
+                <h1 class="section-heading">Mood</h1>
+                <hr class="dark">
+                <p>Your spotify listening history is analyzed using advanced artificial intelligence, 
+                    which is visualised below.</p>
             </div>
         </div>
 
-        <div class="row">
-            <div class="btn-group btn-block">
-                <button type="button" class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Dealer Tools  <span class="caret"></span>
+        <div class="row text-center">
+            <div class="btn-group dashboard-dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="moodChartSelector">
+                    Radar Chart <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu" role="menu">
-               <li><a href="#"><span class="glyphicon glyphicon-user"></span> Dealer Area</a></li>
-                      <li class="divider"></li>
-                       <li><a href="#"><span class="glyphicon glyphicon-phone"></span> App Registration</a></li>   
-                </ul>
-              </div>
+                    <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
+                        <li><a onclick="toggleMoodCharts('radarChart')">Radar Chart</a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="toggleMoodCharts('heatmap')">Heatmap</a></li>   
+                    </ul>
+            </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
-                chart here
+        <div class="row vertical-align" id="radarChartRow">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="radarChart rounded border border-primary" id="radarChart">
+                    
+                </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
-                explanation here
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="row radarText rounded border border-primary explanation" id="radarText">
+                
+                </div>
             </div>
         </div>
+        <div class="row vertical-align" id="heatmapRow">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="heatmap rounded border border-primary" id="heatmap">
+                    
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="heatmapText rounded border border-primary explanation" id="heatmapText">
+                
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>

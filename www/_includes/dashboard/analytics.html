@@ -1,0 +1,110 @@
+<section class="background-black" id="analytics">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h1 class="section-heading">Analytics</h1>
+                    <hr class="dark">
+                    <p>Analytics info</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                    <div class="btn-group text-center dashboard-dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" id="lineChartSelector" data-toggle="dropdown">
+                            Days Line chart 
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                        </div>
+                <!-- <div class="btn-group text-center dashboard-dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" id="lineChartSelector" data-toggle="dropdown">
+                        Days Line chart <span class="caret"></span>
+                    </button>
+                        <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
+                            <a onclick="toggleLineCharts('lineDays')">Line Days chart<li></li></a>
+                            <li class="divider"></li>
+                            <a onclick="toggleLineCharts('lineSongs')">Line Songs chart<li></li></a>   
+                        </ul>
+                </div> -->
+            </div>
+           
+            <!--  
+            colours
+                #c1b51b
+                #1dc156
+                #1cc18f
+                #1ba2c1
+                #1b5dc1
+                #1b1dc1
+                #761bc1
+                #b31bc1
+                #c11b65
+
+                #c11b1b
+                #c1521b
+            -->
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="lineCharts">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="instrumentalness" style="background-color: #1dc156;">Instrumentalness</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="happiness" style="background-color: #1cc18f;">Happiness</button>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="excitedness" style="background-color: #1ba2c1;">Excitedness</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="acousticness" style="background-color: #1b5dc1;">Acousticness</button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="danceability" style="background-color: #761bc1;">Danceability</button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="speechiness" style="background-color: #b31bc1;">Speechiness</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="liveness" style="background-color: #c11b65;">Liveness</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="valence" style="background-color: #c11b1b;">Valence</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="energy" style="background-color: #c1521b;">Energy</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="tempo" style="background-color: #c1b51b;">Tempo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 text-center">
+                    <div class="row">
+                        <div id="lineDays">
+                            
+                        </div>
+                        <div id="lineSongs">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center" id="explanation">
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                </div>
+            </div>
+        </div>
+    </section>

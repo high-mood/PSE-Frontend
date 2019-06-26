@@ -1,24 +1,16 @@
-<style>
-div.ex1 {
-  width: 310px;
-  height: 240px;
-  overflow: scroll;
-}
-</style>
-
-<section class="bg-primary" id="about">
+<section class="bg-white" id="about">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Recommendation</h2>
-                <p>Song recommendations</p>
+                <h1 class="section-heading">Recommendations</h1>
+                <p>Song recommendations are based your personal average mood along with your desired mood and theme</p></p>
                 <hr class="light">
             </div>
         </div>
 
         <div class="row">
-            <div class="btn-group col-xs-12 col-sm-6 col-md-6 col-lg-6" role="group">
-                <button type="button" class="btn btn-block btn-primary" data-toggle="dropdown">Mood<span class="caret"></span></button>
+            <div class="btn-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <button type="button" class="btn btn-block btn-dark" data-toggle="dropdown">Mood<span class="caret"></span></button>
                 <ul class="dropdown-menu btn-block" role="menu">
                   <li><a href="#">Excited</a></li>
                   <li class="divider"></li>
@@ -33,7 +25,7 @@ div.ex1 {
             </div>
 
             <div class="btn-group col-xs-12 col-sm-6 col-md-6 col-lg-6" role="group">
-                <button type="button" class="btn btn-block btn-primary" data-toggle="dropdown">Event<span class="caret"></span></button>
+                <button type="button" class="btn btn-block btn-dark" data-toggle="dropdown">Theme<span class="caret"></span></button>
                 <ul class="dropdown-menu btn-block" role="menu">
                     <!-- TODO optioneel leuk plaatje voor vakjes zet voor woord neer. -->
                     <!-- <span class="glyphicon glyphicon-phone"></span> -->
@@ -46,18 +38,25 @@ div.ex1 {
             </div>
         </div>
 
-        <div class="row">
-             <!-- ex1 col-xs-6 col-sm-3 col-md-3 col-lg-3 -->
-            <div class="btn-block text-center ex1 col">
-                <iframe src="https://open.spotify.com/embed/track/2kulOHR2XY6YDZCWXb38hn" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <div class="row rounded-edges" style="margin-top: 5%; background-color: rgb(30, 32, 30);">
+            <div class="text-center col">
                 <br>
-                <iframe src="https://open.spotify.com/embed/track/3S2R0EVwBSAVMd5UMgKTL0" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <div class="row">
+                    <iframe class="song-template" src="https://open.spotify.com/embed/track/2kulOHR2XY6YDZCWXb38hn" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
+                <div class="row">
+                    <iframe class="song-template" src="https://open.spotify.com/embed/track/3S2R0EVwBSAVMd5UMgKTL0" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
+                <div class="row">
+                    <iframe class="song-template" src="https://open.spotify.com/embed/track/5ChkMS8OtdzJeqyybCc9R5" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
+                <div class="row">
+                    <iframe class="song-template" src="https://open.spotify.com/embed/track/2kulOHR2XY6YDZCWXb38hn" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
+                <div class="row">
+                    <iframe class="song-template" src="https://open.spotify.com/embed/track/3S2R0EVwBSAVMd5UMgKTL0" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
                 <br>
-                <iframe src="https://open.spotify.com/embed/track/5ChkMS8OtdzJeqyybCc9R5" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                <br>
-                <iframe src="https://open.spotify.com/embed/track/2kulOHR2XY6YDZCWXb38hn" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                <br>
-                <iframe src="https://open.spotify.com/embed/track/3S2R0EVwBSAVMd5UMgKTL0" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
         </div>
     </div>

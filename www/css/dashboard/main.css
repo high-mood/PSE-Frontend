@@ -1,0 +1,94 @@
+/* 
+$theme-primary: #1dc156
+$theme-dark: #0b2112
+$theme-white: #a9d6b9
+$theme-light-gray: #7b9684
+$theme-dark-gray: #19492a 
+*/
+#lineCharts button:focus {
+    outline: 0;
+}
+
+.song-template {
+    width: 75%;
+    overflow: scroll;
+}
+
+.rounded-edges {
+    border-radius: 15%
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-dropdown ul button a {
+    width: 30%;
+}
+
+.dashboard-dropdown li {
+    width: 40%;
+    text-align: center;   
+}
+
+.dashboard-dropdown a:hover {
+    cursor: pointer;
+}
+
+.hcenter {
+    margin: 0 auto;
+}
+
+.dropdown-menu-center {
+    left: 50% !important;
+    right: auto !important;
+    text-align: center !important;
+    transform: translate(-50%, 0) !important;
+  }
+
+.background-black {
+    background-color: black;
+    color: white;
+}
+
+.background-gray {
+    background-color: gray;
+    color: white;
+}
+
+.background-white {
+    background-color: white;
+    color: #0b2112;
+}
+
+.background-primary {
+    background-color: #1dc156;
+    color: white;
+}
+
+div[class^="col-"] {
+    padding-top: 15px;
+    /* box-shadow: 1px 1px 1px 1px rgba(0, 0, 255, .2); */
+}
+
+.domain {
+    stroke: #ffffff;
+    opacity: 0.85;
+}
+  
+.axis {
+    stroke: #ffffff;
+    opacity: 0.85;
+}
+
+.tick {
+    stroke: #ffffff;
+    opacity: 0.85;
+}
+
+line {
+    stroke: #ffffff;
+     opacity: 0.85;
+}
+
