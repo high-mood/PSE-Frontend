@@ -1,7 +1,4 @@
-// var userid = document.getElementById("username").textContent;
-// console.log(userid);
 $('#heatmapRow').hide();
-// TODO remove hardcode
 var userid = 'snipy12';
 
 var request = new XMLHttpRequest();
@@ -12,9 +9,7 @@ request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0',
 request.onload = function() {
     var alldata = JSON.parse(this.response)
     userdata = alldata.resource
-    console.log(userdata)
     window.userdata = userdata
-    console.log(request.status, 'hiiiiiiiiiiiii')
     if ((request.status >= 200 && request.status < 400) || request.status == 0) {
         // RadarChart
         createRadarChart(userdata);

@@ -8,20 +8,6 @@ var lineNames = ["excitedness", "happiness", "acousticness", "danceability",
                  "tempo", "valence"];
 
 function createLineGraphDays(data, id) {
-
-
-
-    // REMOVE
-    // 
-    // 
-    // 
-    // data.dates[1]["date"] = "2019-06-24"
-    // data.dates[2]["date"] = "2019-06-23"
-    // data.dates[3]["date"] = "2019-06-22"
-    
-    // console.log(data);
-
-    console.log(dates)
     // dataset, unused metrics are commented out
     var dataset = {
         "excitedness": [],
@@ -67,18 +53,12 @@ function createLineGraphDays(data, id) {
     var parsedMinDate = parseTime(minDate)
     var parsedMaxDate = parseTime(maxDate)
 
-    // console.log(parsedMinDate)
-
     var dates = [];
     for (val in data.dates) {
-        // dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
-        dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
-        console.log("2019-06-" + data.dates[val]["date"]);
+        dates.push(parseTime(data.dates[val]["date"]));
     }
-    console.log(dates)
     dates = dates.reverse()
     // scales
-    console.log(d3.extent(dates))
     // xScaleTime = d3.scaleTime()
     //     .domain(d3.extent(dates))
     //     .range([0, width])
@@ -117,7 +97,7 @@ function createLineGraphDays(data, id) {
     var svg = d3.select("#" + id).append("svg")
             .attr("width", "100%")
             .attr("height", "100%")
-            .attr("viewBox", "-20 -20 600 400")
+            .attr("viewBox", "-20 -20 600 320")
         .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .attr("id", svgId);
@@ -191,9 +171,6 @@ function createLineGraphDays(data, id) {
 
 
 function drawLineDays(svgId, dataset, name) {
-
-    // console.log(dataset)
-
     // make correct d3 line generator
     var line;
     if (name == "tempo") {
@@ -295,8 +272,6 @@ function toggleLine(buttonId) {
 }
 
 function toggleAll() {
-    console.log(lineNames)
-
     // check if all buttons toggled
     var allToggled = true;
     for (var i in lineNames) {

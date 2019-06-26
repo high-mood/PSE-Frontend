@@ -83,7 +83,7 @@ function select(song_index) {
         console.log(data)
         var recommendations = data.resource.recommendations;
         for (var index = 0; index < 5; index++) {
-            div = $('#rec' + index);
+            div = $('#recHist' + index);
             div.empty();
             if (requestRec.status == 200) {
                 trackId = "https://open.spotify.com/embed/track/";
