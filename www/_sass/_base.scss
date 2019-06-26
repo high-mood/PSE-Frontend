@@ -310,6 +310,10 @@ header {
     @include button-variant(white, $theme-primary, $theme-primary);
 }
 
+.btn-dark {
+    @include button-variant(white, $theme-dark, $theme-dark);
+}
+
 .btn {
     font-family: 'Gotham';
     border: none;
