@@ -5,7 +5,7 @@ $theme-white: #a9d6b9
 $theme-light-gray: #7b9684
 $theme-dark-gray: #19492a 
 */
-#lineCharts button:focus {
+button:focus {
     outline: 0;
 }
 
