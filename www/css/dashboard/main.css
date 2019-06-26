@@ -5,10 +5,18 @@ $theme-white: #a9d6b9
 $theme-light-gray: #7b9684
 $theme-dark-gray: #19492a 
 */
-button:focus {
+#lineCharts button:focus {
     outline: 0;
 }
 
+.song-template {
+    width: 75%;
+    overflow: scroll;
+}
+
+.rounded-edges {
+    border-radius: 15%
+}
 
 .vertical-align {
     display: flex;
