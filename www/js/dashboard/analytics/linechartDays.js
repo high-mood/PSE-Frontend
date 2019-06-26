@@ -268,7 +268,7 @@ function toggleLine(buttonId) {
 
 
 
-// hides a given line
+// hides a given line, shows and hides relevant axes
 function hideLine(name) {
 
     d3.selectAll("#" + name + "line")
@@ -282,8 +282,28 @@ function hideLine(name) {
         d3.selectAll(".tempo.axis")
             .style("visibility", "hidden")
 
-        d3.selectAll(".moods.axis")
-            .style("visibility", "visible")
+
+        if (d3.select("#excitednessline").style("visibility") == "visible" ||
+            d3.select("#happinessline").style("visibility") == "visible") {
+            d3.selectAll(".moods.axis").style("visibility", "visible");
+        }
+    }
+
+    else if (name == "happiness") {
+        if (d3.select("#excitednessline").style("visibility") == "hidden") {
+            d3.selectAll(".moods.axis").style("visibility", "hidden")
+            if (d3.select("#tempoline").style("visibility") == "visible") {
+                d3.selectAll(".tempo.axis").style("visibility", "visible")
+            }           
+        }
+    }
+    else if (name == "excitedness") {
+        if (d3.select("#happinessline").style("visibility") == "hidden") {
+            d3.selectAll(".moods.axis").style("visibility", "hidden")
+            if (d3.select("#tempoline").style("visibility") == "visible") {
+                d3.selectAll(".tempo.axis").style("visibility", "visible")
+            }           
+        }
     }
 }
 
@@ -302,8 +322,10 @@ function showLine(name) {
         d3.selectAll(".moods.axis")
             .style("visibility", "hidden")
     }
-    // if (name == "happiness" || name == "excitedness") {
-    //     d3.select(".moods.axis")
-    //         .style("visibility", "visible")
-    // }
+    if (name == "happiness" || name == "excitedness") {
+        d3.select(".moods.axis")
+            .style("visibility", "visible")
+        d3.select(".tempo.axis")
+            .style("visibility", "hidden")
+    }
 }
