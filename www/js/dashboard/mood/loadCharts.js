@@ -16,6 +16,7 @@ request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0',
 request.onload = function() {
     var alldata = JSON.parse(this.response)
     userdata = alldata.resource
+    console.log(alldata);
     window.userdata = userdata
     if (request.status >= 200 && request.status < 400) {
         // RadarChart
