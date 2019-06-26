@@ -226,10 +226,13 @@ function drawLineSongs(svgId, dataset, name, data) {
                 .style("opacity", 0)
                 .style("width", "0")
                 .style("height", "0")
-                .on("end", function() {
-                    $("#tooltiptextSongs").html("")
-                    console.log($("#tooltiptextSongs").html(), "hier")
-                })
+                // .on("end", function() {
+                //     $("#tooltiptextSongs").html("")
+                //     console.log($("#tooltiptextSongs").html(), "hier")
+                // })
+
+        d3.select("#tooltiptextSongs")
+            .html("")
     })
 }
 

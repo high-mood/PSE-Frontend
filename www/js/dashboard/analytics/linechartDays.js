@@ -269,9 +269,11 @@ function drawLineDays(svgId, dataset, name) {
             .transition()
                 .duration(200)
                 .style("opacity", 0)
-                .style("width", "0")
-                .style("height", "0")
+                .style("width", 0)
+                .style("height", 0)
         })
+        d3.select("#tooltiptextSongs")
+            .html("")
 }
 
 function toggleLine(buttonId) {
