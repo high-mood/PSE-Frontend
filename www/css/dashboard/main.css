@@ -29,15 +29,6 @@ $theme-dark-gray: #19492a
     align-items: center;
 }
 
-.dashboard-dropdown ul button a {
-    width: 30%;
-}
-
-.dashboard-dropdown li {
-    width: 40%;
-    text-align: center;   
-}
-
 .dashboard-dropdown a:hover {
     cursor: pointer;
 }
