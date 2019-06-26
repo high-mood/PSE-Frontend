@@ -23,6 +23,26 @@ function resetFeedback(event) {
     text.textContent = "Excitedness: " + value + "%";
 }
 
+// TODO call actual api with actual username
+function sendFeedback(event) {
+    var userid = "sinpy12";
+    var happiness = document.getElementById("happiness_slider").value;
+    var excitedness = document.getElementById("excitedness_slider").value;
+    var uri = "http://localhost:5000/api/songs/mood/" + userid;
+    var songid = "";
+
+    var data = {
+        "songid": songid,
+        "excitedness": excitedness,
+        "happiness": happiness
+    };
+    var request = new XMLHttpRequest();
+    request.open("POST", uri, true);
+    request.setRequestHeader("Content-Type", 'application/json');
+    request.setRequestHeader("Access-Control-Allow-Origin", 'localhost:4000');
+    request.send(JSON.stringify(data));
+}
+
 var song_history = document.querySelector("#song_history");
 var tracklist = document.querySelector("#tracklist");
 update_history();
@@ -39,4 +59,7 @@ document.getElementById("excitedness_slider").oninput = function () {
 
 
 var resetButton = document.getElementById("reset_feedack");
-resetButton.addEventListener("click", resetFeedback)
+resetButton.addEventListener("click", resetFeedback);
+
+var sendFeedbackBackButton = document.getElementById("send_feedback");
+sendFeedbackBackButton.addEventListener("click", sendFeedback);
