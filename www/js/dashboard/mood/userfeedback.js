@@ -1,7 +1,6 @@
 
 // var graph = document.querySelector("#graph");
 // var dot = document.querySelector("#dot");
-// console.log("HELLO");
 // var svg = d3.selectAll('#userfeedback-svg')
 
 // var x = d3.scaleLinear().domain([-10, 10]).range([17, 203]);
@@ -44,7 +43,6 @@
 //     if (!values[1] || !values[1].length) {
 //         return [];
 //     }
-//     console.log(values[1].split(/,\s?/g).slice(0, 2))
 //     return values[1].split(/,\s?/g).slice(0, 2);
 // }
 
@@ -62,7 +60,6 @@
 //     var alldata = JSON.parse(this.response)
 //     var userdata = alldata.resource
 //     globaluserdata = userdata;
-//     console.log(globaluserdata);
 //
 //
 //     if (request.status >= 200 && request.status < 400) {

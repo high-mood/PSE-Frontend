@@ -63,8 +63,6 @@ function showSong(clickevent) {
   request.open('GET', '/api/tracks/recommendation/' + userid + '/' + songid + '/0.0/0.0', true)
   // /api/tracks/recommendation/snipy12/0LtOwyZoSNZKJWHqjzADpW/0.0/0.0
   request.onload = function() {
-    console.log("response")
-    console.log(this.response)
     var alldata = JSON.parse(this.response)
     var userdata = alldata.resource
 	

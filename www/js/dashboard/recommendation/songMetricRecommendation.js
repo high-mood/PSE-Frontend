@@ -23,7 +23,6 @@ function toggleMetric(metricName) {
 
 function fillRecommendations(userData) {
   for(var index = 0; index < Math.min(5, userData.length); index++) {
-    console.log(userData);
     div = $('#rec' + index);
     div.empty();
     trackId = "https://open.spotify.com/embed/track/";
@@ -33,3 +32,5 @@ function fillRecommendations(userData) {
     div.append(content);
   }
 }
+
+toggleMetric('neutral');

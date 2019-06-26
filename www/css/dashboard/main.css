@@ -91,3 +91,6 @@ line {
     margin-bottom: 1px;
 }
 
+.dropdown-padding {
+    max-width: 95%;
+}

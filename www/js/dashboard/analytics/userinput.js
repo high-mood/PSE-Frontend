@@ -1,14 +1,27 @@
-$( function() {
-    $( "#slider-range" ).slider({
-      orientation: "vertical",
-      range: true,
-      min: 0,
-      max: 500,
-      values: [ 75, 300 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-      }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-  } );
+var timeframeSliderObj = $("#timeframe-slider").slider({
+	id: "timeframe-slider", 
+	orientation: 'horizontal', 
+	min: 0, 
+	max: 24, 
+	range: true, 
+	value: [8, 16]
+});
+
+var daysSliderObj = $("#days-slider").slider({
+	id: "days-slider", 
+	orientation: 'horizontal', 
+	min: 0, 
+	max: 365,
+	value: 1
+});
+
+var songsSliderObj = $("#songs-slider").slider({
+	id: "songs-slider", 
+	orientation: 'horizontal', 
+	min: 0, 
+	max: 1000,
+	value: 1
+});
+
+$("#timeframe-slider-div").toggle()
+$("#songs-slider-div").toggle()

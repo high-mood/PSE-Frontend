@@ -1,5 +1,3 @@
-console.log('HEATMAP');
-
 // Transform data so heatmap can use it.
 function createHeatmapData(userData, xMin, xMax, yMin, yMax, xSamples, ySamples, xDomainSize, yDomainSize) {
   // 0. Get all data needed from the songs.

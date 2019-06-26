@@ -1,5 +1,3 @@
-// var userid = document.getElementById("username").textContent;
-// console.log(userid);
 $('#favRo').hide();
 // TODO remove hardcode
 var userid = 'snipy12';
@@ -11,7 +9,6 @@ request.onload = function() {
     var alldata = JSON.parse(this.response);
     userdata = alldata.resource;
     window.userdata = userdata;
-    console.log(request.status, "request status!")
     if (request.status >= 200 && request.status < 400) {
         // Song history
         createHistory(userdata);

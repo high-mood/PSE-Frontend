@@ -10,12 +10,12 @@
         <div class="row text-center">
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" id="lineChartSelector" data-toggle="dropdown">
-                    Days Line chart 
+                    Days
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dashboard-dropdown dropdown-menu-center" role="menu">
-                    <li><a onclick="toggleLineCharts('lineDays')">Days Line chart</a></li>
-                    <li><a onclick="toggleLineCharts('lineSongs')">Songs Line chart</a></li>
+                    <li><a onclick="toggleLineCharts('lineDays')">Days</a></li>
+                    <li><a onclick="toggleLineCharts('lineSongs')">Songs</a></li>
                 </ul>
             </div>
         </div>
@@ -40,42 +40,18 @@
         <div class="row vertical-align">
             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 text-center">
                 <div class="row">
-                    <div id="analytics-slider">
-                            <div id="slider-range"></div>
+                    <div id="timeframe-slider-div">
+                        timeframe slider <br>
+                        <input id="timeframe-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts()">Refresh</button>
                     </div>
-                    <!-- Slider source: https://codepen.io/glitchworker/pen/XVdKqj -->
-                        <!-- <div slider id="slider-distance">
-                                <div>
-                                  <div inverse-left style="width:70%;"></div>
-                                  <div inverse-right style="width:70%;"></div>
-                                  <div range style="left:30%;right:40%;"></div>
-                                  <span thumb style="left:30%;"></span>
-                                  <span thumb style="left:60%;"></span>
-                                  <div sign style="left:30%;">
-                                    <span id="value">30</span>
-                                  </div>
-                                  <div sign style="left:60%;">
-                                    <span id="value">60</span>
-                                  </div>
-                                </div>
-                                <input type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
-                                this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
-                                var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                                var children = this.parentNode.childNodes[1].childNodes;
-                                children[1].style.width=value+'%';
-                                children[5].style.left=value+'%';
-                                children[7].style.left=value+'%';children[11].style.left=value+'%';
-                                children[11].childNodes[1].innerHTML=this.value;" />
-                              
-                                <input type="range" tabindex="0" value="60" max="100" min="0" step="1" oninput="
-                                this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
-                                var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                                var children = this.parentNode.childNodes[1].childNodes;
-                                children[3].style.width=(100-value)+'%';
-                                children[5].style.right=(100-value)+'%';
-                                children[9].style.left=value+'%';children[13].style.left=value+'%';
-                                children[13].childNodes[1].innerHTML=this.value;" />
-                              </div> -->
+                    <div id="days-slider-div">
+                        days slider <br>
+                        <input id="days-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts()">Refresh</button>
+                    </div>
+                    <div id="songs-slider-div">
+                        songs slider <br>
+                        <input id="songs-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts()">Refresh</button>
+                    </div>
                 </div>
                 <div class="row">
                     <div id="lineDays">

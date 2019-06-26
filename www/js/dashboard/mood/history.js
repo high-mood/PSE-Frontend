@@ -10,7 +10,6 @@ request.onload = function() {
         var userdata = alldata.resource;
 	var tracklist = document.getElementById('tracklist');
         globaluserdata = userdata;
-        console.log(globaluserdata);
         var songWidgetContainer = document.getElementById('song_history');
         var form = document.createElement('form')
 
@@ -57,12 +56,7 @@ function createSongInfoTool(clickevent) {
 
     var songid = clickevent.path[0].parentElement.id;
     
-    console.log("Creating tool");
-    console.log(songid);
-    console.log(songiddict);
-
     var song = songiddict[songid];
-    console.log(song);
 
         // var songname = document.getElementById('songname');
         // var par = document.createElement("p");
@@ -88,12 +82,6 @@ function createSongInfoTool(clickevent) {
     excitedness_slider.value = excitedness_percentage;
     excitedness_slider_text.innerHTML = "Excitedness:\n" + Math.trunc(excitedness_percentage) + "%";
 
-
-    console.log(song.songid);
-    console.log(song.name);
-    console.log(song.excitedness);
-    console.log(song.happiness);
-	  
         // songInfoContainer.appendChild(div);
 };
 
