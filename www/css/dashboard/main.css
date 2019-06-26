@@ -86,4 +86,8 @@ line {
     background-image: -webkit-linear-gradient(bottom, #1dc156 0%, #000000 100%);
     background-image: linear-gradient(to top, #1dc156 0%, #000000 100%); }
 
+.btn-padding {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
 
