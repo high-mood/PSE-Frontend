@@ -3,7 +3,7 @@ function toggleMetric(metricName) {
   // TODO: remove hardcode
   userId = 'snipy12';
 
-  var request = new XMLHttpRequest
+  var request = new XMLHttpRequest;
   request.open('GET', 'http://localhost:5000/api/tracks/recommendation/' + userId + '/' + metricName, true)
   request.onload = function() {
     var alldata = JSON.parse(this.response);

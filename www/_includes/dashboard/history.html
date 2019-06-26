@@ -2,29 +2,89 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">History</h2>
+                <h1 class="section-heading">History</h1>
                 <p>Analyze your Spotify history and get new recommendations based on your favorite songs!</p>
                 <hr class="light">
             </div>
         </div>
         <div class="row text-center">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
-                <div class="btn-group btn-block text-center dashboard-dropdown">
-                    <button type="button" class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Choose your history <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
-                        <li><a onclick="toggleHistory()">History</a></li>
-                        <li class="divider"></li>
-                        <li><a onclick="toggleHistory()">Favourites</a></li>
-                    </ul>
-                </div>
-                <div id="tracklist">
-                    <div id="song_history">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" id="historySelector" data-toggle="dropdown">
+                    History 
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dashboard-dropdown dropdown-menu-center" role="menu">
+                    <li><a onclick="toggleHistory('history')">History</a></li>
+                    <li><a onclick="toggleHistory('favourites')">Favourites</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row text-center">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center" id="histCol">
+                <H3>History</H3>
+                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('0')" >Select</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist0" ></div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('1')" >Select</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist1" ></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('2')" >Select</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist2" ></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('3')" >Select</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist3" ></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('4')" >Select</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist4" ></div>
+                    </div>
+                    <br>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row text-center">
+            <!-- TODO: make scrollable and add selects. Good luck I'd say :) -->
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center" id="favCol">
+                <H3>Favourites</H3>
+                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <br>
+                    <div id="hist0" class="row">
+                    </div>
+                    <div id="hist1" class="row">
+                    </div>
+                    <div id="hist2" class="row">
+                    </div>
+                    <div id="hist3" class="row">
+                    </div>
+                    <div id="hist4" class="row">
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+                <h3>More like this</h3>
+                <br>
+                <div id="rec0" class="row">
+                </div>
+                <div id="rec1" class="row">
+                </div>
+                <div id="rec2" class="row">
+                </div>
+                <div id="rec3" class="row">
+                </div>
+                <div id="rec4" class="row">
+                </div>
+                <br>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 row text-center">
                 <div id="songinfotool">
                     <h3>Song analysis</h3>
                     <div class="row">
@@ -38,46 +98,18 @@
                             <input id="excitedness_slider" class="feedback-slider" orient="vertical" type="range" min="0" max="100" step="1" value="50">
                         </div>
                         <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 hcenter text-center">
-			    <p>Happiness:</p>
-                            <p id="happiness_slider_text">0%</p>
-			    <p>Excitement:</p>
-                            <p id="excitedness_slider_text">0%</p>
+			                <p>Happiness:</p>
+                            <p id="happiness_slider_text">50%</p>
+			                <p>Excitement:</p>
+                            <p id="excitedness_slider_text">50%</p>
+                        </div>
 
-                            <div class="btn-group-vertical" role="group">
-                                <button type="button" class="btn background-black" id="send_feedback">&emsp; Send feedback &emsp;</button>
+                        <div class="btn-group-vertical" role="group">
+                            <button type="button" class="btn background-black" id="send_feedback">&emsp; Send feedback &emsp;</button>
                             <button type=" button" class="btn background-black" id="reset_feedback">Reset</button>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
-                <h3>More like this</h3>
-            </div>
-        </div>
-
-
-        <!-- Body for favourite display -->
-        <div id="favRow" class="row vertical-align">
-            <div class="col -xs-12 col-sm-12 col-md-12 col-lg-6">
-                <div class="favRecWindow" id="favRecWindow"></div>
-
-            </div>
-        </div>
-
-        <!-- Body for history display -->
-        <div id="historyRow" class="row vertical-align">
-            <div class="col -xs-12 col-sm-12 col-md-12 col-lg-6">
-                <div class="history rec window" id="historyRecWindow"></div>
-
-            </div>
-        </div>
-
-        <!-- Body for favourite display -->
-        <div id="favRow" class="row vertical-align">
-            <div class="col -xs-12 col-sm-12 col-md-12 col-lg-6">
-                <div class="favRecWindow" id="favRecWindow"></div>
-
             </div>
         </div>
     </div>
