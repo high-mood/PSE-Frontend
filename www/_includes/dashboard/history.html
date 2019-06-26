@@ -29,6 +29,7 @@
                 User feedback
                 <div class="row">
                     <div id="songname"></div>
+                    <p id="songdisplayname"></p>
                     <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 hcenter text-center">
                         <input id="happiness_slider" class="feedback-slider" orient="vertical" type="range" min="0" max="100" step="1" value="50">
                     </div>
@@ -108,7 +109,7 @@
 
     <script>
 
-      var currentsong;
+      var songiddict = {};
 
       var request = new XMLHttpRequest()
       // request.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummysonghistory.json', true)
@@ -134,16 +135,15 @@
             var song = userdata.songs[i];
             var songdiv = document.createElement('div')
             songdiv.classList.add('songdiv');
-            songdiv.id = userdata.songs[i].songid;
-
             var songid = userdata.songs[i].songid;
+            songdiv.id = songid;
+
+            songiddict[songid] = song;
 
             var btn = document.createElement("BUTTON");
             btn.innerHTML = "Select";
             btn.setAttribute("type","button");
-            // btn.onclick = function(songid) { showSong(songid); };
-            btn.onclick = function() {currentsong = song};
-            btn.onclick = function(song) {createSongInfoTool(song); };
+            btn.onclick = function(songid) {createSongInfoTool(songid); };
             btn.classList.add('SongRecButton');
             songdiv.appendChild(btn);
 
@@ -157,27 +157,32 @@
             form.appendChild(songdiv)
           }
 
-          createSongInfoTool(userdata.songs[0]);
+          // createSongInfoTool(userdata.songs[0]);
         }
       }
       request.send()
 
-      function createSongInfoTool(song) {
+      function createSongInfoTool(clickevent) {
 
-        // console.log(song);
+        var songid = clickevent.path[0].parentElement.id;
 
-        console.log(currentsong);
+        console.log("Creating tool");
+        console.log(songid);
+        console.log(songiddict);
 
-        // var songInfoContainer = document.getElementById('songinfotool');
+        var song = songiddict[songid];
+        console.log(song);
 
-        // var div = document.createElement("div");
-        var songname = document.getElementById('songname');
-        var par = document.createElement("p");
+        // var songname = document.getElementById('songname');
+        // var par = document.createElement("p");
+        //
+        // var text = document.createTextNode(song.name);
+        // par.style.margin = "0px";
+        // par.appendChild(text);
+        // songname.appendChild(par);
 
-        var text = document.createTextNode(song.name);
-        par.style.margin = "0px";
-        par.appendChild(text);
-        songname.appendChild(par);
+        var songname = document.getElementById('songdisplayname')
+        songname.innerHTML = song.name;
 
         var happiness_slider = document.getElementById("happiness_slider")
         var happiness_slider_text = document.getElementById("happiness_slider_text")
