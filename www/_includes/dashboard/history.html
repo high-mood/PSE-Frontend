@@ -34,7 +34,24 @@
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row text-center">
                 User feedback
-                {% include dashboard/userfeedback.html %}
+                <div class="row">
+                    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 hcenter text-center">
+                        <input id="happiness_slider" class="feedback-slider" orient="vertical" type="range" min="0" max="100" step="1" value="50">
+                    </div>
+                    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 hcenter text-center">
+
+                        <input id="excitedness_slider" class="feedback-slider" orient="vertical" type="range" min="0" max="100" step="1" value="50">
+                    </div>
+                    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 hcenter text-center">
+                        <p id="happiness_slider_text">Happiness: 0%</p>
+                        <p id="excitedness_slider_text">Excitedness: 0%</p>
+
+                        <div class="btn-group-vertical" role="group">
+                            <button type="button btn-inverted inverted" class="btn" id="send_feedback">Send feedback</button>
+                            <button type="button" class="btn" id="reset_feedack">Reset</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
