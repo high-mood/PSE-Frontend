@@ -154,15 +154,16 @@ function createLineGraphDays(data, id) {
     d3.select("#tooltip").append("text").attr("id", "tooltiptext")
         .style("color", "#000000")
     
-    // draw all lines
+    // draw all lines, show wanted ones
     for (var key in dataset) {
         drawLineDays(svgId, dataset[key], key);
         showLine(key);
-    }
 
-    // show only startLines at page load
-    // var startLines = ["danceability", "energy", "liveness"]
-    // startStates(startLines)
+        // only show happiness and excitedness on page load
+        if (key != "happiness" && key != "excitedness") {
+            $("#" + key).trigger("click")
+        }
+    }
 }
 
 
