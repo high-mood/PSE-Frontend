@@ -24,13 +24,12 @@ linechartRequest.onload = function() {
 linechartRequest.send()
 
 
-var linechartDaysRequest= new XMLHttpRequest()
+var linechartDaysRequest = new XMLHttpRequest()
 
 // var metrics = "acousticness, danceability, duration_ms, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, valence";
-song_count = 50;
-linechartDaysRequest.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/api_days_dummy.json', true)
-// linechartRequest.open('GET', '/api/tracks/metrics/' + userid + '/' + metrics + '/' + song_count, true)
-// linechartRequest.open('GET', 'http://localhost:5000/api/tracks/metrics/' + userid + '/' + song_count, true)
+days = 500;
+// linechartDaysRequest.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/api_days_dummy.json', true)
+linechartDaysRequest.open('GET', 'http://localhost:5000/api/user/mood/hourly/' + userid + '/' + days, true)
 linechartDaysRequest.onload = function() {
   var alldata = JSON.parse(this.response)
   var userdata = alldata.resource

@@ -2,7 +2,7 @@
 // console.log(userid);
 $('#heatmapRow').hide();
 // TODO remove hardcode
-var userid = 'snipy12';
+var userid = 'jellewe';
 
 var request = new XMLHttpRequest();
 var created = 'False';

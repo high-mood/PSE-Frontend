@@ -11,13 +11,13 @@ function createLineGraphDays(data, id) {
     // 
     // 
     // 
-    data.dates[1]["date"] = "2019-06-24"
-    data.dates[2]["date"] = "2019-06-23"
-    data.dates[3]["date"] = "2019-06-22"
+    // data.dates[1]["date"] = "2019-06-24"
+    // data.dates[2]["date"] = "2019-06-23"
+    // data.dates[3]["date"] = "2019-06-22"
     
     // console.log(data);
 
-
+    console.log(dates)
     // dataset, unused metrics are commented out
     var dataset = {
         "excitedness": [],
@@ -49,20 +49,33 @@ function createLineGraphDays(data, id) {
     var width = 600 - margin.left - margin.right;
     var height = 300 - margin.top - margin.bottom;
 
-
+    // for (i = 0; i < 8; i++) {
+    //     data.dates[i]["date"] = "2019-06-" + data.dates[i]["date"]
+    // }
     var minDate = data.dates[data.dates.length - 1].date
     var maxDate = data.dates[0].date
+    // debugger;
 
     var parseTime = d3.timeParse("%Y-%m-%d")
+    // var parseTime = d3.timeParse("%d")
+    
     // var parsedMinDate = parseTime("2019-06-21")
     var parsedMinDate = parseTime(minDate)
     var parsedMaxDate = parseTime(maxDate)
 
     // console.log(parsedMinDate)
 
+    var dates = [];
+    for (val in data.dates) {
+        dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
+        console.log("2019-06-" + data.dates[val]["date"]);
+    }
+    console.log(dates)
+
     // scales
+    console.log(d3.extent(dates))
     xScaleTime = d3.scaleTime()
-        .domain([parsedMinDate, parsedMaxDate])
+        .domain(d3.extent(dates))
         .range([0, width])
     yScale = d3.scaleLinear()
         .domain([0, 1])
@@ -107,7 +120,9 @@ function createLineGraphDays(data, id) {
         .attr("transform", "translate(0," + height / 2 + ")")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(xScaleTime)
-        .ticks(data.dates.length - 1))
+            .tickValues(dates)
+            .tickFormat(d3.timeFormat("%Y-%m-%d")))
+        // .ticks(data.dates.length - 1))
     svg.append("g")
         .attr("class", "y axis")
         .call(d3.axisLeft(yScale));

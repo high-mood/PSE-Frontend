@@ -18,6 +18,12 @@ $theme-dark-gray: #19492a
     border-radius: 15%
 }
 
+.songs-background {
+    width: 90%; 
+    margin-top: 5%; 
+    background-color: rgb(30, 32, 30);
+}
+
 .vertical-align {
     display: flex;
     align-items: center;
