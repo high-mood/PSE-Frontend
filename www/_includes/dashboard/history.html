@@ -1,24 +1,40 @@
-<section class="background-primary" id="history">
+<section class="bg-primary" id="history">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h1 class="section-heading">History</h1>
+                <h2 class="section-heading">History</h2>
+                <p>Analyze your Spotify history and get new recommendations based on your favorite songs!</p>
                 <hr class="light">
                 <p>Song History</p>
             </div>
         </div>
-    
 
         <div class="row text-center">
-            <div class="btn-group dashboard-dropdown">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Choose list of songs <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu text-center" role="menu">
-                    <li><a onclick="toggleHistory()">History</a></li>
-                    <li class="divider"></li>
-                    <li><a onclick="toggleHistory()">Favourites</a></li>
-                </ul>
+
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+                <div class="btn-group btn-block text-center dashboard-dropdown">
+                    <button type="button" class="btn btn-block btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Choose your history <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
+                        <li><a onclick="toggleHistory()">History</a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="toggleHistory()">Favourites</a></li>
+                    </ul>
+                </div>
+
+                <div id="tracklist">
+                    <div id="song_history">
+                        <div>Recently played tracks</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
+                explanation here
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 row text-center">
+                User feedback
+                {% include dashboard/userfeedback.html %}
             </div>
         </div>
     </div>
