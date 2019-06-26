@@ -1,17 +1,18 @@
-<section id="mood">
+<section class="background-black" id="mood">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h1 class="section-heading">Mood</h1>
                 <hr class="dark">
-                <p>Mood info</p>
+                <p>Your spotify listening history is analyzed using advanced artificial intelligence, 
+                    which is visualised below.</p>
             </div>
         </div>
 
         <div class="row text-center">
-            <div class="btn-group text-center dashboard-dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Choose your chart <span class="caret"></span>
+            <div class="btn-group dashboard-dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="moodChartSelector">
+                    Radar Chart <span class="caret"></span>
                 </button>
                     <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
                         <li><a onclick="toggleMoodCharts('radarChart')">Radar Chart</a></li>
@@ -21,25 +22,25 @@
             </div>
         </div>
 
-        <div class="row" id="radarChartRow">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+        <div class="row vertical-align" id="radarChartRow">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="radarChart rounded border border-primary" id="radarChart">
                     
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-left ">
-                <div class="radarText rounded border border-primary explanation vcenter" id="radarText">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="row radarText rounded border border-primary explanation" id="radarText">
                 
                 </div>
             </div>
         </div>
-        <div class="row" id="heatmapRow">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+        <div class="row vertical-align" id="heatmapRow">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="heatmap rounded border border-primary" id="heatmap">
                     
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center vcenter">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="heatmapText rounded border border-primary explanation" id="heatmapText">
                 
                 </div>

@@ -355,3 +355,9 @@ img::-moz-selection {
 body {
     -webkit-tap-highlight-color: $theme-dark;
 }
+
+@media (max-width: 525px) {
+    .btn {
+        font-size: 9px;
+    }
+}
