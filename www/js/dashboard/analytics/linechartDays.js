@@ -68,7 +68,7 @@ function createLineGraphDays(data, id) {
     var dates = [];
     for (val in data.dates) {
         // dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
-        dates.push("2019-06-" + data.dates[val]["date"]);
+        dates.push(parseTime("2019-06-" + data.dates[val]["date"]));
         console.log("2019-06-" + data.dates[val]["date"]);
     }
     console.log(dates)
@@ -78,7 +78,7 @@ function createLineGraphDays(data, id) {
     // xScaleTime = d3.scaleTime()
     //     .domain(d3.extent(dates))
     //     .range([0, width])
-    xScaleTime = d3.scaleOrdinal()
+    xScaleTime = d3.scalePoint()
         .domain(dates)
         .range([0, width])
     yScale = d3.scaleLinear()
@@ -118,6 +118,7 @@ function createLineGraphDays(data, id) {
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .attr("id", svgId);
 
+
     // create axes
     xAxis = svg.append("g")
         .attr("class", "x axis")
@@ -126,7 +127,6 @@ function createLineGraphDays(data, id) {
         .call(d3.axisBottom(xScaleTime)
             .tickValues(dates)
             .tickFormat(d3.timeFormat("%Y-%m-%d")))
-        // .ticks(data.dates.length - 1))
     svg.append("g")
         .attr("class", "y axis")
         .call(d3.axisLeft(yScale));
