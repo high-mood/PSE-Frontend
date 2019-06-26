@@ -47,3 +47,62 @@ function sendFeedback(el) {
     console.log(values[1].split(/,\s?/g).slice(0, 2))
     return values[1].split(/,\s?/g).slice(0, 2);
 }
+
+
+// var globaluserdata;
+
+// function createSongRecommendationWidget(userid) {
+//
+//   var request = new XMLHttpRequest()
+//
+//   // request.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/dummysonghistory.json', true)
+//   request.open('GET', '/api/tracks/history/' + userid + '/0', true)
+//
+//   request.onload = function() {
+//     var alldata = JSON.parse(this.response)
+//     var userdata = alldata.resource
+//     globaluserdata = userdata;
+//     console.log(globaluserdata);
+//
+//
+//     if (request.status >= 200 && request.status < 400) {
+//
+//       var songWidgetContainer = document.getElementById('Song-Recommendation');
+//       var form = document.createElement('form')
+//
+//       songWidgetContainer.appendChild(form);
+//
+//       var length = userdata.songs.length;
+//
+//       if (length > 5) {
+//         length = 5;
+//       }
+//
+//       for (var i = 0; i < length; i++) {
+//         var songdiv = document.createElement('div')
+//         songdiv.classList.add('songdiv');
+//         songdiv.id = userdata.songs[i].songid;
+//
+//         var songid = userdata.songs[i].songid;
+//
+//         var btn = document.createElement("BUTTON");
+//         btn.innerHTML = "Select";
+//         btn.setAttribute("type","button");
+//         // btn.onclick = function(songid) { showSong(songid); };
+//         btn.classList.add('SongRecButton');
+//         songdiv.appendChild(btn);
+//
+//         var ifrm = document.createElement("iframe");
+//         ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + userdata.songs[i].songid);
+//         ifrm.setAttribute("align","left");
+//         ifrm.style.width = "300px";
+//         ifrm.style.height = "80px";
+//
+//         songdiv.appendChild(ifrm);
+//         form.appendChild(songdiv)
+//       }
+//     }
+//   }
+//   request.send()
+//
+// }
