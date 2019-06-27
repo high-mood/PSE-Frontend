@@ -12,7 +12,7 @@ request.onload = function() {
     userData = allData.resource.songs;
     window.histData = userData;
     window.curData = window.histData;
-    
+
     if (request.status == 200) {
         loadContent();
     }
@@ -24,11 +24,17 @@ function toggleHistory(chartname) {
     if (chartname === 'history') {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
+
+        document.getElementById("headerName").innerHTML = "History";
+
         window.curData = window.histData;
         loadContent();
     } else if (chartname === 'favourites') {
         $('#historySelector').text("Favourites ");
         $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
+
+        document.getElementById("headerName").innerHTML = "Favourites";
+
         getTopData(); // if not top data?
     }
 }
@@ -41,7 +47,7 @@ function getTopData() {
         var allTopData = JSON.parse(this.response);
         userTopData = allTopData.resource.songs;
         window.userTopData = userTopData;
-        
+
         if (topRequest.status == 200) {
             window.topData = userTopData;
 
@@ -72,7 +78,7 @@ function histSelect(clickEvent) {
     songId = window.curData[parseInt(song_index)].songid;
     window.song_index = song_index;
     adjustSlider(song_index);
-    
+
     var recRequest = new XMLHttpRequest();
     recRequest.open('GET', 'http://localhost:5000/api/tracks/recommendation/' + userid + '/' + songId + '/0.0/0.0', true);
     recRequest.onload = function() {
@@ -84,7 +90,7 @@ function histSelect(clickEvent) {
             if (recRequest.status == 200) {
                 trackId = "https://open.spotify.com/embed/track/";
                 trackId += recommendations[index].songid;
-            
+
                 content = '<iframe class="song-template" src="' + trackId + '" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
                 div.append(content);
             } else {
@@ -103,7 +109,7 @@ function createScrollWindow() {
     for (var index = 0; index < data.length; index++) {
         var songdiv = document.createElement('COLUMN');
         songdiv.classList.add('songdiv');
-            
+
         var songid = data[index].songid;
         songdiv.id = songid;
         songdiv.width = "100%";
@@ -115,6 +121,7 @@ function createScrollWindow() {
         btn.id = index;
         btn.onclick = function(index){ histSelect(index)};
         btn.classList.add('SongRecButton');
+        btn.classList.add("btn-default");
         songdiv.appendChild(btn);
 
         var ifrm = document.createElement("iframe");
@@ -139,7 +146,7 @@ function adjustSlider(song_index) {
     var songname = document.getElementById('songdisplayname');
     songname.innerHTML = window.curData[song_index].name;
 
-    
+
     var happiness_slider = document.getElementById("happiness_slider");
     var happiness_slider_text = document.getElementById("happiness_slider_text");
     var happiness_percentage = (happiness + 10) * 5;
@@ -153,7 +160,7 @@ function adjustSlider(song_index) {
     excitedness_slider.value = excitedness_percentage;
     excitedness_slider_text.innerHTML = Math.trunc(excitedness_percentage) + "%";
 };
-    
+
 function sendFeedback() {
     /** TODO: Link this function to actual API call,
 	      Add song_index as global variable
