@@ -111,6 +111,28 @@ function createScrollWindow() {
     console.log("bye");
 }
 
+function adjustSlider(song_index) {
+    var songid = window.curData[parseInt(song_index)].songid;
+    var happiness = window.curData[parseInt(song_index)].happiness;
+    var excitedness = window.curData[parseInt(song_index)].excitedness;
+    var songname = document.getElementById('songdisplayname');
+    songname.innerHTML = song.name;
+
+    
+    var happiness_slider = document.getElementById("happiness_slider");
+    var happiness_slider_text = document.getElementById("happiness_slider_text");
+    var happiness_percentage = (happiness + 10) * 5;
+    happiness_slider.value = happiness_percentage;
+    happiness_slider_text.innerHTML = "Happiness:\n" + Math.trunc(happiness_percentage) + "%";
+
+
+    var excitedness_slider = document.getElementById("excitedness_slider");
+    var excitedness_slider_text = document.getElementById("excitedness_slider_text");
+    var excitedness_percentage = (excitedness + 10) * 5;
+    excitedness_slider.value = excitedness_percentage;
+    excitedness_slider_text.innerHTML = "Excitedness:\n" + Math.trunc(excitedness_percentage) + "%";
+};
+    
 // TODO call actual API with real username
 function sendFeedback(song_index) {
     var userid = "snipy12";
@@ -155,7 +177,7 @@ document.getElementById("excitedness_slider").oninput = function() {
 };
 
 var resetButton = document.getElementById("reset_feedback");
-resetButton.addEventListener("click", resetFeedback);
+resetButton.addEventListener("click", resetFeedback(window.song_index);
 
 var sendFeedbackBackButton = document.getElementById("send_feedback");
-sendFeedbackBackButton.addEventListener("click", sendFeedback);
+sendFeedbackBackButton.addEventListener("click", sendFeedback(window.song_index);
