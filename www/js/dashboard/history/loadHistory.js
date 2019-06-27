@@ -4,7 +4,8 @@ var userid = 'snipy12';
 
 // Show history data when websites is opened.
 var request = new XMLHttpRequest();
-request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0', true);
+request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/20', true);
+// request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/50', true);
 
 request.onload = function() {
     var allData = JSON.parse(this.response);
@@ -35,7 +36,7 @@ function toggleHistory(chartname) {
 function getTopData() {
     var topRequest = new XMLHttpRequest();
 
-    topRequest.open('GET', 'http://localhost:5000/api/tracks/topsongs/' + userid + '/5', true);
+    topRequest.open('GET', 'http://localhost:5000/api/tracks/topsongs/' + userid + '/10', true);
     topRequest.onload = function() {
         var allTopData = JSON.parse(this.response);
         userTopData = allTopData.resource.songs;
@@ -55,7 +56,7 @@ function getTopData() {
 
 function loadContent() {
     createScrollWindow();
-    for (var index = 0; index < Math.min(5, window.curData.length); index++) {
+    for (var index = 0; index < curData.length; index++) {
         div = $('#hist' + index);
         div.empty();
         trackId = "https://open.spotify.com/embed/track/";
@@ -66,14 +67,14 @@ function loadContent() {
     }
 }
 
-function histSelect(song_index) {
+function histSelect(clickEvent) {
+    song_index = clickEvent.path[0].id;
     songId = window.curData[parseInt(song_index)].songid;
     
     var recRequest = new XMLHttpRequest();
     recRequest.open('GET', 'http://localhost:5000/api/tracks/recommendation/' + userid + '/' + songId + '/0.0/0.0', true);
     recRequest.onload = function() {
         var data = JSON.parse(this.response);
-        console.log(data)
         var recommendations = data.resource.recommendations;
         for (var index = 0; index < 5; index++) {
             div = $('#recHist' + index);
@@ -93,22 +94,34 @@ function histSelect(song_index) {
 }
 
 
-
 function createScrollWindow() {
-    console.log("hi");
     data = window.curData;
-    containerDiv = $('#scroll_window');
-    containerDiv.empty();
+    containerDiv = document.getElementById('scroll_window');
+    containerDiv.innerHTML = '';
 
-    // Used to create songSelector item.
-    var template1 = '<div class="row"><div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="histSelect("';
-    var template2 = ')" >Select</div><div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist';
-    var template3 = '></div></div>'
+    for (var index = 0; index < data.length; index++) {
+        var songdiv = document.createElement('div');
+        songdiv.classList.add('songdiv');
+            
+        var songid = data[index].songid;
+        songdiv.id = songid;
+        songdiv.style.backgroundColor = "black";
 
-    console.log(data.length);
-    for (var index = 0; index < data; index++) {
-        songSelector = template1 + index + template2 + index + template3;
-        containerDiv.append(songSelector);
-    }
-    console.log("bye");
+        var btn = document.createElement("BUTTON");
+        btn.innerHTML = "Select";
+        btn.style.width = "20%";
+        btn.id = index;
+        btn.onclick = function(index){ histSelect(index);};
+        btn.classList.add('SongRecButton');
+        songdiv.appendChild(btn);
+
+        var ifrm = document.createElement("iframe");
+        ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + data[index].songid);
+        ifrm.setAttribute("align","right");
+        ifrm.style.width = "80%";
+        ifrm.style.height = "80px";
+
+        songdiv.appendChild(ifrm);
+        containerDiv.appendChild(songdiv);
+        }
 }
