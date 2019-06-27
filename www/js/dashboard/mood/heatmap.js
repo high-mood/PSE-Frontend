@@ -89,14 +89,14 @@ function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, y
       // 5.2.1 Add in axes.
     var xAxis = d3.axisBottom()
 	.scale(xScale)
-	.ticks(d3.min([xSamples,20]));
+	.ticks(d3.min([xSamples, 5]));
     svg.append("g")
 	.attr("class","heatmapAxis")
 	.call(xAxis)
 	.attr("transform","translate(" + width / 10 + "," + 18.75 * height / 20 + ")");
     var yAxis = d3.axisLeft()
 	.scale(yScale)
-	.ticks(d3.min([ySamples,20]));
+	.ticks(d3.min([ySamples, 5]));
     svg.append("g")
 	.attr("class","heatmapAxis")
 	.call(yAxis)
