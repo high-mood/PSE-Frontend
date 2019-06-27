@@ -4,8 +4,8 @@ function createBarChart(divId,start,end,data) {
   var width = 600
   var barWidth = (9 * width / 10) / (2 * (end - start + 1));
   var barHeight = (9 * height / 200);
-  var exitednessColor = "#ffffff";
-  var happinessColor = "#000000";
+  var exitednessColor = "#1ba2c1";
+  var happinessColor = "#1cc18f";
 
   // 0. clear div
   $(divId).empty();
