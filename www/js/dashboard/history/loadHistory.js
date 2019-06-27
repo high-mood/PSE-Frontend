@@ -24,11 +24,17 @@ function toggleHistory(chartname) {
     if (chartname === 'history') {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
+
+        document.getElementById("headerName").innerHTML = "History";
+
         window.curData = window.histData;
         loadContent();
     } else if (chartname === 'favourites') {
         $('#historySelector').text("Favourites ");
         $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
+
+        document.getElementById("headerName").innerHTML = "Favourites";
+
         getTopData(); // if not top data?
     }
 }
