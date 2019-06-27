@@ -44,21 +44,24 @@
             <!-- The song review column. -->
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 row text-center">
                 <div id="songinfotool">
-                    <h3 id="songdisplayname">Song analysis</h3>
+                    <h3>Song analysis</h3>
                     <hr class="full">
                     <div class="row">
+                        <h3 id="songdisplayname">-</h3>
                         <div id="songname"></div>
                         <p id="songdisplayname"></p>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 hcenter text-center">
+                        <div>
                             <!-- <input id="happiness_slider" class="feedback-slider" type="range" min="0" max="100" step="1" value="50"> -->
-                            <div class="row">
+                            <div class="row top-buffer">
                                 <p id="happiness_slider_text" class="text-center hcenter">Happiness (50%):</p>
                                 <input id="happiness_slider" class="hcenter" type="range">
-                                <br> <br>
+                                <!-- <br> <br> -->
+                            </div>
+                            <div class="row top-buffer">
                                 <p id="excitedness_slider_text" class="text-center hcenter">Excitement (50%):</p>
                                 <input id="excitedness_slider" class="hcenter" type="range">
                             </div>
-                            <div class="row">
+                            <div class="row top-buffer">
                                 <br>
                                 <br>
                                 <div class="btn-group-vertical" role="group">
