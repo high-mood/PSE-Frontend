@@ -1,8 +1,12 @@
-// Code basis by Gord Lea: https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
-// Legend code from https://www.d3-graph-gallery.com/graph/custom_legend.html
+/*
+ * Shows a line chart with information of song history of specific user.
+ * Code basis by Gord Lea: 
+ * https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
+ */
 
 var xScale, yScale, yScaleTempo, yScaleMoods, data;
 
+// fills dataset
 function fillDataset(dataset, data) {
     for (var key in dataset) {
         var value = dataset[key]
@@ -13,6 +17,7 @@ function fillDataset(dataset, data) {
     return dataset
 }
 
+// gets all scales for linechart
 function getScales(data, dataset, height, width) {
     // scales
     xScale = d3.scaleLinear()
@@ -112,23 +117,18 @@ function createAxes(svg, xScaleTicks, yScale, yScaleTempo, yScaleMoods, height, 
 
 function createLineGraphSongs(data, id, retriggered) {
 
-    console.log(data);
     // clear div before proceeding
     $(`#${id}`).empty();
 
-    // dataset, unused metrics are commented out
+    // dataset for d3
     var dataset = {
         "excitedness": [],
         "happiness": [],
         "acousticness": [],
         "danceability": [],
-        // "duration_ms": [],
         "energy": [],
         "instrumentalness": [],
-        // "key": [],
         "liveness": [],
-        // "loudness": [],
-        // "mode": [],
         "speechiness": [],
         "tempo": [],
         "valence": [],
@@ -159,14 +159,10 @@ function createLineGraphSongs(data, id, retriggered) {
     svg, xAxis = createAxes(svg, xScaleTicks, yScale, yScaleTempo, yScaleMoods, height, width)
     createSongsTooltip()
     
-    
     drawLines("songs", svgId, dataset, retriggered, data);
-
-    // show only startLines at page load
-    // var startLines = ["danceability", "energy", "liveness"]
-    // startStates(startLines)
 }
 
+// draws all lines in chart
 function drawLines(charttype, svgId, dataset, retriggered, data) {
     // draw all lines, show wanted ones
     for (var key in dataset) {
@@ -201,7 +197,7 @@ function drawLines(charttype, svgId, dataset, retriggered, data) {
     }
 }
 
-
+// draws line for song history linechart
 function drawLineSongs(svgId, dataset, name, data) {
 
     // make correct d3 line generator
@@ -289,6 +285,7 @@ function drawLineSongs(svgId, dataset, name, data) {
     })
 }
 
+// trims song name for tooltip
 function trimSongName(name) {
     if (name.length > 15) {
         return name.slice(0, 12).concat("...")
@@ -298,6 +295,7 @@ function trimSongName(name) {
     }
 }
 
+// drops datapoints with no information from data
 function dropNullData(data) {
     for (var i in data["metric_over_time"]) {
         for (var key in data["metric_over_time"][i]) {
@@ -309,29 +307,3 @@ function dropNullData(data) {
     }
     return data;
 }
-
-// // hides a given line
-// function hideLine(name) {
-//     d3.select("#" + name + "line")
-//         .style("visibility", "hidden")
-//     d3.selectAll("." + name + "dot")
-//         .style("visibility", "hidden") 
-
-//     if (name == "tempo") {
-//         d3.select(".tempo.axis")
-//             .style("visibility", "hidden")
-//     }
-// }
-
-// // shows a given line
-// function showLine(name) {
-//     d3.select("#" + name + "line")
-//         .style("visibility", "visible")
-//     d3.selectAll("." + name + "dot")
-//         .style("visibility", "visible")
-
-//     if (name == "tempo") {
-//         d3.select(".tempo.axis")
-//             .style("visibility", "visible")
-//     }
-// }
