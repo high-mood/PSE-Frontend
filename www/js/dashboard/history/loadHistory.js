@@ -122,16 +122,23 @@ function createScrollWindow() {
 
         var btn = document.createElement("BUTTON");
         btn.innerHTML = "Select";
+        btn.style.margin = "0px 0px 5px 0px";
+        btn.style.border = "none";
         btn.style.width = "20%";
+        btn.style.height = "80px"
         btn.id = index;
         btn.onclick = function(index){ histSelect(index)};
         btn.classList.add('SongRecButton');
         btn.classList.add("btn-default");
+
+
         songdiv.appendChild(btn);
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + data[index].songid);
         ifrm.setAttribute("align","right");
+        ifrm.style.margin = "0px 0px 5px 0px";
+        ifrm.style.border = "none";
         ifrm.style.width = "80%";
         ifrm.style.height = "80px";
 

@@ -1,7 +1,12 @@
-#song_history {
+#scroll_window {
     overflow-y: auto;
-    height: 400px;
+    height: 425px;
 }
+
+.review {
+    height: 500px;
+}
+
 
 .feedback-slider {
     -webkit-appearance: slider-vertical;
@@ -11,9 +16,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
 
-    background: red;
-    width: 80%;
-    transform: rotate(270deg);
 }
 
 
@@ -37,6 +39,11 @@
     float: left;
     background-color: black;
     color: white;
+    font-weight: 700;
+    font-family: Gotham;
+    text-transform: capitalize;
+
+    border: none;
 }
 
 .songinfotool {
