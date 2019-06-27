@@ -112,6 +112,10 @@ function createScrollWindow() {
 }
 
 function adjustSlider(song_index) {
+    /** TODO: add this to Onclicks of songs in tracklist
+	Updates the analysis-sliders and percentages and adds songtitle
+	to that section.
+	:param song_index: Index of the clicked track **/
     var songid = window.curData[parseInt(song_index)].songid;
     var happiness = window.curData[parseInt(song_index)].happiness;
     var excitedness = window.curData[parseInt(song_index)].excitedness;
@@ -133,8 +137,11 @@ function adjustSlider(song_index) {
     excitedness_slider_text.innerHTML = "Excitedness:\n" + Math.trunc(excitedness_percentage) + "%";
 };
     
-// TODO call actual API with real username
 function sendFeedback(song_index) {
+    /** TODO: Link this function to actual API call,
+	      Add song_index as global variable
+	Allows user to send their feedback on songs mood-analysis
+	:param song_index: Index of the currently selected track **/
     var userid = "snipy12";
     var happiness = document.getElementById("happiness_slider").value;
     var excitedness = document.getElementById("excitedness_slider").value;
@@ -153,8 +160,11 @@ function sendFeedback(song_index) {
     request.send(JSON.stringify(data));
 }
 
-// TODO  set to actual song feedbacl
 function resetFeedback(song_index) {
+    /** TODO: Add song_index as a global variable
+	Resets sliders to analyzed value of currently
+	selected track 
+	:param song_index: Index of currently selected track **/
     var happiness = window.curData[parseInt(song_index)].happiness;
     var excitedness = window.curData[parseInt(song_index)].excitedness;
     document.getElementById("happiness_slider").value = happiness;
