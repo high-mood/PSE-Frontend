@@ -85,14 +85,6 @@ function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, y
     .attr('y', function (data) {
       return data.y * ySampleWidth + height / 10 + ySampleWidth / 20;
     })
-    .on("mouseover", function () {
-      d3.select(this)
-        .attr('stroke-width', 2);
-    })
-    .on("mouseout", function () {
-      d3.select(this)
-        .attr('stroke-width', 0);
-    });
 
   // 5.2.2 Add labels on the axes.
   svg.append("g")
