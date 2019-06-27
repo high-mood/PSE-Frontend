@@ -129,12 +129,14 @@ function createScrollWindow() {
         btn.onclick = function(index){ histSelect(index)};
         btn.classList.add('SongRecButton');
         btn.classList.add("btn-default");
+        btn.classList.add("btn");
         songdiv.appendChild(btn);
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + data[index].songid);
         ifrm.setAttribute("align","right");
-        ifrm.style.width = "80%";
+        ifrm.style.marginLeft = "1%";
+        ifrm.style.width = "79%";
         ifrm.style.height = "80px";
 
         songdiv.appendChild(ifrm);

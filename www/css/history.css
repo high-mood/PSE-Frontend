@@ -32,39 +32,15 @@
 }
 
 .SongRecButton {
-    height: 80px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 40px;
     width: 80px;
     float: left;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 .songinfotool {
-    height: 400px;
-}
-
-.songdiv {
-    /* border: 2px solid black; */
-    height: 80px;
-    width: 380px;
-    /* padding: 20px; */
-}
-
-.songdiv-right {
-    /* border: 2px solid black; */
-    height: 120px;
-    /* float: right; */
-    /* padding: 20px; */
-}
-
-.SongRecButton{
-    height: 80px;
-    width: 80px;
-    float: left;
-    background-color: black;
-    color: white;
-}
-
-.songinfotool{
     height: 400px;
 }
