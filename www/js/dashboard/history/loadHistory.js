@@ -101,11 +101,12 @@ function createScrollWindow() {
     containerDiv.innerHTML = '';
 
     for (var index = 0; index < data.length; index++) {
-        var songdiv = document.createElement('div');
+        var songdiv = document.createElement('COLUMN');
         songdiv.classList.add('songdiv');
             
         var songid = data[index].songid;
         songdiv.id = songid;
+        songdiv.width = "100%";
         songdiv.style.backgroundColor = "black";
 
         var btn = document.createElement("BUTTON");
