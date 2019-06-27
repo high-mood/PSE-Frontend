@@ -1,4 +1,4 @@
-<section class="bg-primary" id="about">
+<section class="bg-primary" id="history">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -21,36 +21,11 @@
             </div>
         </div>
 
-        <!-- The scrollwindow with history/favourites -->
-        <!-- TODO: can we make one scroll view for history and favourites? -->
-        <!-- Auto generate rows with two coloms for select and spotify song -->
-        <!-- That should finish this part of the page -->
-        <div class="row text-center">
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center" id="histCol">
+        <div class="row text-center" style="height: 400px">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center" id="histCol" style= "height: 100%">
                 <H3>History</H3>
-                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <br>
-                    <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('0')" >Select</div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist0" ></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('1')" >Select</div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist1" ></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('2')" >Select</div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist2" ></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('3')" >Select</div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist3" ></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="select('4')" >Select</div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist4" ></div>
-                    </div>
-                    <br>
+                <!-- The scrollwindow with history/favourites -->
+                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12" style="overflow-y: scroll; height: 100%" id="scroll_window">
                 </div>
             </div>
             <!-- The recommendation divs. -->

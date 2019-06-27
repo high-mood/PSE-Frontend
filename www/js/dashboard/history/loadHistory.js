@@ -54,22 +54,19 @@ function getTopData() {
 }
 
 function loadContent() {
-  for (var index = 0; index < Math.min(5, window.curData.length); index++) {
-    div = $('#hist' + index);
-    div.empty();
-    trackId = "https://open.spotify.com/embed/track/";
-    trackId += window.curData[index].songid;
+    createScrollWindow();
+    for (var index = 0; index < Math.min(5, window.curData.length); index++) {
+        div = $('#hist' + index);
+        div.empty();
+        trackId = "https://open.spotify.com/embed/track/";
+        trackId += window.curData[index].songid;
 
-    content = '<iframe class="song-template" src="' + trackId + '" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
-    div.append(content);
+        content = '<iframe class="song-template" src="' + trackId + '" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
+        div.append(content);
     }
 }
 
-function select(song_index) {
-    console.log("logging topData");
-    console.log(window.topData);
-    console.log("logging curData");
-    console.log(window.curData);
+function histSelect(song_index) {
     songId = window.curData[parseInt(song_index)].songid;
     
     var recRequest = new XMLHttpRequest();
@@ -93,4 +90,25 @@ function select(song_index) {
         }
     }
     recRequest.send();
+}
+
+
+
+function createScrollWindow() {
+    console.log("hi");
+    data = window.curData;
+    containerDiv = $('#scroll_window');
+    containerDiv.empty();
+
+    // Used to create songSelector item.
+    var template1 = '<div class="row"><div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center" onclick="histSelect("';
+    var template2 = ')" >Select</div><div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 text-center" id="hist';
+    var template3 = '></div></div>'
+
+    console.log(data.length);
+    for (var index = 0; index < data; index++) {
+        songSelector = template1 + index + template2 + index + template3;
+        containerDiv.append(songSelector);
+    }
+    console.log("bye");
 }
