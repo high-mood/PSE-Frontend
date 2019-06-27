@@ -70,6 +70,8 @@ function loadContent() {
 function histSelect(clickEvent) {
     song_index = clickEvent.path[0].id;
     songId = window.curData[parseInt(song_index)].songid;
+    window.song_index = song_index;
+    adjustSlider(song_index);
     
     var recRequest = new XMLHttpRequest();
     recRequest.open('GET', 'http://localhost:5000/api/tracks/recommendation/' + userid + '/' + songId + '/0.0/0.0', true);
@@ -110,7 +112,7 @@ function createScrollWindow() {
         btn.innerHTML = "Select";
         btn.style.width = "20%";
         btn.id = index;
-        btn.onclick = function(index){ histSelect(index);};
+        btn.onclick = function(index){ histSelect(index)};
         btn.classList.add('SongRecButton');
         songdiv.appendChild(btn);
 
@@ -130,28 +132,28 @@ function adjustSlider(song_index) {
 	Updates the analysis-sliders and percentages and adds songtitle
 	to that section.
 	:param song_index: Index of the clicked track **/
-    var songid = window.curData[parseInt(song_index)].songid;
-    var happiness = window.curData[parseInt(song_index)].happiness;
-    var excitedness = window.curData[parseInt(song_index)].excitedness;
+    var songid = window.curData[song_index].songid;
+    var happiness = window.curData[song_index].happiness;
+    var excitedness = window.curData[song_index].excitedness;
     var songname = document.getElementById('songdisplayname');
-    songname.innerHTML = song.name;
+    songname.innerHTML = window.curData[song_index].name;
 
     
     var happiness_slider = document.getElementById("happiness_slider");
     var happiness_slider_text = document.getElementById("happiness_slider_text");
     var happiness_percentage = (happiness + 10) * 5;
     happiness_slider.value = happiness_percentage;
-    happiness_slider_text.innerHTML = "Happiness:\n" + Math.trunc(happiness_percentage) + "%";
+    happiness_slider_text.innerHTML = Math.trunc(happiness_percentage) + "%";
 
 
     var excitedness_slider = document.getElementById("excitedness_slider");
     var excitedness_slider_text = document.getElementById("excitedness_slider_text");
     var excitedness_percentage = (excitedness + 10) * 5;
     excitedness_slider.value = excitedness_percentage;
-    excitedness_slider_text.innerHTML = "Excitedness:\n" + Math.trunc(excitedness_percentage) + "%";
+    excitedness_slider_text.innerHTML = Math.trunc(excitedness_percentage) + "%";
 };
     
-function sendFeedback(song_index) {
+function sendFeedback() {
     /** TODO: Link this function to actual API call,
 	      Add song_index as global variable
 	Allows user to send their feedback on songs mood-analysis
@@ -160,7 +162,7 @@ function sendFeedback(song_index) {
     var happiness = document.getElementById("happiness_slider").value;
     var excitedness = document.getElementById("excitedness_slider").value;
     var uri = "http://localhost:5000/api/songs/mood/" + userid;
-    var songid = window.curData[parseInt(song_index)].songid;
+    var songid = window.curData[window.song_index].songid;
 
     var data = {
         "songid": songid,
@@ -174,20 +176,12 @@ function sendFeedback(song_index) {
     request.send(JSON.stringify(data));
 }
 
-function resetFeedback(song_index) {
+function resetFeedback() {
     /** TODO: Add song_index as a global variable
 	Resets sliders to analyzed value of currently
-	selected track 
-	:param song_index: Index of currently selected track **/
-    var happiness = window.curData[parseInt(song_index)].happiness;
-    var excitedness = window.curData[parseInt(song_index)].excitedness;
-    document.getElementById("happiness_slider").value = happiness;
-    var text = document.getElementById("happiness_slider_text");
-    text.textContent = happiness + "%";
-
-    document.getElementById("excitedness_slider").value = excitedness;
-    var text = document.getElementById("excitedness_slider_text");
-    text.textContent = excitedness + "%";
+	selected track **/
+    var current_track = window.song_index;
+    adjustSlider(current_track);
 };
 
 document.getElementById("happiness_slider").oninput = function() {
@@ -201,7 +195,7 @@ document.getElementById("excitedness_slider").oninput = function() {
 };
 
 var resetButton = document.getElementById("reset_feedback");
-resetButton.addEventListener("click", resetFeedback(window.song_index));
+resetButton.addEventListener("click", resetFeedback);
 
 var sendFeedbackBackButton = document.getElementById("send_feedback");
-sendFeedbackBackButton.addEventListener("click", sendFeedback(window.song_index));
+sendFeedbackBackButton.addEventListener("click", sendFeedback);
