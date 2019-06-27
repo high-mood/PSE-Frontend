@@ -2,6 +2,7 @@
 // TODO remove hardcode
 var userid = 'snipy12';
 
+// Initiate slicers and set to default values.
 happinessSlider.on('change', function(event) {
     $('#happiness_slider_text').html(`Happiness: (${event.value['newValue']}%)`)
 })
@@ -9,6 +10,7 @@ happinessSlider.on('change', function(event) {
 excitednessSlider.on('change', function(event) {
     $('#excitedness_slider_text').html(`Excitedness: (${event.value['newValue']}%)`)
 })
+
 // Show history data when websites is opened.
 var request = new XMLHttpRequest();
 request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/20', true);
@@ -20,33 +22,30 @@ request.onload = function() {
     window.curData = window.histData;
 
     if (request.status == 200) {
-        createScrollWindow();
+        fillScrollWindow();
     }
-    adjustSlider('0');
-    displaySimilarSongs('0');
 }
 request.send();
 
 // Onclick handles for toggle.
-function toggleHistory(chartname) {
-    if (chartname === 'history') {
+function toggleHistory(chartName) {
+    if (chartName === 'history') {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
-        console.log(document.getElementById("headerName"));
         document.getElementById("headerName").innerHTML = "Full history";
 
         window.curData = window.histData;
-        createScrollWindow();
-    } else if (chartname === 'favourites') {
+        fillScrollWindow();
+    } else if (chartName === 'favourites') {
         $('#historySelector').text("Favourite songs");
         $('#historySelector').append("<span class=\"caret\"></span>");
 
         document.getElementById("headerName").innerHTML = "Favourite Songs";
-        getTopData(); // if not top data?
+        fillTopData();
     }
 }
 
-function getTopData() {
+function fillTopData() {
     var topRequest = new XMLHttpRequest();
 
     topRequest.open('GET', 'http://localhost:5000/api/tracks/topsongs/' + userid + '/10', true);
@@ -59,7 +58,7 @@ function getTopData() {
             window.topData = userTopData;
 
             window.curData = window.topData;
-            createScrollWindow();
+            fillScrollWindow();
         }
     }
     topRequest.send();
@@ -101,7 +100,7 @@ function displaySimilarSongs(song_index) {
     recRequest.send();
 }
 
-function createScrollWindow() {
+function fillScrollWindow() {
     data = window.curData;
     containerDiv = document.getElementById('scroll_window');
     containerDiv.innerHTML = '';
@@ -160,7 +159,6 @@ function adjustSlider(song_index) {
     /**	Updates the analysis-sliders and percentages and adds songtitle
 	to that section.
 	:param song_index: Index of the clicked track **/
-    var songid = window.curData[song_index].songid;
     var happiness = window.curData[song_index].happiness;
     var excitedness = window.curData[song_index].excitedness;
     var songname = document.getElementById('songdisplayname');
