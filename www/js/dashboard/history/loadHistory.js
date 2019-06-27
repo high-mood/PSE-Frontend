@@ -150,15 +150,20 @@ function adjustSlider(song_index) {
     var happiness_slider = document.getElementById("happiness_slider");
     var happiness_slider_text = document.getElementById("happiness_slider_text");
     var happiness_percentage = (happiness + 10) * 5;
-    happiness_slider.value = happiness_percentage;
-    happiness_slider_text.innerHTML = Math.trunc(happiness_percentage) + "%";
+    // happiness_slider.value = happiness_percentage;
+    happiness_slider_text.innerHTML = "Happiness: (" + Math.trunc(happiness_percentage) + "%)";
 
 
     var excitedness_slider = document.getElementById("excitedness_slider");
     var excitedness_slider_text = document.getElementById("excitedness_slider_text");
     var excitedness_percentage = (excitedness + 10) * 5;
-    excitedness_slider.value = excitedness_percentage;
-    excitedness_slider_text.innerHTML = Math.trunc(excitedness_percentage) + "%";
+    // excitedness_slider.value = excitedness_percentage;
+    excitedness_slider_text.innerHTML = "Excitedness: (" + Math.trunc(excitedness_percentage) + "%)";
+
+    $(document).ready(function() {
+        console.log(excitedness_percentage);
+        $("#excitedness_slider").slider("value", Math.trunc(excitedness_percentage));
+    });
 };
 
 function sendFeedback() {
@@ -207,3 +212,26 @@ resetButton.addEventListener("click", resetFeedback);
 
 var sendFeedbackBackButton = document.getElementById("send_feedback");
 sendFeedbackBackButton.addEventListener("click", sendFeedback);
+
+$(document).ready(function() {
+
+    var happinessSlider = $("#happiness_slider").slider({
+        id: "happiness_slider",
+        orientation: 'horizontal',
+        min: 0,
+        max: 100,
+        range: false,
+        value: 50,
+        animate: "fast"
+    });
+
+    var excitednessSlider = $("#excitedness_slider").slider({
+        id: "excitedness_slider",
+        orientation: 'horizontal',
+        min: 0,
+        max: 100,
+        range: false,
+        value: 50,
+        animate: "fast"
+    });
+});
