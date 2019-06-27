@@ -1,8 +1,9 @@
 $('#heatmapRow').hide();
+// todo remove hardcode
 var userid = 'snipy12';
 
 var request = new XMLHttpRequest();
-var created = 'False'; // todo remove if not needed?
+var created = 'False'; // todo this seems not to be used, remove if not needed?
 
 // Send request for the data needed in the mood charts.
 request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/0', true)
