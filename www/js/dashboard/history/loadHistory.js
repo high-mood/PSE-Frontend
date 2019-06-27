@@ -2,6 +2,13 @@
 // TODO remove hardcode
 var userid = 'snipy12';
 
+happinessSlider.on('change', function(event) {
+    $('#happiness_slider_text').html(`Happiness: (${event.value['newValue']}%)`)
+})
+
+excitednessSlider.on('change', function(event) {
+    $('#excitedness_slider_text').html(`Excitedness: (${event.value['newValue']}%)`)
+})
 // Show history data when websites is opened.
 var request = new XMLHttpRequest();
 request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/20', true);
@@ -16,6 +23,8 @@ request.onload = function() {
     if (request.status == 200) {
         loadContent();
     }
+    adjustSlider('0');
+    displaySimilarSongs('0');
 }
 request.send();
 
@@ -25,15 +34,13 @@ function toggleHistory(chartname) {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
 
-        document.getElementById("headerName").innerHTML = "History";
+        document.getElementById("headerName").innerHTML = "Full history";
 
         window.curData = window.histData;
         loadContent();
     } else if (chartname === 'favourites') {
-        $('#historySelector').text("Favourites ");
-        $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
-
-        document.getElementById("headerName").innerHTML = "Favourites";
+        $('#historySelector').text("Favourite songs");
+        $('#historySelector').append("<span class=\"caret\"></span>");
 
         getTopData(); // if not top data?
     }
@@ -74,7 +81,14 @@ function loadContent() {
 }
 
 function histSelect(clickEvent) {
+    /** Translates clickEvent to song_index
+	:param clickEvent: The onclick event from one of the songs **/
     song_index = clickEvent.target.id;
+    displaySimilarSongs(song_index);
+}
+function displaySimilarSongs(song_index) {
+    /** Displays the list of songs under 'More like this'
+	:param song_index: Index of the in History/Favourites list **/
     songId = window.curData[parseInt(song_index)].songid;
     window.song_index = song_index;
     adjustSlider(song_index);
@@ -117,25 +131,43 @@ function createScrollWindow() {
 
         var btn = document.createElement("BUTTON");
         btn.innerHTML = "Select";
+        btn.style.margin = "0px 0px 5px 0px";
+        btn.style.border = "none";
         btn.style.width = "20%";
+        btn.style.height = "80px"
         btn.id = index;
-        btn.onclick = function(index){ histSelect(index)};
+        btn.onclick = function(index) {
+            histSelect(index)
+        };
         btn.classList.add('SongRecButton');
         btn.classList.add("btn-default");
+
         songdiv.appendChild(btn);
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + data[index].songid);
-        ifrm.setAttribute("align","right");
+        ifrm.setAttribute("align", "right");
+        ifrm.style.margin = "0px 0px 5px 0px";
+        ifrm.style.border = "none";
         ifrm.style.width = "80%";
+
         ifrm.style.height = "80px";
 
         songdiv.appendChild(ifrm);
         containerDiv.appendChild(songdiv);
-        }
+    }
 }
 
 function adjustSlider(song_index) {
+    /** Changes the mood and happiness slider positions after a song is selected
+	:param song_index: Index of the song in the history/favourites list **/
+    if (song_index == null) {
+        excitednessSlider.slider("setValue", 50);
+        happinessSlider.slider("setValue", 50);
+        $('#happiness_slider_text').html(`Happiness: (50%)`)
+        $('#excitedness_slider_text').html(`Excitedness: (50%)`)
+        return;
+    }
     /** TODO: add this to Onclicks of songs in tracklist
 	Updates the analysis-sliders and percentages and adds songtitle
 	to that section.
@@ -147,23 +179,17 @@ function adjustSlider(song_index) {
     songname.innerHTML = window.curData[song_index].name;
 
 
-    var happiness_slider = document.getElementById("happiness_slider");
-    var happiness_slider_text = document.getElementById("happiness_slider_text");
+    var happiness_slider_text = $("#happiness_slider_text");
     var happiness_percentage = (happiness + 10) * 5;
-    // happiness_slider.value = happiness_percentage;
-    happiness_slider_text.innerHTML = "Happiness: (" + Math.trunc(happiness_percentage) + "%)";
+    happiness_slider_text.html(`Happiness: (${Math.trunc(happiness_percentage)}%)`);
 
 
-    var excitedness_slider = document.getElementById("excitedness_slider");
-    var excitedness_slider_text = document.getElementById("excitedness_slider_text");
+    var excitedness_slider_text = $("#excitedness_slider_text");
     var excitedness_percentage = (excitedness + 10) * 5;
-    // excitedness_slider.value = excitedness_percentage;
-    excitedness_slider_text.innerHTML = "Excitedness: (" + Math.trunc(excitedness_percentage) + "%)";
+    excitedness_slider_text.html(`Excitedness: (${Math.trunc(excitedness_percentage)}%)`);
 
-    $(document).ready(function() {
-        console.log(excitedness_percentage);
-        $("#excitedness_slider").slider("value", Math.trunc(excitedness_percentage));
-    });
+    excitednessSlider.slider("setValue", Math.trunc(excitedness_percentage));
+    happinessSlider.slider("setValue", Math.trunc(happiness_percentage));
 };
 
 function sendFeedback() {
@@ -212,26 +238,3 @@ resetButton.addEventListener("click", resetFeedback);
 
 var sendFeedbackBackButton = document.getElementById("send_feedback");
 sendFeedbackBackButton.addEventListener("click", sendFeedback);
-
-$(document).ready(function() {
-
-    var happinessSlider = $("#happiness_slider").slider({
-        id: "happiness_slider",
-        orientation: 'horizontal',
-        min: 0,
-        max: 100,
-        range: false,
-        value: 50
-        animate: "fast";
-    });
-
-    var excitednessSlider = $("#excitedness_slider").slider({
-        id: "excitedness_slider",
-        orientation: 'horizontal',
-        min: 0,
-        max: 100,
-        range: false,
-        value: 50
-        animate: "fast";
-    });
-});

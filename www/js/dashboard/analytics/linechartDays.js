@@ -1,5 +1,8 @@
-// Code basis by Gord Lea: https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
-// Legend code from https://www.d3-graph-gallery.com/graph/custom_legend.html
+/*
+ * Shows a line chart with averages of song information on past days.
+ * Code basis by Gord Lea: 
+ * https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
+ */
 
 var xScale, yScale, yScaleTempo, yScaleMoods;
 
@@ -10,7 +13,7 @@ var lineNames = ["excitedness", "happiness", "acousticness", "danceability",
 function createLineGraphDays(data, id, retriggered) {
     $(`#${id}`).empty();
     
-    // dataset, unused metrics are commented out
+    // dataset for d3
     var dataset = {
         "excitedness": [],
         "happiness": [],
@@ -22,21 +25,13 @@ function createLineGraphDays(data, id, retriggered) {
         "speechiness": [],
         "tempo": [],
         "valence": [],
-    }
-
-    
+    };
     
     // fill dataset with usable d3 data
-    // for (var key in dataset) {
-    //     if (key != "happiness" && key != "excitedness") { 
-    //         $("#" + key).trigger("click")
-    //     }
-    // }
-
     for (var key in dataset) {
-        var value = dataset[key]
+        var value = dataset[key];
         for (var i in d3.range(data.dates.length)) {
-            value.push({'y': data.dates[i][key]})
+            value.push({'y': data.dates[i][key]});
         }
     }
 
@@ -45,61 +40,46 @@ function createLineGraphDays(data, id, retriggered) {
     var width = 600 - margin.left - margin.right;
     var height = 300 - margin.top - margin.bottom;
 
-    // for (i = 0; i < 8; i++) {
-    //     data.dates[i]["date"] = "2019-06-" + data.dates[i]["date"]
-    // }
-    var minDate = data.dates[data.dates.length - 1].date
-    var maxDate = data.dates[0].date
-    // debugger;
-
-    var parseTime = d3.timeParse("%Y-%m-%d")
-    // var parseTime = d3.timeParse("%d")
+    var parseTime = d3.timeParse("%Y-%m-%d");
     
-    // var parsedMinDate = parseTime("2019-06-21")
-    var parsedMinDate = parseTime(minDate)
-    var parsedMaxDate = parseTime(maxDate)
-
+    // for ordinal date scale
     var dates = [];
     for (val in data.dates) {
         dates.push(parseTime(data.dates[val]["date"]));
     }
-    dates = dates.reverse()
-    // scales
-    // xScaleTime = d3.scaleTime()
-    //     .domain(d3.extent(dates))
-    //     .range([0, width])
+    dates = dates.reverse();
+
+    // basic scales
     xScaleTime = d3.scalePoint()
         .domain(dates)
-        .range([0, width])
+        .range([0, width]);
     yScale = d3.scaleLinear()
         .domain([0, 1])
         .range([height, 0]);
-        
-       
     xScale = d3.scaleLinear()
         .domain([data.dates.length - 1, 0])
-        .range([0, width])
+        .range([0, width]);
     
     
     // array to calculate max and min tempo for scale
-    tempoArray = []
+    tempoArray = [];
     for (var i in dataset["tempo"]) {
-        tempoArray.push(dataset["tempo"][i].y)
+        tempoArray.push(dataset["tempo"][i].y);
     }
-    tempoFloor = Math.floor(d3.min(tempoArray) / 10) * 10
+    tempoFloor = Math.floor(d3.min(tempoArray) / 10) * 10;
 
     // tempo scale
     yScaleTempo = d3.scaleLinear()
         .domain([tempoFloor, d3.max(tempoArray)])
-        .range([height, 0]); // output
+        .range([height, 0]);
     
-        // tempo scale
+    // mood scale
     yScaleMoods = d3.scaleLinear()
         .domain([-10, 10])
-        .range([height, 0]); // output
+        .range([height, 0]);
 
     // make svg and g html element
-    var svgId = "daysSvg"
+    var svgId = "daysSvg";
     var svg = d3.select("#" + id).append("svg")
             .attr("width", "100%")
             .attr("height", "100%")
@@ -108,7 +88,6 @@ function createLineGraphDays(data, id, retriggered) {
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
             .attr("id", svgId);
 
-
     // create axes
     xAxis = svg.append("g")
         .attr("class", "x axis")
@@ -116,7 +95,7 @@ function createLineGraphDays(data, id, retriggered) {
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(xScaleTime)
             .tickValues(dates)
-            .tickFormat(d3.timeFormat("%Y-%m-%d")))
+            .tickFormat(d3.timeFormat("%Y-%m-%d")));
     svg.append("g")
         .attr("class", "y axis")
         .call(d3.axisLeft(yScale));
@@ -131,7 +110,7 @@ function createLineGraphDays(data, id, retriggered) {
             .attr("transform",
                   "rotate(90) translate(" + height / 2 + ", -40)")
             .style("text-anchor", "middle")
-            .text("tempo (BPM)")
+            .text("tempo (BPM)");
 
     // call moods y axis
     svg.append("g")
@@ -142,12 +121,16 @@ function createLineGraphDays(data, id, retriggered) {
             .attr("transform",
                   "rotate(90) translate(" + height / 2 + ", -40)")
             .style("text-anchor", "middle")
-            .text("Moods")
+            .text("Moods");
     
     // make tooltip
-    var tooltip = document.createElement("div")
-    tooltip.setAttribute("id", "tooltipDays")
-    document.getElementById("lineDays").appendChild(tooltip)
+    var tooltip = document.createElement("div");
+    
+    tooltip.setAttribute("id", "tooltipDays");
+    document.getElementById("lineDays").appendChild(tooltip);
+
+    d3.select("#tooltipDays").append("span")
+        .attr("id", "tooltipDaysSpan");
     
     // set proper style for tooltip
     d3.select("#tooltipDays")
@@ -158,16 +141,18 @@ function createLineGraphDays(data, id, retriggered) {
         .style("top", "0px")
         .style("left", "0px")
         .style("opacity", 0)
-        .style("border-radius", "10px")
+        .style("border-radius", "10px");
     
-    d3.select("#tooltipDays").append("text").attr("id", "tooltiptextDays")
-        .style("color", "#000000")
-        .style("transform", "translate(0, 5)")
+    // append text to tooltip
+    d3.select("#tooltipDaysSpan").append("text")
+        .attr("id", "tooltiptextDays")
+        .style("color", "#000000");
 
+    // draw proper lines
     drawLines('days', svgId, dataset, retriggered, null);
 }
 
-
+// Draws line for days chart in specified svg
 function drawLineDays(svgId, dataset, name) {
     // make correct d3 line generator
     var line;
@@ -175,24 +160,24 @@ function drawLineDays(svgId, dataset, name) {
         line = d3.line()
             .x(function(d, i) { return xScale(i); })
             .y(function(d) { return yScaleTempo(d.y); })
-            .curve(d3.curveMonotoneX)
+            .curve(d3.curveMonotoneX);
     }
     else if (name == "happiness" || name == "excitedness") {
         line = d3.line()
             .x(function(d, i) { return xScale(i); })
             .y(function(d) { return yScaleMoods(d.y); })
-            .curve(d3.curveMonotoneX)
+            .curve(d3.curveMonotoneX);
     }
     else {
         line = d3.line()
             .x(function(d, i) { return xScale(i); })
             .y(function(d) { return yScale(d.y); })
-            .curve(d3.curveMonotoneX)
+            .curve(d3.curveMonotoneX);
     }
 
     // give line color of corresponding button
     var svg = d3.select("#" + svgId);
-    var color = d3.select("#" + name).style("background-color")
+    var color = d3.select("#" + name).style("background-color");
 
     // draw lines
     svg.append("path")
@@ -202,7 +187,7 @@ function drawLineDays(svgId, dataset, name) {
         .attr("d", line)
         .style("fill", "none")
         .style("stroke", color)
-        .style("stroke-width", 3)
+        .style("stroke-width", 3);
 
 
     // circles with mouse over functionality
@@ -212,14 +197,14 @@ function drawLineDays(svgId, dataset, name) {
     .attr("class", name + "daysdot")
     .attr("cx", function(d, i) { return xScale(i) })
     .attr("cy", function(d) {   if (name == "tempo") {
-                                    return yScaleTempo(d.y)
+                                    return yScaleTempo(d.y);
                                 } 
                                 else if (name == "happiness" || 
                                          name == "excitedness") {
-                                    return yScaleMoods(d.y)
+                                    return yScaleMoods(d.y);
                                 }
                                 else {
-                                    return yScale(d.y)
+                                    return yScale(d.y);
                                 }
                             })
     .attr("r", 3)
@@ -234,10 +219,10 @@ function drawLineDays(svgId, dataset, name) {
                 .style("left", event.clientX + "px")
                 .style("background-color", color)
                 .style("width", "160px")
-                .style("height", "30px")
+                .style("height", "30px");
 
         d3.select("#tooltiptextDays")
-            .html(name + ": " + value)
+            .html(name + ": " + value);
         })
     .on("mouseout", function() {
         d3.select("#tooltipDays")
@@ -245,34 +230,26 @@ function drawLineDays(svgId, dataset, name) {
                 .duration(200)
                 .style("opacity", 0)
                 .style("width", 0)
-                .style("height", 0)
+                .style("height", 0);
         d3.select("#tooltiptextDays")
-            .html("")
+            .html("");
         })
 }
 
+// toggles specific line (for button clicks)
 function toggleLine(buttonId) {
-    // var name = d3.select("#" + buttonId).text();
-    button = $(`#${buttonId}`)
+    button = $(`#${buttonId}`);
     if (button.css('opacity') == '1') {
         button.css('opacity', '0.3');
-        hideLine(buttonId)
+        hideLine(buttonId);
     }
     else {
         button.css('opacity', '1');
         showLine(buttonId);
     }
-    // var color = d3.select("#" + buttonId).style("backgroundColor")
-    // var toggled = d3.select("#" + buttonId + "line").style("visibility")
-
-    // if (toggled == "hidden") {
-    //     showLine(buttonId)
-    // }
-    // else {
-    //     hideLine(buttonId)
-    // }
 }
 
+// toggles all buttons
 function toggleAll() {
     // check if all buttons toggled
     var allToggled = true;
@@ -284,78 +261,77 @@ function toggleAll() {
     }
     if (allToggled) {
         for (var i in lineNames) {
-            toggleLine(lineNames[i])
+            toggleLine(lineNames[i]);
         }
     }
     else {
         for (var i in lineNames) {
             if (d3.select("#" + lineNames[i] + "line").style("visibility") == "hidden") {
-                toggleLine(lineNames[i])
+                toggleLine(lineNames[i]);
             }
         }
     }
 }
 
-
-
 // hides a given line, shows and hides relevant axes
 function hideLine(name) {
 
     d3.selectAll("#" + name + "line")
-        .style("visibility", "hidden")
+        .style("visibility", "hidden");
     d3.selectAll("." + name + "daysdot")
-        .style("visibility", "hidden") 
+        .style("visibility", "hidden");
     d3.selectAll("." + name + "songdot")
-        .style("visibility", "hidden") 
+        .style("visibility", "hidden");
 
+
+    // show correct right y axis
     if (name == "tempo") {
         d3.selectAll(".tempo.axis")
-            .style("visibility", "hidden")
-
+            .style("visibility", "hidden");
 
         if (d3.select("#excitednessline").style("visibility") == "visible" ||
             d3.select("#happinessline").style("visibility") == "visible") {
             d3.selectAll(".moods.axis").style("visibility", "visible");
         }
     }
-
     else if (name == "happiness") {
         if (d3.select("#excitednessline").style("visibility") == "hidden") {
-            d3.selectAll(".moods.axis").style("visibility", "hidden")
+            d3.selectAll(".moods.axis").style("visibility", "hidden");
             if (d3.select("#tempoline").style("visibility") == "visible") {
-                d3.selectAll(".tempo.axis").style("visibility", "visible")
+                d3.selectAll(".tempo.axis").style("visibility", "visible");
             }           
         }
     }
     else if (name == "excitedness") {
         if (d3.select("#happinessline").style("visibility") == "hidden") {
-            d3.selectAll(".moods.axis").style("visibility", "hidden")
+            d3.selectAll(".moods.axis").style("visibility", "hidden");
             if (d3.select("#tempoline").style("visibility") == "visible") {
-                d3.selectAll(".tempo.axis").style("visibility", "visible")
+                d3.selectAll(".tempo.axis").style("visibility", "visible");
             }           
         }
     }
 }
 
-// shows a given line
+// shows a given line and proper axes
 function showLine(name) {
     d3.selectAll("#" + name + "line")
-        .style("visibility", "visible")
+        .style("visibility", "visible");
     d3.selectAll("." + name + "daysdot")
-        .style("visibility", "visible")
+        .style("visibility", "visible");
     d3.selectAll("." + name + "songdot")
-        .style("visibility", "visible")
+        .style("visibility", "visible");
 
+    // show correct right y axis
     if (name == "tempo") {
         d3.selectAll(".tempo.axis")
-            .style("visibility", "visible")
+            .style("visibility", "visible");
         d3.selectAll(".moods.axis")
-            .style("visibility", "hidden")
+            .style("visibility", "hidden");
     }
     if (name == "happiness" || name == "excitedness") {
         d3.selectAll(".moods.axis")
-            .style("visibility", "visible")
+            .style("visibility", "visible");
         d3.selectAll(".tempo.axis")
-            .style("visibility", "hidden")
+            .style("visibility", "hidden");
     }
 }
