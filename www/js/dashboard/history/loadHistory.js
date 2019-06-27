@@ -12,7 +12,6 @@ excitednessSlider.on('change', function(event) {
 // Show history data when websites is opened.
 var request = new XMLHttpRequest();
 request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/20', true);
-// request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/50', true);
 
 request.onload = function() {
     var allData = JSON.parse(this.response);
@@ -21,7 +20,7 @@ request.onload = function() {
     window.curData = window.histData;
 
     if (request.status == 200) {
-        loadContent();
+        createScrollWindow();
     }
     adjustSlider('0');
     displaySimilarSongs('0');
@@ -37,7 +36,7 @@ function toggleHistory(chartname) {
         document.getElementById("headerName").innerHTML = "Full history";
 
         window.curData = window.histData;
-        loadContent();
+        createScrollWindow();
     } else if (chartname === 'favourites') {
         $('#historySelector').text("Favourite songs");
         $('#historySelector').append("<span class=\"caret\"></span>");
@@ -60,23 +59,10 @@ function getTopData() {
             window.topData = userTopData;
 
             window.curData = window.topData;
-            loadContent();
+            createScrollWindow();
         }
     }
     topRequest.send();
-}
-
-function loadContent() {
-    createScrollWindow();
-    for (var index = 0; index < curData.length; index++) {
-        div = $('#hist' + index);
-        div.empty();
-        trackId = "https://open.spotify.com/embed/track/";
-        trackId += window.curData[index].songid;
-
-        content = '<iframe class="song-template" src="' + trackId + '" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
-        div.append(content);
-    }
 }
 
 function histSelect(clickEvent) {
@@ -85,6 +71,7 @@ function histSelect(clickEvent) {
     song_index = clickEvent.target.id;
     displaySimilarSongs(song_index);
 }
+
 function displaySimilarSongs(song_index) {
     /** Displays the list of songs under 'More like this'
 	:param song_index: Index of the in History/Favourites list **/
@@ -146,6 +133,9 @@ function createScrollWindow() {
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + data[index].songid);
         ifrm.setAttribute("align", "right");
+        ifrm.setAttribute("class", "song-template");
+        ifrm.setAttribute("allowtransparency", "true");
+        ifrm.setAttribute("allow", "encrypted-media");
         ifrm.style.margin = "0px 0px 5px 0px";
         ifrm.style.border = "none";
         ifrm.style.width = "80%";
@@ -167,8 +157,7 @@ function adjustSlider(song_index) {
         $('#excitedness_slider_text').html(`Excitedness: (50%)`)
         return;
     }
-    /** TODO: add this to Onclicks of songs in tracklist
-	Updates the analysis-sliders and percentages and adds songtitle
+    /**	Updates the analysis-sliders and percentages and adds songtitle
 	to that section.
 	:param song_index: Index of the clicked track **/
     var songid = window.curData[song_index].songid;
