@@ -13,7 +13,7 @@ request.onload = function() {
     window.curData = window.histData;
     
     if (request.status == 200) {
-        createHistory(userData);
+        loadContent();
     }
 }
 request.send();
@@ -24,7 +24,7 @@ function toggleHistory(chartname) {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
         window.curData = window.histData;
-        createHistory(window.histData);
+        loadContent();
     } else if (chartname === 'favourites') {
         $('#historySelector').text("Favourites ");
         $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
@@ -43,8 +43,9 @@ function getTopData() {
         
         if (topRequest.status == 200) {
             window.topData = userTopData;
+
             window.curData = window.topData;
-            createTop();
+            loadContent();
         } else {
             document.getElementById("userwelcome").innerHTML = "Error retrieving data!";
         }
@@ -52,7 +53,7 @@ function getTopData() {
     topRequest.send();
 }
 
-function createHistory() {
+function loadContent() {
   for (var index = 0; index < Math.min(5, window.curData.length); index++) {
     div = $('#hist' + index);
     div.empty();
@@ -62,10 +63,6 @@ function createHistory() {
     content = '<iframe class="song-template" src="' + trackId + '" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>';
     div.append(content);
     }
-}
-
-// make createHistory so that we don't need two functions? They should do the exact same thing afterall.
-function createTop() {
 }
 
 function select(song_index) {
