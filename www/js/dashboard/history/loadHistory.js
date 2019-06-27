@@ -24,11 +24,17 @@ function toggleHistory(chartname) {
     if (chartname === 'history') {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
+
+        document.getElementById("headerName").innerHTML = "History";
+
         window.curData = window.histData;
         loadContent();
     } else if (chartname === 'favourites') {
         $('#historySelector').text("Favourites ");
         $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
+
+        document.getElementById("headerName").innerHTML = "Favourites";
+
         getTopData(); // if not top data?
     }
 }
@@ -68,7 +74,7 @@ function loadContent() {
 }
 
 function histSelect(clickEvent) {
-    song_index = clickEvent.path[0].id;
+    song_index = clickEvent.target.id;
     songId = window.curData[parseInt(song_index)].songid;
     window.song_index = song_index;
     adjustSlider(song_index);
