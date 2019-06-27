@@ -7,6 +7,7 @@
                 <hr class="light">
             </div>
         </div>
+        <!-- Toggle between history and favourites -->
         <div class="row text-center">
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" id="historySelector" data-toggle="dropdown">
@@ -20,7 +21,10 @@
             </div>
         </div>
 
-
+        <!-- The scrollwindow with history/favourites -->
+        <!-- TODO: can we make one scroll view for history and favourites? -->
+        <!-- Auto generate rows with two coloms for select and spotify song -->
+        <!-- That should finish this part of the page -->
         <div class="row text-center">
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center" id="histCol">
                 <H3>History</H3>
@@ -49,25 +53,7 @@
                     <br>
                 </div>
             </div>
-            <!-- TODO: make scrollable and add selects. Good luck I'd say :) -->
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center" id="favCol">
-                <H3>Favourites</H3>
-                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <br>
-                    <div id="hist0" class="row">
-                    </div>
-                    <div id="hist1" class="row">
-                    </div>
-                    <div id="hist2" class="row">
-                    </div>
-                    <div id="hist3" class="row">
-                    </div>
-                    <div id="hist4" class="row">
-                    </div>
-                    <br>
-                </div>
-            </div>
-
+            <!-- The recommendation divs. -->
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
                 <h3>More like this</h3>
                 <br>
@@ -84,6 +70,7 @@
                 <br>
             </div>
 
+            <!-- The song review column. -->
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 row text-center">
                 <div id="songinfotool">
                     <h3>Song analysis</h3>
