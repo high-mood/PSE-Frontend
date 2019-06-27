@@ -11,7 +11,7 @@ var daysSliderObj = $("#days-slider").slider({
 	id: "days-slider", 
 	orientation: 'horizontal', 
 	min: 2, 
-	max: 365,
+	max: 50,
 	value: 10
 });
 
@@ -19,7 +19,7 @@ var songsSliderObj = $("#songs-slider").slider({
 	id: "songs-slider", 
 	orientation: 'horizontal', 
 	min: 2, 
-	max: 1000,
+	max: 200,
 	value: 10
 });
 
