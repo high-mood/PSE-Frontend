@@ -10,15 +10,15 @@
         </div>
 
         <div class="row text-center">
-            <div class="btn-group dashboard-dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="moodChartSelector">
-                    Radar Chart <span class="caret"></span>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" id="moodChartSelector" data-toggle="dropdown">
+                    Radar Chart 
+                    <span class="caret"></span>
                 </button>
-                    <ul class="dropdown-menu text-center dropdown-menu-center" role="menu">
-                        <li><a onclick="toggleMoodCharts('radarChart')">Radar Chart</a></li>
-                        <li class="divider"></li>
-                        <li><a onclick="toggleMoodCharts('heatmap')">Heatmap</a></li>   
-                    </ul>
+                <ul class="dropdown-menu dashboard-dropdown dropdown-menu-center" role="menu">
+                    <li><a onclick="toggleMoodCharts('radarChart')">Radar Chart</a></li>
+                    <li><a onclick="toggleMoodCharts('heatmap')">Heatmap</a></li>
+                </ul>
             </div>
         </div>
 

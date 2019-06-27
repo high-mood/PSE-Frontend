@@ -38,15 +38,15 @@ function giveText(data, id) {
     mean_happiness = data.mean_happiness;
 
    if (id == "heatmapText") {
-        document.getElementById(id).innerHTML = (heatMapText + "<br><br><br>" + getText(mean_excitedness, mean_happiness, texts));
+        $(`#${id}`).html(heatMapText);
    } else {
-        document.getElementById(id).innerHTML = getText(mean_excitedness, mean_happiness, texts);
+        $(`#${id}`).html(getText(mean_excitedness, mean_happiness, texts));
    }
 }
 
 /* After mouse out the text in the radarText div is reset. */
 function resetRadarText() {
-    document.getElementById("radarText").innerHTML = getText(mean_excitedness, mean_happiness, graphTexts);    
+    $("#radarText").html(getText(mean_excitedness, mean_happiness, graphTexts));
 }
 
 /** Hovering over a graphs quadrants changes the text.
@@ -65,7 +65,7 @@ function hoverRadar(e) {
         y = this.offsetHeight/2 - (y - xy_pos['yp']);
     }
 
-    document.getElementById('radarText').innerHTML = getText(y, x, graphTexts);
+    $('#radarText').html(getText(y, x, graphTexts));
 }
 
 /** Gets the position of the mouse within a specific div.*/
@@ -81,7 +81,7 @@ function getXYpos(elem) {
 
         elem = elem.offsetParent;    // set elem to its offsetParent
     }
-  
+
     //use while loop to check if elem is null
     // if not then add current elem’s offsetLeft to x
     //offsetTop to y and set elem to its offsetParent
@@ -90,7 +90,7 @@ function getXYpos(elem) {
       y = parseInt(y) + parseInt(elem.offsetTop);
       elem = elem.offsetParent;
     }
-  
+
     // returns an object with "xp" (Left), "=yp" (Top) position
     return {'xp':x, 'yp':y};
   }

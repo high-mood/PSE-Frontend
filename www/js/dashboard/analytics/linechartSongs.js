@@ -4,9 +4,6 @@
 var xScale, yScale, yScaleTempo, yScaleMoods, data;
 
 function createLineGraphSongs(data, id) {
-
-//    console.log(data);
-
     // dataset, unused metrics are commented out
     var dataset = {
         "excitedness": [],
@@ -203,7 +200,6 @@ function drawLineSongs(svgId, dataset, name, data) {
     .attr("r", 4)
     .style("fill", color)
     .on("mouseover", function(y, x) { 
-        console.log(data)
         var value = Math.round(dataset[x]['y'] * 100) / 100;
         d3.select("#tooltipSongs")
             .transition()
@@ -238,8 +234,6 @@ function drawLineSongs(svgId, dataset, name, data) {
 
 function trimSongName(name) {
     if (name.length > 15) {
-        console.log(name)
-        console.log(name.slice(0, 15))
         return name.slice(0, 12).concat("...")
     }
     else {
