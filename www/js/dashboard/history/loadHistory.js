@@ -187,7 +187,7 @@ document.getElementById("excitedness_slider").oninput = function() {
 };
 
 var resetButton = document.getElementById("reset_feedback");
-resetButton.addEventListener("click", resetFeedback(window.song_index);
+resetButton.addEventListener("click", resetFeedback(window.song_index));
 
 var sendFeedbackBackButton = document.getElementById("send_feedback");
-sendFeedbackBackButton.addEventListener("click", sendFeedback(window.song_index);
+sendFeedbackBackButton.addEventListener("click", sendFeedback(window.song_index));
