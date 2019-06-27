@@ -2,12 +2,12 @@
 // TODO remove hardcode
 var userid = 'snipy12';
 
-happinessSlider.on('slide', function(idk) {
-    $('#happiness_slider_text').html(`Happiness: (${idk.value}%)`)
-})
+happinessSlider.on('change', function(event) {
+        $('#happiness_slider_text').html(`Happiness: (${event.value['newValue']}%)`)
+    })
 
-excitednessSlider.on('slide', function(idk) {
-    $('#excitedness_slider_text').html(`Excitedness: (${idk.value}%)`)
+excitednessSlider.on('change', function(event) {
+    $('#excitedness_slider_text').html(`Excitedness: (${event.value['newValue']}%)`)
 })
 // Show history data when websites is opened.
 var request = new XMLHttpRequest();
@@ -147,7 +147,7 @@ function adjustSlider(song_index) {
         excitednessSlider.slider("setValue", 50);
         happinessSlider.slider("setValue", 50);   
         $('#happiness_slider_text').html(`Happiness: (50%)`)
-        $('#excited_slider_text').html(`Excitedness: (50%)`) 
+        $('#excitedness_slider_text').html(`Excitedness: (50%)`) 
         return;
     }
     /** TODO: add this to Onclicks of songs in tracklist
@@ -161,18 +161,14 @@ function adjustSlider(song_index) {
     songname.innerHTML = window.curData[song_index].name;
 
 
-    var happiness_slider = document.getElementById("happiness_slider");
-    var happiness_slider_text = document.getElementById("happiness_slider_text");
+    var happiness_slider_text =$("#happiness_slider_text");
     var happiness_percentage = (happiness + 10) * 5;
-    // happiness_slider.value = happiness_percentage;
-    happiness_slider_text.innerHTML = "Happiness: (" + Math.trunc(happiness_percentage) + "%)";
+    happiness_slider_text.html(`Happiness: (${Math.trunc(happiness_percentage)}%)`);
 
 
-    var excitedness_slider = document.getElementById("excitedness_slider");
-    var excitedness_slider_text = document.getElementById("excitedness_slider_text");
+    var excitedness_slider_text = $("#excitedness_slider_text");
     var excitedness_percentage = (excitedness + 10) * 5;
-    // excitedness_slider.value = excitedness_percentage;
-    excitedness_slider_text.innerHTML = "Excitedness: (" + Math.trunc(excitedness_percentage) + "%)";
+    excitedness_slider_text.html(`Excitedness: (${Math.trunc(excitedness_percentage)}%)`);
 
     excitednessSlider.slider("setValue", Math.trunc(excitedness_percentage));
     happinessSlider.slider("setValue", Math.trunc(happiness_percentage));
