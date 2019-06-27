@@ -37,10 +37,8 @@ function toggleHistory(chartname) {
         window.curData = window.histData;
         loadContent();
     } else if (chartname === 'favourites') {
-        $('#historySelector').text("Favourites ");
+        $('#historySelector').text("Top 10 songs");
         $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
-
-        document.getElementById("headerName").innerHTML = "Favourites";
 
         getTopData(); // if not top data?
     }
@@ -145,9 +143,9 @@ function createScrollWindow() {
 function adjustSlider(song_index) {
     if (song_index == null) {
         excitednessSlider.slider("setValue", 50);
-        happinessSlider.slider("setValue", 50);   
+        happinessSlider.slider("setValue", 50);
         $('#happiness_slider_text').html(`Happiness: (50%)`)
-        $('#excitedness_slider_text').html(`Excitedness: (50%)`) 
+        $('#excitedness_slider_text').html(`Excitedness: (50%)`)
         return;
     }
     /** TODO: add this to Onclicks of songs in tracklist
