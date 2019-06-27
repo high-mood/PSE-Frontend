@@ -68,7 +68,6 @@ function loadContent() {
 }
 
 function histSelect(clickEvent) {
-    console.log(clickEvent)
     song_index = clickEvent.target.id;
     songId = window.curData[parseInt(song_index)].songid;
     window.song_index = song_index;
