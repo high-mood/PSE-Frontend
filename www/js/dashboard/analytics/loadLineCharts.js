@@ -14,8 +14,6 @@ function requestLineCharts(retriggered) {
   linechartRequest.onload = function() {
     var alldata = JSON.parse(this.response)
     var userdata = alldata.resource
-    console.log("HEYYYYYYYYYYYY")
-    console.log("first userdata: ", userdata)
 
     if (linechartRequest.status >= 200 && linechartRequest.status < 400) {
       // lineGraph
@@ -33,7 +31,7 @@ function requestLineCharts(retriggered) {
 
   // var metrics = "acousticness, danceability, duration_ms, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, valence";
   days = daysSliderObj.slider('getValue');
-  console.log(days)
+  // console.log(days)
   // linechartDaysRequest.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/api_days_dummy.json', true)
   linechartDaysRequest.open('GET', 'http://localhost:5000/api/user/mood/daily/' + userid + '/' + days, true)
   linechartDaysRequest.onload = function() {
@@ -57,14 +55,17 @@ function requestLineCharts(retriggered) {
 
   // var metrics = "acousticness, danceability, duration_ms, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, valence";
   // linechartDaysRequest.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/api_days_dummy.json', true)
-  var start = 12;
-  var end = 20;
+  var start, end;
+  [start, end] = timeframeSliderObj.slider('getValue');
+  // var start = 12;
+  // var end = 20;
+
   barchartRequest.open('GET', 'http://localhost:5000/api/user/mood/hourly/' + userid + '/' + start + '/' + end, true)
   barchartRequest.onload = function() {
     var alldata = JSON.parse(this.response)
     var userdata = alldata.resource
 
-    console.log("alldata: " + alldata)
+    // console.log(alldata)
     console.log(userdata)
     if (barchartRequest.status >= 200 && barchartRequest.status < 400) {
       // lineGraph
@@ -109,7 +110,7 @@ function toggleLineCharts(chartname) {
       $('#lineDays').hide();
       $('#lineSongs').hide();
       $('#barChart').show();
-      $("#timeframe-slider-div").hide();
+      $("#timeframe-slider-div").show();
       $("#days-slider-div").hide();
       $("#songs-slider-div").hide();
       $("#linechart-buttons").hide();

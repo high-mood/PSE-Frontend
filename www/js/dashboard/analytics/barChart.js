@@ -9,7 +9,8 @@ function createBarChart(divId,start,end,data) {
   var happinessColor = "#1cc18f";
   
   // 0. Clear the div.
-  $(divId).empty();
+
+  $(`#${divId}`).empty();
   
   // 1. Add svg to target div.
   var svg = d3.select("#" + divId).append("svg")
