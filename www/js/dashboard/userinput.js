@@ -25,3 +25,23 @@ var songsSliderObj = $("#songs-slider").slider({
 
 $("#timeframe-slider-div").toggle()
 $("#songs-slider-div").toggle()
+
+var happinessSlider = $("#happiness_slider").slider({
+    id: "happiness_slider",
+    orientation: 'horizontal',
+    min: 0,
+    max: 100,
+    range: false,
+    value: 50,
+    animate: "fast"
+});
+
+var excitednessSlider = $("#excitedness_slider").slider({
+    id: "excitedness_slider",
+    orientation: 'horizontal',
+    min: 0,
+    max: 100,
+    range: false,
+    value: 50,
+    animate: "fast"
+});
