@@ -1,38 +1,44 @@
 // makes a barchart (call on empty divId, data is a list of songs with at least the key:value pairs: time, exitedness and happiness)
 function createBarChart(divId,start,end,data) {
+  console.log(data);
+
   var height = 300
   var width = 600
   var barWidth = (9 * width / 10) / (2 * (end - start + 1));
-  var barHeight = (9 * height / 200);
   var exitednessColor = "#1ba2c1";
   var happinessColor = "#1cc18f";
-
+  
   // 0. Clear the div.
   $(divId).empty();
-
+  
   // 1. Add svg to target div.
   var svg = d3.select("#" + divId).append("svg")
-              .attr('width', "100%")
-              .attr('height', "100%")
-              .attr("viewBox","0 0 " + width + " " + height)
-              .attr("preserveAspectRatio","xMidYMid meet");
-
+  .attr('width', "100%")
+  .attr('height', "100%")
+  .attr("viewBox","0 0 " + width + " " + height)
+  .attr("preserveAspectRatio","xMidYMid meet");
+  
   // 2. Calculate data for bins
   dataSet = []
   for (var i = 0; i < data.length; i++) {
     hourData = data[i];
     if(hourData.hour >= start && hourData.hour <= end) {
-      dataSet.push({x:i,y:hourData.excitedness});
-      dataSet.push({x:(.5 + i),y:hourData.happiness});
+      dataSet.push({x:hourData.hour,y:hourData.excitedness});
+      dataSet.push({x:(hourData.hour + ".5"),y:hourData.happiness});
     }
   }
+  
+  var yMax = d3.max(dataSet.map(function(dataSet) { return Math.abs(dataSet.y); }));
+  var barHeight = (9 * height / 20) / yMax;
+  
+  console.log(yMax);
 
   // 3. Make the scales.
   var xScale = d3.scaleLinear()
                  .domain([start,end + 1])
                  .range([0,(9 * width / 10)]);
   var yScale = d3.scaleLinear()
-                 .domain([-10,10])
+                 .domain([-yMax,yMax])
                  .range([(9 * height / 10),0]);
 
   // 4. Make the labels.
@@ -53,7 +59,7 @@ function createBarChart(divId,start,end,data) {
   svg.selectAll('rect').data(dataSet)
     .enter().append('rect')
     .attr('fill', function (data) {
-      if (Number.isInteger(data.x)) {
+      if ((data.x).indexOf('.') == -1) {
         return exitednessColor;
       } else {
         return happinessColor;
