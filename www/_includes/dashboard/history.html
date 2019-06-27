@@ -2,35 +2,37 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h1 class="section-heading">History</h1>
-                <p>Analyze your Spotify history and get new recommendations based on your favorite songs!</p>
+                <h1 class="section-heading">Review</h1>
                 <hr class="light">
+                <p>Look at your listening history and review our metrics. Send in your feedback to make our platform better!</p>
             </div>
         </div>
         <!-- Toggle between history and favourites -->
         <div class="row text-center">
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" id="historySelector" data-toggle="dropdown">
-                    History 
+                    Full history
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu dashboard-dropdown dropdown-menu-center" role="menu">
-                    <li><a onclick="toggleHistory('history')">History</a></li>
-                    <li><a onclick="toggleHistory('favourites')">Favourites</a></li>
+                    <li><a onclick="toggleHistory('history')">Full history</a></li>
+                    <li><a onclick="toggleHistory('favourites')">Favourite songs</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="row text-center" style="height: 400px">
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center" id="histCol" style= "height: 100%">
-                <H3>History</H3>
+                <H3>Song history</H3>
+                <hr class="full">
                 <!-- The scrollwindow with history/favourites -->
-                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 scrollbar" style="overflow-y: scroll; height: 90%" id="scroll_window">
+                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 scrollbar" style="overflow-y: scroll; height: 80%" id="scroll_window">
                 </div>
             </div>
             <!-- The recommendation divs. -->
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center">
                 <h3>More like this</h3>
+                <hr class="full">
                 <div id="recHist0" class="row">
                 </div>
                 <div id="recHist1" class="row">
@@ -47,9 +49,10 @@
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 row text-center">
                 <div id="songinfotool">
                     <h3>Song analysis</h3>
+                    <hr class="full">
                     <div class="row">
                         <div id="songname"></div>
-                        <p id="songdisplayname"></p>
+                        <h3 id="songdisplayname">Song analysis</h3>
                         <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 hcenter text-center">
                             <input id="happiness_slider" class="feedback-slider" orient="vertical" type="range" min="0" max="100" step="1" value="50">
                         </div>
@@ -63,8 +66,8 @@
 			                <p>Excitement:</p>
                             <p id="excitedness_slider_text">50%</p>
                         <div class="btn-group-vertical" role="group">
-                            <button type="button" class="btn background-black" id="send_feedback">&emsp; Send feedback &emsp;</button>
-                            <button type=" button" class="btn background-black" id="reset_feedback">Reset</button>
+                            <button type="button" class="btn background-black btn-info" id="send_feedback">&emsp; Send feedback &emsp;</button>
+                            <button type=" button" class="btn background-black btn-danger" id="reset_feedback">Reset</button>
                         </div>
 			</div>
                     </div>
