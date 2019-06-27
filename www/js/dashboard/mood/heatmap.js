@@ -20,7 +20,7 @@ function createHeatmapData(userData, xMin, xMax, yMin, yMax, xSamples, ySamples,
       // }).map(function(songData) { return songData.name; });
       // dataPoint.size = conformingDataNames.length;
       for( var i = 0; i < songData.length; i++) {
-        dataPoint.size += 1 / (1 + (((songData[i].data0 - xMeanReach) ** 2 + (songData[i].data1 - yMeanReach) ** 2)) ** 0.5)
+        dataPoint.size += 1 / (((songData[i].data0 - xMeanReach) ** 2 + (songData[i].data1 - yMeanReach) ** 2) ** 0.5)
       }
 
 
@@ -50,8 +50,8 @@ function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, y
   var dataSet = createHeatmapData(userData, xMin, xMax, yMin, yMax, xSamples, ySamples, xDomainSize, yDomainSize);
 
   // 3. Set colorScale for the data.
-  var maxSize = d3.max(dataSet.map(function(data) { return data.size; })) + 1;
-  var minSize = d3.min(dataSet.map(function(data) { return data.size; }));
+  var maxSize = d3.max(dataSet.map(function(data) { return data.size; })) * 0.92;
+  var minSize = d3.min(dataSet.map(function(data) { return data.size; })) * 1.7;
   var colorScale = d3.scaleLinear().domain([minSize, maxSize]).range([lowDataColor, highDataColor]);
 
   // 4. Set scales for x and y direction
