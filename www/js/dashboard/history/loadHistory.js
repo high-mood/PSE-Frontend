@@ -32,12 +32,12 @@ function toggleHistory(chartname) {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
 
-        document.getElementById("headerName").innerHTML = "History";
+        document.getElementById("headerName").innerHTML = "Full history";
 
         window.curData = window.histData;
         loadContent();
     } else if (chartname === 'favourites') {
-        $('#historySelector').text("Top 10 songs");
+        $('#historySelector').text("Favourite songs");
         $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
 
         getTopData(); // if not top data?
