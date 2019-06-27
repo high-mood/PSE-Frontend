@@ -1,6 +1,6 @@
 $('#lineSongs').hide()
 
-function requestLineCharts() {
+function requestLineCharts(retriggered) {
   var linechartRequest= new XMLHttpRequest()
 
   var metrics = "acousticness, danceability, duration_ms, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, valence";
@@ -13,10 +13,12 @@ function requestLineCharts() {
   linechartRequest.onload = function() {
     var alldata = JSON.parse(this.response)
     var userdata = alldata.resource
+    console.log("HEYYYYYYYYYYYY")
+    console.log("first userdata: ", userdata)
 
     if (linechartRequest.status >= 200 && linechartRequest.status < 400) {
       // lineGraph
-      createLineGraphSongs(userdata,"lineSongs");
+      createLineGraphSongs(userdata,"lineSongs", retriggered);
       // giveText(userdata,"lineGraphText");
     }
     else {
@@ -39,7 +41,7 @@ function requestLineCharts() {
 
     if (linechartDaysRequest.status >= 200 && linechartDaysRequest.status < 400) {
       // lineGraph
-      createLineGraphDays(userdata,"lineDays");
+      createLineGraphDays(userdata,"lineDays", retriggered);
       // giveText(userdata,"lineGraphText");
     }
     else {
@@ -49,7 +51,7 @@ function requestLineCharts() {
   linechartDaysRequest.send()
 }
 
-requestLineCharts()
+requestLineCharts(false)
 
 function toggleLineCharts(chartname) {
     if (chartname === 'lineDays') {

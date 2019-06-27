@@ -7,26 +7,44 @@ var lineNames = ["excitedness", "happiness", "acousticness", "danceability",
                  "energy", "instrumentalness", "liveness", "speechiness", 
                  "tempo", "valence"];
 
-function createLineGraphDays(data, id) {
+function createLineGraphDays(data, id, retriggered) {
+    $(`#${id}`).empty();
+    
     // dataset, unused metrics are commented out
     var dataset = {
         "excitedness": [],
         "happiness": [],
         "acousticness": [],
         "danceability": [],
-        // "duration_ms": [],
         "energy": [],
         "instrumentalness": [],
-        // "key": [],
         "liveness": [],
-        // "loudness": [],
-        // "mode": [],
         "speechiness": [],
         "tempo": [],
         "valence": [],
     }
 
+    for (var i in data["metric_over_time"]) {
+        for (var key in data["metric_over_time"][i]) {
+            if (data["metric_over_time"][i][key] == null) {
+                console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+                data.splice(i, 1)
+                break;
+            }
+        }
+        // if (data["metric_over_time"][i].va == null {
+        //     data.splice(i, 1);
+        //     i -= 1;
+        // }
+    }
+    
     // fill dataset with usable d3 data
+    for (var key in dataset) {
+        if (key != "happiness" && key != "excitedness") {                    
+            $("#" + key).trigger("click")
+        }
+    }
+
     for (var key in dataset) {
         var value = dataset[key]
         for (var i in d3.range(data.dates.length)) {
@@ -156,16 +174,17 @@ function createLineGraphDays(data, id) {
     
     d3.select("#tooltipDays").append("text").attr("id", "tooltiptextDays")
         .style("color", "#000000")
+        .style("transform", "translate(0, 5)")
+
     
     // draw all lines, show wanted ones
     for (var key in dataset) {
         drawLineDays(svgId, dataset[key], key);
         showLine(key);
 
-        // only show happiness and excitedness on page load
-        if (key != "happiness" && key != "excitedness") {
+        if (key != "happiness" && key != "excitedness") {                    
             $("#" + key).trigger("click")
-        }
+        }       
     }
 }
 
@@ -249,7 +268,7 @@ function drawLineDays(svgId, dataset, name) {
                 .style("width", 0)
                 .style("height", 0)
         })
-        d3.select("#tooltiptextSongs")
+        d3.select("#tooltiptextDays")
             .html("")
 }
 
@@ -258,19 +277,21 @@ function toggleLine(buttonId) {
     button = $(`#${buttonId}`)
     if (button.css('opacity') == '1') {
         button.css('opacity', '0.3');
+        hideLine(buttonId)
     }
     else {
         button.css('opacity', '1');
+        showLine(buttonId);
     }
-    var color = d3.select("#" + buttonId).style("backgroundColor")
-    var toggled = d3.select("#" + buttonId + "line").style("visibility")
+    // var color = d3.select("#" + buttonId).style("backgroundColor")
+    // var toggled = d3.select("#" + buttonId + "line").style("visibility")
 
-    if (toggled == "hidden") {
-        showLine(buttonId)
-    }
-    else {
-        hideLine(buttonId)
-    }
+    // if (toggled == "hidden") {
+    //     showLine(buttonId)
+    // }
+    // else {
+    //     hideLine(buttonId)
+    // }
 }
 
 function toggleAll() {

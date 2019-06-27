@@ -3,7 +3,12 @@
 
 var xScale, yScale, yScaleTempo, yScaleMoods, data;
 
-function createLineGraphSongs(data, id) {
+function createLineGraphSongs(data, id, retriggered) {
+
+    console.log(data);
+    // clear div before proceeding
+    $(`#${id}`).empty();
+
     // dataset, unused metrics are commented out
     var dataset = {
         "excitedness": [],
@@ -21,6 +26,12 @@ function createLineGraphSongs(data, id) {
         "tempo": [],
         "valence": [],
     }
+
+        for (var key in dataset) {
+            if (key != "happiness" && key != "excitedness") {                    
+                $("#" + key).trigger("click")
+            }
+        }
 
     // fill dataset with usable d3 data
     for (var key in dataset) {
@@ -49,6 +60,8 @@ function createLineGraphSongs(data, id) {
         tempoArray.push(dataset["tempo"][i].y)
     }
     tempoFloor = Math.floor(d3.min(tempoArray) / 10) * 10
+
+    console.log("tempofloor: ", tempoFloor);
 
     // tempo scale
     yScaleTempo = d3.scaleLinear()
@@ -131,10 +144,16 @@ function createLineGraphSongs(data, id) {
     d3.select("#tooltipSongs").append("text").attr("id", "tooltiptextSongs")
         .style("color", "#000000")
     
-    // draw all lines
+    // draw all lines, show wanted ones
     for (var key in dataset) {
         drawLineSongs(svgId, dataset[key], key, data);
+        showLine(key);
+
+        if (key != "happiness" && key != "excitedness") {                    
+            $("#" + key).trigger("click")
+        }       
     }
+
 
     // show only startLines at page load
     // var startLines = ["danceability", "energy", "liveness"]
@@ -175,6 +194,7 @@ function drawLineSongs(svgId, dataset, name, data) {
         .attr("class", "line")
         .attr("id", name + "line")
         .attr("d", line)
+        .style("visibility", "hidden")
         .style("fill", "none")
         .style("stroke", color)
         .style("stroke-width", 3)
