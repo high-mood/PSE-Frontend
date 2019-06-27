@@ -5,7 +5,7 @@
                 <h1 class="section-heading">Review</h1>
                 <hr class="light">
                 <p>Look at your listening history or your favourite tracks and find similar songs.
-		  You can see the mood analysis for each song and give feedback to personalize your future mood analysis!</p>
+                    You can see the mood analysis for each song and give feedback to personalize your future mood analysis!</p>
             </div>
         </div>
         <!-- Toggle between history and favourites -->
@@ -22,12 +22,12 @@
             </div>
         </div>
 
-        <div class="row text-center" style="height: 504px">
+        <div class="row review text-center">
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center" id="histCol" style="height: 100%">
                 <H3>Song history</H3>
                 <hr class="full">
                 <!-- The scrollwindow with history/favourites -->
-                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 scrollbar" style="overflow-y: scroll; height: 80%" id="scroll_window">
+                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 scrollbar" id="scroll_window">
                 </div>
             </div>
             <!-- The recommendation divs. -->
@@ -55,21 +55,20 @@
                                 <p id="happiness_slider_text" class="text-center hcenter">Happiness (50%):</p>
                                 <input id="happiness_slider" class="hcenter" type="range">
                                 <br> <br>
-                            <p id="excitedness_slider_text" class="text-center hcenter">Excitement (50%):</p>
-                            <input id="excitedness_slider" class="hcenter" type="range">
-                        </div>
-                        <div class="row">
-                            <br>
-                            <br>
-                            <div class="btn-group-vertical" role="group">
-                                <button type="button" class="btn background-black btn-info" id="send_feedback">&emsp; Send feedback &emsp;</button>
-                                <button type=" button" class="btn background-black btn-danger" id="reset_feedback">Reset</button>
+                                <p id="excitedness_slider_text" class="text-center hcenter">Excitement (50%):</p>
+                                <input id="excitedness_slider" class="hcenter" type="range">
+                            </div>
+                            <div class="row">
+                                <br>
+                                <br>
+                                <div class="btn-group-vertical" role="group">
+                                    <button type="button" class="btn background-black btn-info" id="send_feedback">&emsp; Send feedback &emsp;</button>
+                                    <button type=" button" class="btn background-black btn-danger" id="reset_feedback">Reset</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- </div> -->
                 </div>
             </div>
         </div>
-    </div>
 </section>

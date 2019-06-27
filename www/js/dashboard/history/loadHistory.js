@@ -3,8 +3,8 @@
 var userid = 'snipy12';
 
 happinessSlider.on('change', function(event) {
-        $('#happiness_slider_text').html(`Happiness: (${event.value['newValue']}%)`)
-    })
+    $('#happiness_slider_text').html(`Happiness: (${event.value['newValue']}%)`)
+})
 
 excitednessSlider.on('change', function(event) {
     $('#excitedness_slider_text').html(`Excitedness: (${event.value['newValue']}%)`)
@@ -32,15 +32,13 @@ function toggleHistory(chartname) {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
 
-        document.getElementById("headerName").innerHTML = "History";
+        document.getElementById("headerName").innerHTML = "Full history";
 
         window.curData = window.histData;
         loadContent();
     } else if (chartname === 'favourites') {
-        $('#historySelector').text("Favourites ");
+        $('#historySelector').text("Favourite songs");
         $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
-
-        document.getElementById("headerName").innerHTML = "Favourites";
 
         getTopData(); // if not top data?
     }
@@ -124,32 +122,39 @@ function createScrollWindow() {
 
         var btn = document.createElement("BUTTON");
         btn.innerHTML = "Select";
+        btn.style.margin = "0px 0px 5px 0px";
+        btn.style.border = "none";
         btn.style.width = "20%";
+        btn.style.height = "80px"
         btn.id = index;
-        btn.onclick = function(index){ histSelect(index)};
+        btn.onclick = function(index) {
+            histSelect(index)
+        };
         btn.classList.add('SongRecButton');
         btn.classList.add("btn-default");
-        btn.classList.add("btn");
+
         songdiv.appendChild(btn);
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + data[index].songid);
-        ifrm.setAttribute("align","right");
-        ifrm.style.marginLeft = "1%";
-        ifrm.style.width = "79%";
+        ifrm.setAttribute("align", "right");
+        ifrm.style.margin = "0px 0px 5px 0px";
+        ifrm.style.border = "none";
+        ifrm.style.width = "80%";
+
         ifrm.style.height = "80px";
 
         songdiv.appendChild(ifrm);
         containerDiv.appendChild(songdiv);
-        }
+    }
 }
 
 function adjustSlider(song_index) {
     if (song_index == null) {
         excitednessSlider.slider("setValue", 50);
-        happinessSlider.slider("setValue", 50);   
+        happinessSlider.slider("setValue", 50);
         $('#happiness_slider_text').html(`Happiness: (50%)`)
-        $('#excitedness_slider_text').html(`Excitedness: (50%)`) 
+        $('#excitedness_slider_text').html(`Excitedness: (50%)`)
         return;
     }
     /** TODO: add this to Onclicks of songs in tracklist
@@ -163,7 +168,7 @@ function adjustSlider(song_index) {
     songname.innerHTML = window.curData[song_index].name;
 
 
-    var happiness_slider_text =$("#happiness_slider_text");
+    var happiness_slider_text = $("#happiness_slider_text");
     var happiness_percentage = (happiness + 10) * 5;
     happiness_slider_text.html(`Happiness: (${Math.trunc(happiness_percentage)}%)`);
 

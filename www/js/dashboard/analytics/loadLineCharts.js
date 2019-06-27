@@ -94,6 +94,7 @@ function toggleLineCharts(chartname) {
       $("#songs-slider-div").hide()
       $("#linechart-buttons").show()
       analyticsDescription("days")
+      showButtonsTimeframe();
     }
     else if (chartname === 'lineSongs') {
       $('#lineChartSelector').text("Songs ")
@@ -105,7 +106,8 @@ function toggleLineCharts(chartname) {
       $("#days-slider-div").hide()
       $("#songs-slider-div").show()
       $("#linechart-buttons").show()
-      analyticsDescription("songs")
+      analyticsDescription("songs");
+      showButtonsTimeframe();
     }
     else if (chartname === 'barChart') {
       $('#lineChartSelector').text("Hourly ")
@@ -116,7 +118,44 @@ function toggleLineCharts(chartname) {
       $("#timeframe-slider-div").show();
       $("#days-slider-div").hide();
       $("#songs-slider-div").hide();
-      $("#linechart-buttons").hide();
-      analyticsDescription("bar")
+      analyticsDescription("bar");
+      hideButtonsTimeframe();
     }
+}
+
+
+function hideButtonsTimeframe() {
+  var buttonNames = ["excitedness", "happiness", "acousticness", "danceability", 
+  "energy", "instrumentalness", "liveness", "speechiness", 
+  "tempo", "valence"];
+
+  for (var i in buttonNames) {
+    if (buttonNames[i] == "excitedness" || buttonNames[i] == "happiness") {
+      $(`#${buttonNames[i]}`).show()
+      $(`#${buttonNames[i]}`).attr("disabled", true)
+    }
+    else {
+      $(`#${buttonNames[i]}`).hide()
+    }
+
+  }
+  // $('#mood-buttons').show()
+  // for (moodButton in $('#mood-buttons').children()) {
+  //   moodButton.attr('disable', true)
+  // }
+}
+
+function showButtonsTimeframe() {
+  var buttonNames = ["excitedness", "happiness", "acousticness", "danceability", 
+  "energy", "instrumentalness", "liveness", "speechiness", 
+  "tempo", "valence"];
+  for (var i in buttonNames) {
+    if (buttonNames[i] == "excitedness" || buttonNames[i] == "happiness") {
+      $(`#${buttonNames[i]}`).show()
+      $(`#${buttonNames[i]}`).attr("disabled", false)
+    }
+    else {
+      $(`#${buttonNames[i]}`).show()
+    }
+  }
 }
