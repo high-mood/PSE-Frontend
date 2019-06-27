@@ -57,19 +57,21 @@ function toggleLineCharts(chartname) {
     if (chartname === 'lineDays') {
       $('#lineChartSelector').text("Days ")
       $('#lineChartSelector').append("<span class=\"caret\"></span>")
-        $('#lineDays').show();
-        $('#lineSongs').hide();
-        $("#timeframe-slider-div").hide()
-        $("#days-slider-div").show()
-        $("#songs-slider-div").hide()
+      $('#lineDays').show();
+      $('#lineSongs').hide();
+      $("#timeframe-slider-div").hide()
+      $("#days-slider-div").show()
+      $("#songs-slider-div").hide()
+      $("#linechart-buttons").show()
     }
     else if (chartname === 'lineSongs') {
       $('#lineChartSelector').text("Songs ")
       $('#lineChartSelector').append("<span class=\"caret\"></span>")
-        $('#lineDays').hide();
-        $('#lineSongs').show();
-        $("#timeframe-slider-div").hide()
-        $("#days-slider-div").hide()
-        $("#songs-slider-div").show()
+      $('#lineDays').hide();
+      $('#lineSongs').show();
+      $("#timeframe-slider-div").hide()
+      $("#days-slider-div").hide()
+      $("#songs-slider-div").show()
+      $("#linechart-buttons").show()
     }
 }
