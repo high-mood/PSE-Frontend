@@ -3,8 +3,8 @@
 var userid = 'snipy12';
 
 happinessSlider.on('change', function(event) {
-        $('#happiness_slider_text').html(`Happiness: (${event.value['newValue']}%)`)
-    })
+    $('#happiness_slider_text').html(`Happiness: (${event.value['newValue']}%)`)
+})
 
 excitednessSlider.on('change', function(event) {
     $('#excitedness_slider_text').html(`Excitedness: (${event.value['newValue']}%)`)
@@ -127,24 +127,26 @@ function createScrollWindow() {
         btn.style.width = "20%";
         btn.style.height = "80px"
         btn.id = index;
-        btn.onclick = function(index){ histSelect(index)};
+        btn.onclick = function(index) {
+            histSelect(index)
+        };
         btn.classList.add('SongRecButton');
         btn.classList.add("btn-default");
-
 
         songdiv.appendChild(btn);
 
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", "https://open.spotify.com/embed/track/" + data[index].songid);
-        ifrm.setAttribute("align","right");
+        ifrm.setAttribute("align", "right");
         ifrm.style.margin = "0px 0px 5px 0px";
         ifrm.style.border = "none";
         ifrm.style.width = "80%";
+
         ifrm.style.height = "80px";
 
         songdiv.appendChild(ifrm);
         containerDiv.appendChild(songdiv);
-        }
+    }
 }
 
 function adjustSlider(song_index) {
@@ -166,7 +168,7 @@ function adjustSlider(song_index) {
     songname.innerHTML = window.curData[song_index].name;
 
 
-    var happiness_slider_text =$("#happiness_slider_text");
+    var happiness_slider_text = $("#happiness_slider_text");
     var happiness_percentage = (happiness + 10) * 5;
     happiness_slider_text.html(`Happiness: (${Math.trunc(happiness_percentage)}%)`);
 
