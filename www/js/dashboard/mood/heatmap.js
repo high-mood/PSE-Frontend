@@ -86,6 +86,22 @@ function createHeatmap(divID, title, xMin, xMax, xSamples, xLabel, yMin, yMax, y
       return data.y * ySampleWidth + height / 10 + ySampleWidth / 20;
     })
 
+      // 5.2.1 Add in axes.
+    var xAxis = d3.axisBottom()
+	.scale(xScale)
+	.ticks(d3.min([xSamples,20]));
+    svg.append("g")
+	.attr("class","heatmapAxis")
+	.call(xAxis)
+	.attr("transform","translate(" + width / 10 + "," + 18.75 * height / 20 + ")");
+    var yAxis = d3.axisLeft()
+	.scale(yScale)
+	.ticks(d3.min([ySamples,20]));
+    svg.append("g")
+	.attr("class","heatmapAxis")
+	.call(yAxis)
+	.attr("transform","translate(" + width / 15 + "," + height / 10 + ")");
+
   // 5.2.2 Add labels on the axes.
   svg.append("g")
     .attr("text-anchor", "middle")
