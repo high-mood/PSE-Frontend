@@ -1,5 +1,6 @@
 $('#lineSongs').hide()
 $('#barChart').hide()
+analyticsDescription("days")
 
 function requestLineCharts(retriggered) {
   var linechartRequest= new XMLHttpRequest()
@@ -92,6 +93,7 @@ function toggleLineCharts(chartname) {
       $("#days-slider-div").show()
       $("#songs-slider-div").hide()
       $("#linechart-buttons").show()
+      analyticsDescription("days")
     }
     else if (chartname === 'lineSongs') {
       $('#lineChartSelector').text("Songs ")
@@ -103,6 +105,7 @@ function toggleLineCharts(chartname) {
       $("#days-slider-div").hide()
       $("#songs-slider-div").show()
       $("#linechart-buttons").show()
+      analyticsDescription("songs")
     }
     else if (chartname === 'barChart') {
       $('#lineChartSelector').text("Hourly ")
@@ -114,5 +117,6 @@ function toggleLineCharts(chartname) {
       $("#days-slider-div").hide();
       $("#songs-slider-div").hide();
       $("#linechart-buttons").hide();
+      analyticsDescription("bar")
     }
 }
