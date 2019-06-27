@@ -2,6 +2,13 @@
 // TODO remove hardcode
 var userid = 'snipy12';
 
+happinessSlider.on('slide', function(idk) {
+    $('#happiness_slider_text').html(`Happiness: (${idk.value}%)`)
+})
+
+excitednessSlider.on('slide', function(idk) {
+    $('#excitedness_slider_text').html(`Excitedness: (${idk.value}%)`)
+})
 // Show history data when websites is opened.
 var request = new XMLHttpRequest();
 request.open('GET', 'http://localhost:5000/api/tracks/history/' + userid + '/20', true);
@@ -136,6 +143,13 @@ function createScrollWindow() {
 }
 
 function adjustSlider(song_index) {
+    if (song_index == null) {
+        excitednessSlider.slider("setValue", 50);
+        happinessSlider.slider("setValue", 50);   
+        $('#happiness_slider_text').html(`Happiness: (50%)`)
+        $('#excited_slider_text').html(`Excitedness: (50%)`) 
+        return;
+    }
     /** TODO: add this to Onclicks of songs in tracklist
 	Updates the analysis-sliders and percentages and adds songtitle
 	to that section.
@@ -160,10 +174,8 @@ function adjustSlider(song_index) {
     // excitedness_slider.value = excitedness_percentage;
     excitedness_slider_text.innerHTML = "Excitedness: (" + Math.trunc(excitedness_percentage) + "%)";
 
-    $(document).ready(function() {
-        console.log(excitedness_percentage);
-        $("#excitedness_slider").slider("value", Math.trunc(excitedness_percentage));
-    });
+    excitednessSlider.slider("setValue", Math.trunc(excitedness_percentage));
+    happinessSlider.slider("setValue", Math.trunc(happiness_percentage));
 };
 
 function sendFeedback() {
@@ -212,26 +224,3 @@ resetButton.addEventListener("click", resetFeedback);
 
 var sendFeedbackBackButton = document.getElementById("send_feedback");
 sendFeedbackBackButton.addEventListener("click", sendFeedback);
-
-$(document).ready(function() {
-
-    var happinessSlider = $("#happiness_slider").slider({
-        id: "happiness_slider",
-        orientation: 'horizontal',
-        min: 0,
-        max: 100,
-        range: false,
-        value: 50,
-        animate: "fast"
-    });
-
-    var excitednessSlider = $("#excitedness_slider").slider({
-        id: "excitedness_slider",
-        orientation: 'horizontal',
-        min: 0,
-        max: 100,
-        range: false,
-        value: 50,
-        animate: "fast"
-    });
-});
