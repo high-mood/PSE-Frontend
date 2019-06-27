@@ -246,9 +246,9 @@ function drawLineDays(svgId, dataset, name) {
                 .style("opacity", 0)
                 .style("width", 0)
                 .style("height", 0)
-        })
         d3.select("#tooltiptextDays")
             .html("")
+        })
 }
 
 function toggleLine(buttonId) {
@@ -353,9 +353,9 @@ function showLine(name) {
             .style("visibility", "hidden")
     }
     if (name == "happiness" || name == "excitedness") {
-        d3.select(".moods.axis")
+        d3.selectAll(".moods.axis")
             .style("visibility", "visible")
-        d3.select(".tempo.axis")
+        d3.selectAll(".tempo.axis")
             .style("visibility", "hidden")
     }
 }
