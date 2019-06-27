@@ -92,8 +92,6 @@ function histSelect(song_index) {
     recRequest.send();
 }
 
-
-
 function createScrollWindow() {
     console.log("hi");
     data = window.curData;
@@ -112,3 +110,51 @@ function createScrollWindow() {
     }
     console.log("bye");
 }
+
+// TODO call actual API with real username
+function sendFeedback(event) {
+    var userid = "sinpy12";
+    var happiness = document.getElementById("happiness_slider").value;
+    var excitedness = document.getElementById("excitedness_slider").value;
+    var uri = "http://localhost:5000/api/songs/mood/" + userid;
+    var songid = "";
+
+    var data = {
+        "songid": songid,
+        "excitedness": excitedness,
+        "happiness": happiness
+    };
+    var request = new XMLHttpRequest();
+    request.open("POST", uri, true);
+    request.setRequestHeader("Content-Type", 'application/json');
+    request.setRequestHeader("Access-Control-Allow-Origin", 'localhost:4000');
+    request.send(JSON.stringify(data));
+}
+
+// TODO  set to actual song feedbacl
+function resetFeedback(event) {
+    var value = 50;
+    document.getElementById("happiness_slider").value = value;
+    var text = document.getElementById("happiness_slider_text");
+    text.textContent = value + "%";
+
+    document.getElementById("excitedness_slider").value = value;
+    var text = document.getElementById("excitedness_slider_text");
+    text.textContent = value + "%";
+};
+
+document.getElementById("happiness_slider").oninput = function() {
+    var text = document.getElementById("happiness_slider_text");
+    text.textContent = this.value + "%";
+};
+
+document.getElementById("excitedness_slider").oninput = function() {
+    var text = document.getElementById("excitedness_slider_text");
+    text.textContent = this.value + "%";
+};
+
+var resetButton = document.getElementById("reset_feedback");
+resetButton.addEventListener("click", resetFeedback);
+
+var sendFeedbackBackButton = document.getElementById("send_feedback");
+sendFeedbackBackButton.addEventListener("click", sendFeedback);
