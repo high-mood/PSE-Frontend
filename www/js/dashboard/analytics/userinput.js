@@ -10,17 +10,17 @@ var timeframeSliderObj = $("#timeframe-slider").slider({
 var daysSliderObj = $("#days-slider").slider({
 	id: "days-slider", 
 	orientation: 'horizontal', 
-	min: 1, 
+	min: 2, 
 	max: 365,
-	value: 1
+	value: 10
 });
 
 var songsSliderObj = $("#songs-slider").slider({
 	id: "songs-slider", 
 	orientation: 'horizontal', 
-	min: 1, 
+	min: 2, 
 	max: 1000,
-	value: 1
+	value: 10
 });
 
 $("#timeframe-slider-div").toggle()
