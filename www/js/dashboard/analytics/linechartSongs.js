@@ -3,49 +3,17 @@
 
 var xScale, yScale, yScaleTempo, yScaleMoods, data;
 
-function createLineGraphSongs(data, id, retriggered) {
-
-    console.log(data);
-    // clear div before proceeding
-    $(`#${id}`).empty();
-
-    // dataset, unused metrics are commented out
-    var dataset = {
-        "excitedness": [],
-        "happiness": [],
-        "acousticness": [],
-        "danceability": [],
-        // "duration_ms": [],
-        "energy": [],
-        "instrumentalness": [],
-        // "key": [],
-        "liveness": [],
-        // "loudness": [],
-        // "mode": [],
-        "speechiness": [],
-        "tempo": [],
-        "valence": [],
-    }
-
-        for (var key in dataset) {
-            if (key != "happiness" && key != "excitedness") {                    
-                $("#" + key).trigger("click")
-            }
-        }
-
-    // fill dataset with usable d3 data
+function fillDataset(dataset, data) {
     for (var key in dataset) {
         var value = dataset[key]
         for (var i in d3.range(data.metric_over_time.length)) {
             value.push({'y': data.metric_over_time[i][key]})
         }
     }
+    return dataset
+}
 
-    // dimensions and margins of graph
-    var margin = {top: 20, right: 80, bottom: 30, left: 30};
-    var width = 600 - margin.left - margin.right;
-    var height = 300 - margin.top - margin.bottom;
-
+function getScales(data, dataset, height, width) {
     // scales
     xScale = d3.scaleLinear()
         .domain([data.metric_over_time.length - 1, 0])
@@ -74,22 +42,37 @@ function createLineGraphSongs(data, id, retriggered) {
         .domain([-10, 10])
         .range([height, 0]); // output
 
-    // make svg and g html element
-    var svgId = "songsSvg"
-    var svg = d3.select("#" + id).append("svg")
-            .attr("width", "100%")
-            .attr("height", "100%")
-            .attr("viewBox", "-20 -20 600 400")
-        .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-            .attr("id", svgId);
-
     // simple scale to show on x axis
     var xScaleTicks = d3.scaleOrdinal()
         .domain(["past", "now"])
         .range([0, width])
 
-    // create axes
+    return [dataset, xScale, yScale, yScaleTempo, yScaleMoods, xScaleTicks]
+}
+
+function createSongsTooltip() {
+    // make tooltip
+    var tooltip = document.createElement("div")
+    tooltip.setAttribute("id", "tooltipSongs")
+    $('#lineSongs').append(tooltip)
+    
+    // set proper style for tooltip
+    d3.select("#tooltipSongs")
+        .style("width", "160px")
+        .style("height", "40px")
+        .style("position", "fixed")
+        .style("background-color", "steelblue")
+        .style("top", "0px")
+        .style("left", "0px")
+        .style("opacity", 0)
+        .style("border-radius", "10px")
+    
+    d3.select("#tooltipSongs").append("text").attr("id", "tooltiptextSongs")
+        .style("color", "#000000")
+}
+
+function createAxes(svg, xScaleTicks, yScale, yScaleTempo, yScaleMoods, height, width) {
+        // create axes
     xAxis = svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height / 2 + ")")
@@ -124,40 +107,98 @@ function createLineGraphSongs(data, id, retriggered) {
                   "rotate(90) translate(" + height / 2 + ", -40)")
             .style("text-anchor", "middle")
             .text("Moods")
-    
-    // make tooltip
-    var tooltip = document.createElement("div")
-    tooltip.setAttribute("id", "tooltipSongs")
-    document.getElementById("lineSongs").appendChild(tooltip)
-    
-    // set proper style for tooltip
-    d3.select("#tooltipSongs")
-        .style("width", "160px")
-        .style("height", "40px")
-        .style("position", "fixed")
-        .style("background-color", "steelblue")
-        .style("top", "0px")
-        .style("left", "0px")
-        .style("opacity", 0)
-        .style("border-radius", "10px")
-    
-    d3.select("#tooltipSongs").append("text").attr("id", "tooltiptextSongs")
-        .style("color", "#000000")
-    
-    // draw all lines, show wanted ones
-    for (var key in dataset) {
-        drawLineSongs(svgId, dataset[key], key, data);
-        showLine(key);
+    return [svg, xAxis]
+}
 
-        if (key != "happiness" && key != "excitedness") {                    
-            $("#" + key).trigger("click")
-        }       
-    }
+function createLineGraphSongs(data, id, retriggered) {
 
+    console.log(data);
+    // clear div before proceeding
+    $(`#${id}`).empty();
+
+    // dataset, unused metrics are commented out
+    var dataset = {
+        "excitedness": [],
+        "happiness": [],
+        "acousticness": [],
+        "danceability": [],
+        // "duration_ms": [],
+        "energy": [],
+        "instrumentalness": [],
+        // "key": [],
+        "liveness": [],
+        // "loudness": [],
+        // "mode": [],
+        "speechiness": [],
+        "tempo": [],
+        "valence": [],
+    };
+
+    data = dropNullData(data);
+
+    // fill dataset with usable d3 data
+    dataset = fillDataset(dataset, data)
+
+    // dimensions and margins of graph
+    var margin = {top: 20, right: 80, bottom: 30, left: 30};
+    var width = 600 - margin.left - margin.right;
+    var height = 300 - margin.top - margin.bottom;
+
+    [dataset, xScale, yScale, yScaleTempo, yScaleMoods, xScaleTicks] = getScales(data, dataset, height, width);
+
+    // make svg and g html element
+    var svgId = "songsSvg"
+    var svg = d3.select("#" + id).append("svg")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("viewBox", "-20 -20 600 320")
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .attr("id", svgId);
+    
+    svg, xAxis = createAxes(svg, xScaleTicks, yScale, yScaleTempo, yScaleMoods, height, width)
+    createSongsTooltip()
+    
+    
+    drawLines("songs", svgId, dataset, retriggered, data);
 
     // show only startLines at page load
     // var startLines = ["danceability", "energy", "liveness"]
     // startStates(startLines)
+}
+
+function drawLines(charttype, svgId, dataset, retriggered, data) {
+    // draw all lines, show wanted ones
+    for (var key in dataset) {
+        console.log("trigger status: ", retriggered)
+        if (!retriggered && charttype != "days") {
+            if (charttype == "songs") {
+                drawLineSongs(svgId, dataset[key], key, data);
+            }
+            else {
+                drawLineDays(svgId, dataset[key], key);
+            }
+            showLine(key);
+            if (key != "happiness" && key != "excitedness") {      
+                $("#" + key).trigger("click")
+                console.log(charttype, key, $("#" + key).css("opacity"))              
+            }
+        }
+        else {
+            if (charttype == "songs") {
+                drawLineSongs(svgId, dataset[key], key, data);
+            }
+            else {
+                drawLineDays(svgId, dataset[key], key);
+            }
+            if ($(`#${key}`).css("opacity") == "1") {
+                showLine(key);
+            }
+            else {
+                hideLine(key);
+            }
+        } 
+    }
 }
 
 
@@ -225,7 +266,7 @@ function drawLineSongs(svgId, dataset, name, data) {
             .transition()
                 .duration(200)
                 .style("opacity", 1)
-                .style("top", (event.clientY - 30) + "px")
+                .style("top", (event.clientY - 40) + "px")
                 .style("left", event.clientX + "px")
                 .style("background-color", color)
                 .style("width", "160px")
@@ -259,6 +300,18 @@ function trimSongName(name) {
     else {
         return name
     }
+}
+
+function dropNullData(data) {
+    for (var i in data["metric_over_time"]) {
+        for (var key in data["metric_over_time"][i]) {
+            if (data["metric_over_time"][i][key] == null) {
+                data["metric_over_time"].splice(i, 1)
+                break;
+            }
+        }
+    }
+    return data;
 }
 
 // // hides a given line
