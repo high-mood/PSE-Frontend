@@ -33,7 +33,7 @@ function toggleHistory(chartname) {
     if (chartname === 'history') {
         $('#historySelector').text("History ");
         $('#historySelector').append("<span class=\"caret\"></span>");
-
+        console.log(document.getElementById("headerName"));
         document.getElementById("headerName").innerHTML = "Full history";
 
         window.curData = window.histData;
@@ -42,6 +42,7 @@ function toggleHistory(chartname) {
         $('#historySelector').text("Favourite songs");
         $('#historySelector').append("<span class=\"caret\"></span>");
 
+        document.getElementById("headerName").innerHTML = "Favourite Songs";
         getTopData(); // if not top data?
     }
 }
@@ -60,8 +61,6 @@ function getTopData() {
 
             window.curData = window.topData;
             loadContent();
-        } else {
-            document.getElementById("userwelcome").innerHTML = "Error retrieving data!";
         }
     }
     topRequest.send();
