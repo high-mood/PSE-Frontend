@@ -8,22 +8,18 @@ function createRadarChart(userdata) {
 
   var color = d3.scaleOrdinal().range(["#EDC951","#EDC951"])
 
-  var radarChartOptions = {
-    // w: width,
-    // h: height,
-    w: 500,
-    h: 500,
-    margin: margin,
-    maxValue: 10,
-    levels: 5,
-    opacityArea: 0.1,
-    roundStrokes: true,
-    color: color
-  };
-
   var finalData = [];
   var song;
+  var highestval = 0
   for (i = 0; i < userdata.songs.length; i++) {
+    if (Math.abs(userdata.songs[i].excitedness) > highestval) {
+      highestval = Math.abs(userdata.songs[i].excitedness);
+    }
+
+    if (Math.abs(userdata.songs[i].happiness) > highestval) {
+      highestval = Math.abs(userdata.songs[i].happiness);
+    }
+
     song = {
       name : 'Song',
       axes : [
@@ -36,6 +32,18 @@ function createRadarChart(userdata) {
     finalData.push(song);
   }
 
+  var radarChartOptions = {
+    // w: width,
+    // h: height,
+    w: 500,
+    h: 500,
+    margin: margin,
+    maxValue: Math.ceil(highestval),
+    levels: 0,
+    opacityArea: 0.1,
+    roundStrokes: true,
+    color: color
+  };
+
   let svg_radar1 = RadarChart(".radarChart", finalData, radarChartOptions);
 }
-

@@ -1,4 +1,5 @@
 $('#lineSongs').hide()
+$('#barChart').hide()
 
 function requestLineCharts(retriggered) {
   var linechartRequest= new XMLHttpRequest()
@@ -49,6 +50,32 @@ function requestLineCharts(retriggered) {
     }
   }
   linechartDaysRequest.send()
+
+
+
+  var barchartRequest = new XMLHttpRequest()
+
+  // var metrics = "acousticness, danceability, duration_ms, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, valence";
+  // linechartDaysRequest.open('GET', 'https://cors-anywhere.herokuapp.com/http://randomelements.nl/highmood/data/api_days_dummy.json', true)
+  var start = 12;
+  var end = 20;
+  barchartRequest.open('GET', 'http://localhost:5000/api/user/mood/hourly/' + userid + '/' + start + '/' + end, true)
+  barchartRequest.onload = function() {
+    var alldata = JSON.parse(this.response)
+    var userdata = alldata.resource
+
+    console.log("alldata: " + alldata)
+    console.log(userdata)
+    if (barchartRequest.status >= 200 && barchartRequest.status < 400) {
+      // lineGraph
+      createBarChart("barChart",start,end,userdata["hours"]);
+      // giveText(userdata,"lineGraphText");
+    }
+    else {
+      document.getElementById("userwelcome").innerHTML = "Error retrieving data!"
+    }
+  }
+  barchartRequest.send()
 }
 
 requestLineCharts(false)
@@ -57,19 +84,34 @@ function toggleLineCharts(chartname) {
     if (chartname === 'lineDays') {
       $('#lineChartSelector').text("Days ")
       $('#lineChartSelector').append("<span class=\"caret\"></span>")
-        $('#lineDays').show();
-        $('#lineSongs').hide();
-        $("#timeframe-slider-div").hide()
-        $("#days-slider-div").show()
-        $("#songs-slider-div").hide()
+      $('#lineDays').show();
+      $('#lineSongs').hide();
+      $('#barChart').hide();
+      $("#timeframe-slider-div").hide()
+      $("#days-slider-div").show()
+      $("#songs-slider-div").hide()
+      $("#linechart-buttons").show()
     }
     else if (chartname === 'lineSongs') {
       $('#lineChartSelector').text("Songs ")
       $('#lineChartSelector').append("<span class=\"caret\"></span>")
-        $('#lineDays').hide();
-        $('#lineSongs').show();
-        $("#timeframe-slider-div").hide()
-        $("#days-slider-div").hide()
-        $("#songs-slider-div").show()
+      $('#lineDays').hide();
+      $('#lineSongs').show();
+      $('#barChart').hide();
+      $("#timeframe-slider-div").hide()
+      $("#days-slider-div").hide()
+      $("#songs-slider-div").show()
+      $("#linechart-buttons").show()
+    }
+    else if (chartname === 'barChart') {
+      $('#lineChartSelector').text("Hourly ")
+      $('#lineChartSelector').append("<span class=\"caret\"></span>")
+      $('#lineDays').hide();
+      $('#lineSongs').hide();
+      $('#barChart').show();
+      $("#timeframe-slider-div").hide();
+      $("#days-slider-div").hide();
+      $("#songs-slider-div").hide();
+      $("#linechart-buttons").hide();
     }
 }
