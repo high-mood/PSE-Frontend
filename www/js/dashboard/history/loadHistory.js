@@ -221,8 +221,8 @@ $(document).ready(function() {
         min: 0,
         max: 100,
         range: false,
-        value: 50
-        animate: "fast";
+        value: 50,
+        animate: "fast"
     });
 
     var excitednessSlider = $("#excitedness_slider").slider({
@@ -231,7 +231,7 @@ $(document).ready(function() {
         min: 0,
         max: 100,
         range: false,
-        value: 50
-        animate: "fast";
+        value: 50,
+        animate: "fast"
     });
 });
