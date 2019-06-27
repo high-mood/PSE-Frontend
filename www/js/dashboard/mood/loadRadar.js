@@ -38,11 +38,14 @@ function createRadarChart(userdata) {
     w: 500,
     h: 500,
     margin: margin,
-    maxValue: Math.ceil(highestval),
+    factorlegend: 0,
+    maxValue: Math.floor(highestval),
     levels: 0,
     opacityArea: 0.1,
+    axisLine: true,
     roundStrokes: true,
-    color: color
+    color: color,
+    labelFactor: 1.2
   };
 
   let svg_radar1 = RadarChart(".radarChart", finalData, radarChartOptions);

@@ -18,6 +18,10 @@ $theme-dark-gray: #19492a
     border-radius: 15%
 }
 
+.axis-line {
+    display:none;
+}
+
 .songs-background {
     width: 90%;
     margin-top: 5%;

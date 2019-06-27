@@ -110,15 +110,15 @@ aside {
     @include sans-serif-font;
     @include transition-all;
     .navbar-header .navbar-brand {
-        color: white;
+        color: $theme-light-gray;
         @include sans-serif-font;
         font-weight: 700;
         text-transform: capitalize;
         &:hover{
-            color: $theme-primary;
+            color: white;
         }
         &:focus {
-            color: $theme-white;
+            color: $theme-primary;
         }
     }
     .nav {
@@ -151,18 +151,18 @@ aside {
         border-color: $theme-dark-gray;
         .navbar-header .navbar-brand {
             // navigation buttons standard
-            color: white;
+            color: $theme-light-gray;
             &:hover,
             &:focus {
-                color: $theme-white;
+                color: $theme-primary;
             }
         }
         .nav > li > a,
         .nav > li > a:focus {
-            // clicked section
-            color: $theme-light-gray;
+            // navbar at top
+            color: white;
             &:hover {
-                color: $theme-white;
+                color: $theme-primary;
             }
         }
         &.affix {
@@ -180,7 +180,7 @@ aside {
             }
             .nav > li > a,
             .nav > li > a:focus {
-                color: $theme-white;
+                color: $theme-light-gray;
                 &:hover {
                     color: $theme-primary;
                 }
