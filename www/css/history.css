@@ -3,17 +3,12 @@
     height: 425px;
 }
 
-.review {
-    height: 500px;
+.top-buffer {
+    margin-top: 30px;
 }
 
-.feedback-slider {
-    -webkit-appearance: slider-vertical;
-    user-select: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+.review {
+    height: 500px;
 }
 
 .songdiv {
