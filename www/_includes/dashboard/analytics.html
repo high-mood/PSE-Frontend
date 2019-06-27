@@ -38,32 +38,52 @@
 
 
         <div class="row">
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-8 col-lg-offset-1">
-                    <div id="timeframe-slider-div">
-                        timeframe slider <br>
-                        <input id="timeframe-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts(true)">Refresh</button>
+            
+            <div class="row" id="linechart-buttons">
+                <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 text-center" id="lineCharts">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="instrumentalness" style="background-color: #1dc156;">Instrumentalness</button>
+                        </div>
                     </div>
-                    <div id="days-slider-div">
-                        days slider <br>
-                        <input id="days-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts(true)">Refresh</button>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="happiness" style="background-color: #1cc18f;">Happiness</button>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="excitedness" style="background-color: #1ba2c1;">Excitedness</button>
+                        </div>
                     </div>
-                    <div id="songs-slider-div">
-                        songs slider <br>
-                        <input id="songs-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts(true)">Refresh</button>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="acousticness" style="background-color: #1b5dc1;">Acousticness</button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="danceability" style="background-color: #761bc1;">Danceability</button>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="speechiness" style="background-color: #b31bc1;">Speechiness</button>
+                        </div>
                     </div>
-                </div>
-                <div id="number-slider-explanation-div" class="col-xs-10 col-xs-offset-3 col-sm-3 col-md-3 col-lg-3">
-                    Select the number of days you want to examine.
-                </div>
-                <div id="number-slider-explanation-div" class="col-xs-10 col-xs-offset-3 col-sm-3 col-md-3 col-lg-3">
-                    Select the number of days you want to examine.
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="liveness" style="background-color: #c11b65;">Liveness</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="valence" style="background-color: #c11b1b;">Valence</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="energy" style="background-color: #c1521b;">Energy</button>
+                        </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button class="btn btn-block" onclick="toggleLine(this.id)" id="tempo" style="background-color: #c1b51b;">Tempo</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-5 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1">
+                <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                     <div id="lineDays">
 
                     </div>
@@ -71,53 +91,29 @@
 
                     </div>
                 </div>
-                <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-md-3 col-lg-3 text-padding">
-                    bootiful chart explination
+                <div class="col-lg-2 col-md-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1 text-padding">
+                    This linegraph depicts the metrics selected above as averages per day  This linegraph depicts the metrics selected above as averages per day  This linegraph depicts the metrics selected above as averages per day
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                    <div id="timeframe-slider-div">
+                        Select the timeframe to examine <br>
+                        <input id="timeframe-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts(true)">Refresh</button>
+                    </div>
+                    <div id="days-slider-div">
+                        Select the number of days you want to examine <br>
+                        <input id="days-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts(true)">Refresh</button>
+                    </div>
+                    <div id="songs-slider-div">
+                        Select the number of songs you want to examine <br>
+                    <input id="songs-slider" type="text"/> <button class="btn btn-default dropdown-toggle" onclick="requestLineCharts(true)">Refresh</button>
+                    </div>
                 </div>
             </div>
 
         </div>
-        <div class="row" id="linechart-buttons">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="lineCharts">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="instrumentalness" style="background-color: #1dc156;">Instrumentalness</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="happiness" style="background-color: #1cc18f;">Happiness</button>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="excitedness" style="background-color: #1ba2c1;">Excitedness</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="acousticness" style="background-color: #1b5dc1;">Acousticness</button>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="danceability" style="background-color: #761bc1;">Danceability</button>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="speechiness" style="background-color: #b31bc1;">Speechiness</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="liveness" style="background-color: #c11b65;">Liveness</button>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="valence" style="background-color: #c11b1b;">Valence</button>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="energy" style="background-color: #c1521b;">Energy</button>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <button class="btn btn-block" onclick="toggleLine(this.id)" id="tempo" style="background-color: #c1b51b;">Tempo</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </section>
