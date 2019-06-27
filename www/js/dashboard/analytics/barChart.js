@@ -7,7 +7,7 @@ function createBarChart(divId,start,end,data) {
   var exitednessColor = "#1ba2c1";
   var happinessColor = "#1cc18f";
 
-  // 0. clear div
+  // 0. Clear the div.
   $(divId).empty();
 
   // 1. Add svg to target div.
