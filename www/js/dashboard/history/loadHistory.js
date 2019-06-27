@@ -23,6 +23,8 @@ request.onload = function() {
     if (request.status == 200) {
         loadContent();
     }
+    adjustSlider('0');
+    displaySimilarSongs('0');
 }
 request.send();
 
@@ -38,7 +40,7 @@ function toggleHistory(chartname) {
         loadContent();
     } else if (chartname === 'favourites') {
         $('#historySelector').text("Favourite songs");
-        $('#historySelector').append("<span class=\"caret\"></span>"); // TODO ask Arthus what this does
+        $('#historySelector').append("<span class=\"caret\"></span>");
 
         getTopData(); // if not top data?
     }
@@ -79,7 +81,14 @@ function loadContent() {
 }
 
 function histSelect(clickEvent) {
+    /** Translates clickEvent to song_index
+	:param clickEvent: The onclick event from one of the songs **/
     song_index = clickEvent.target.id;
+    displaySimilarSongs(song_index);
+}
+function displaySimilarSongs(song_index) {
+    /** Displays the list of songs under 'More like this'
+	:param song_index: Index of the in History/Favourites list **/
     songId = window.curData[parseInt(song_index)].songid;
     window.song_index = song_index;
     adjustSlider(song_index);
@@ -150,6 +159,8 @@ function createScrollWindow() {
 }
 
 function adjustSlider(song_index) {
+    /** Changes the mood and happiness slider positions after a song is selected
+	:param song_index: Index of the song in the history/favourites list **/
     if (song_index == null) {
         excitednessSlider.slider("setValue", 50);
         happinessSlider.slider("setValue", 50);
