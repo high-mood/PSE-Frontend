@@ -14,17 +14,20 @@ function analyticsDescription(chartName) {
     }
 }
 
+// ".<br>
+//  <br>
+// <br>
+// "
+var daysText = "The graph currently displays average statistics of the past days on which you have listened to music on Spotify.<br>\
+By hovering over the datapoints you can see the exact values for a given day.<br>\
+You can click one of the buttons below to show or hide the corresponding parameter in the graph.<br>\
+The slider above the graph allows you to select the timeframe of the graph."
 
-var daysText = "Showing average statistics over past days that you have listened to music.<br><br>\
-Hover over the datapoints to see the exact values for a given day.<br><br>\
-Click the buttons below to show or hide given lines.<br><br>\
-Choose how many days you want to have shown with the slider."
+var songText = "The graph currently displays average statistics of the past songs you have listened to on Spotify.<br>\
+By hovering over the datapoints you can see the exact values for a given song.<br>\
+You can click one of the buttons below to show or hide the corresponding parameter in the graph.<br>\
+The slider above the graph allows you to select the number of displayed songs."
 
-var songText = "Showing average statistics over past songs that you have listened to.<br><br>\
-Hover over the datapoints to see the exact values for a given song and the song name.<br><br>\
-Click the buttons below to show or hide given lines.<br><br>\
-Choose how many songs you want to have shown with the slider."
-
-var barText = "Showing average excitedness (blue) and happiness (green) of hours in a day.<br><br>\
-The data is collected over your whole music history, from which an average is calculated for every hour you select.<br><br>\
-Select the hours you want to see data from with the slider."
+var barText = "The graph currently displays average excitedness (blue) and happiness (green) per hour in a day.<br>\
+The displayed excitedness and happiness are averages over all the tracks you have listened to since you have started using Moodify.<br>\
+The slider above the graph allows you to select the time frame for which you can see your average excitedness and happiness."
