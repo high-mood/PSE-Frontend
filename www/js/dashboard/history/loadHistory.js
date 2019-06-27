@@ -112,12 +112,12 @@ function createScrollWindow() {
 }
 
 // TODO call actual API with real username
-function sendFeedback(event) {
-    var userid = "sinpy12";
+function sendFeedback(song_index) {
+    var userid = "snipy12";
     var happiness = document.getElementById("happiness_slider").value;
     var excitedness = document.getElementById("excitedness_slider").value;
     var uri = "http://localhost:5000/api/songs/mood/" + userid;
-    var songid = "";
+    var songid = window.curData[parseInt(song_index)].songid;
 
     var data = {
         "songid": songid,
@@ -132,15 +132,16 @@ function sendFeedback(event) {
 }
 
 // TODO  set to actual song feedbacl
-function resetFeedback(event) {
-    var value = 50;
-    document.getElementById("happiness_slider").value = value;
+function resetFeedback(song_index) {
+    var happiness = window.curData[parseInt(song_index)].happiness;
+    var excitedness = window.curData[parseInt(song_index)].excitedness;
+    document.getElementById("happiness_slider").value = happiness;
     var text = document.getElementById("happiness_slider_text");
-    text.textContent = value + "%";
+    text.textContent = happiness + "%";
 
-    document.getElementById("excitedness_slider").value = value;
+    document.getElementById("excitedness_slider").value = excitedness;
     var text = document.getElementById("excitedness_slider_text");
-    text.textContent = value + "%";
+    text.textContent = excitedness + "%";
 };
 
 document.getElementById("happiness_slider").oninput = function() {
