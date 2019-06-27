@@ -19,19 +19,11 @@ function createBarChart(divId,start,end,data) {
 
   // 2. Calculate data for bins
   dataSet = []
-  for (var i = start; i <= end; i++) {
-    // Get Averages of bins.
-    var conformingData = data.filter(function (data) {
-      return data.time >= i && data.time < (i + 1);
-    })
-    if (conformingData.length > 0) {
-      var averageE = d3.mean(conformingData,function(d) { return d.exitedness});
-      var averageH = d3.mean(conformingData,function(d) { return d.happiness});
-      dataSet.push({x:i,y:avarageE});
-      dataSet.push({x:(.5 + i),y:averageH});
-    } else {
-      dataSet.push({x:i,y:0});
-      dataSet.push({x:(.5 + i),y:0});
+  for (var i = 0; i < data.length; i++) {
+    hourData = data[i];
+    if(hourData.hour >= start && hourData.hour <= end) {
+      dataSet.push({x:i,y:hourData.excitedness});
+      dataSet.push({x:(.5 + i),y:hourData.happiness});
     }
   }
 

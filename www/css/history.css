@@ -10,6 +10,10 @@
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+
+    background: red;
+    width: 80%;
+    transform: rotate(270deg);
 }
 
 
